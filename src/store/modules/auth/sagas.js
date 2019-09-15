@@ -4,7 +4,12 @@ import { toast } from 'react-toastify';
 import history from '~/services/history';
 import api from '~/services/api';
 
-import { signInSuccess, signFailure } from './actions';
+import {
+  signInSuccess,
+  signFailure,
+  forgotPasswordSuccess,
+  forgotPasswordFailure,
+} from './actions';
 
 export function* signIn({ payload }) {
   try {
@@ -15,16 +20,11 @@ export function* signIn({ payload }) {
       password,
     });
 
-    const { token, user } = response.data;
-
-    if (!user.provider) {
-      toast.error('Usuário não é prestador!');
-      return false;
-    }
+    const { token } = response.data;
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    yield put(signInSuccess(token, user));
+    yield put(signInSuccess(token));
 
     history.push('/dashboard');
   } catch (error) {
@@ -67,9 +67,29 @@ export function signOut() {
   history.push('/');
 }
 
+export function* forgotPassword({ payload }) {
+  try {
+    const { email } = payload;
+
+    yield call(api.post, 'forgot_password', {
+      email,
+      redirect_url: 'http://localhost:3000/',
+    });
+
+    yield put(forgotPasswordSuccess());
+
+    history.push('/');
+  } catch (error) {
+    toast.error('Falha na requisição, verifique seus dados.');
+
+    yield put(forgotPasswordFailure());
+  }
+}
+
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
   takeLatest('@auth/SIGN_OUT', signOut),
+  takeLatest('@auth/FORGOT_PASSWORD_REQUEST', forgotPassword),
 ]);

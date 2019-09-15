@@ -27,21 +27,21 @@ export default function Profile() {
         <AvatarInput name="avatar_id" />
 
         <Input name="name" placeholder="Nome completo" />
-        <Input name="email" type="email" placeholder="Seu endereço de e-mail" />
+        <Input type="email" name="email" placeholder="Seu endereço de e-mail" />
 
         <hr />
 
         <Input
-          name="oldPassword"
           type="password"
+          name="oldPassword"
           placeholder="Sua senha atual"
         />
 
         <Input name="password" type="password" placeholder="Nova senha" />
 
         <Input
-          name="password"
-          type="ConfirmPassword"
+          type="password"
+          name="confirmPassword"
           placeholder="Confirmação de senha"
         />
 
@@ -49,7 +49,7 @@ export default function Profile() {
       </Form>
 
       <button type="button" onClick={handleSignOut}>
-        Sair do GoBarber
+        Sair da App
       </button>
     </Container>
   );

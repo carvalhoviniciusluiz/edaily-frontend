@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import { signInRequest } from '~/store/modules/auth/actions';
+import { forgotPasswordRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.svg';
 
@@ -12,17 +12,14 @@ const schema = Yup.object().shape({
   email: Yup.string()
     .email('Insira um e-mail válido.')
     .required('O e-mail é obrigatório'),
-  password: Yup.string()
-    .min(6, 'No mínimo 6 caracteres')
-    .required('A senha é obrigatória'),
 });
 
 export default function SignIn() {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
 
-  function handleSubmit({ email, password }) {
-    dispatch(signInRequest(email, password));
+  function handleSubmit({ email }) {
+    dispatch(forgotPasswordRequest(email));
   }
 
   return (
@@ -31,15 +28,11 @@ export default function SignIn() {
 
       <Form schema={schema} onSubmit={handleSubmit}>
         <Input name="email" type="email" placeholder="seu e-mail" />
-        <Input
-          name="password"
-          type="password"
-          placeholder="seu senha secreta"
-        />
-
-        <button type="submit">{loading ? 'Carregando..' : 'Acessar'}</button>
+        <button type="submit">
+          {loading ? 'Enviando..' : 'Enviar email de recuperação'}
+        </button>
         <Link to="/register">Criar conta gratuita</Link>
-        <Link to="/recover">Quero recuperar minha senha</Link>
+        <Link to="/">Voltar para o login</Link>
       </Form>
     </>
   );

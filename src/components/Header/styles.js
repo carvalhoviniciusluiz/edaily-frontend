@@ -6,10 +6,13 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  width: 100%;
+  max-width: 1366px;
   height: 64px;
-  max-width: 900px;
   margin: 0 auto;
+
   display: flex;
+  -webkit-box-pack: center;
   justify-content: space-between;
   align-items: center;
 
@@ -25,7 +28,7 @@ export const Content = styled.div`
 
     a {
       font-weight: bold;
-      color: #7159c1;
+      color: #599bc1;
     }
   }
 
@@ -55,6 +58,12 @@ export const Profile = styled.div`
       margin-top: 2px;
       font-size: 12px;
       color: #999;
+    }
+  }
+
+  @media (max-width: 768px) {
+    div {
+      display: none;
     }
   }
 

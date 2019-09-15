@@ -15,7 +15,7 @@ export default function Header() {
     <Container>
       <Content>
         <nav>
-          <img src={logo} alt="GoBarber" />
+          <img src={logo} alt="Edaily" />
           <Link to="/dashboard">DASHBOARD</Link>
         </nav>
 

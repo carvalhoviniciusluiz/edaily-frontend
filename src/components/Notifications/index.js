@@ -20,7 +20,7 @@ export default function Notifications() {
   return (
     <Container>
       <Bedge onClick={handleToggleVisible} hasUnread>
-        <MdNotifications color="#7159c1" size={20} />
+        <MdNotifications color="#599bc1" size={20} />
       </Bedge>
 
       <NotificationList visible={visible}>
