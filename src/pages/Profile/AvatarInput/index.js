@@ -27,23 +27,28 @@ export default function AvatarInput() {
   }, [ref.current]); // eslint-disable-line
 
   async function handleChange(e) {
-    const data = new FormData();
+    const formData = new FormData();
 
-    data.append('file', e.target.files[0]);
+    formData.append('file', e.target.files[0]);
 
-    const response = await api.post('files', data);
+    const response = await api.post('files', formData);
+    const { uuid, url } = response.data;
 
-    const { id, url } = response.data;
+    const { data } = await api.get(url, {
+      responseType: 'arraybuffer',
+    });
 
-    setFile(id);
-    setPreview(url);
+    const buffer = Buffer.from(data, 'binary').toString('base64');
+
+    setFile(uuid);
+    setPreview(buffer);
   }
 
   return (
     <Container>
       <label htmlFor="avatar">
         {preview ? (
-          <img src={preview} alt="" />
+          <img src={`data:image/png;base64, ${preview}`} alt="" />
         ) : (
           <Identicon string={profile.name} size={120} bg="#fff" fg="#333" />
         )}
