@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Identicon from 'react-identicons';
 
 import Notifications from '~/components/Notifications';
 
@@ -28,14 +29,11 @@ export default function Header() {
               <Link to="/profile">Meu perfil</Link>
             </div>
 
-            <img
-              src={
-                profile.avatar
-                  ? profile.avatar.url
-                  : 'https://api.adorable.io/avatars/50/abott@adorable.png'
-              }
-              alt="Avatar"
-            />
+            {profile.avatar ? (
+              <img src={profile.avatar.url} alt="Avatar" />
+            ) : (
+              <Identicon string={profile.name} size={32} bg="#fff" fg="#333" />
+            )}
           </Profile>
         </aside>
       </Content>

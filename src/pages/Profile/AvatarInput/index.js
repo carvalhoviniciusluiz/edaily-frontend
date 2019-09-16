@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useField } from '@rocketseat/unform';
+import Identicon from 'react-identicons';
 
 import api from '~/services/api';
 
@@ -7,6 +9,7 @@ import { Container } from './styles';
 
 export default function AvatarInput() {
   const { defaultValue, registerField } = useField('avatar');
+  const profile = useSelector(state => state.user.profile);
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
   const [preview, setPreview] = useState(defaultValue && defaultValue.url);
@@ -39,12 +42,11 @@ export default function AvatarInput() {
   return (
     <Container>
       <label htmlFor="avatar">
-        <img
-          src={
-            preview || 'https://api.adorable.io/avatars/50/abott@adorable.png'
-          }
-          alt=""
-        />
+        {preview ? (
+          <img src={preview} alt="" />
+        ) : (
+          <Identicon string={profile.name} size={120} bg="#fff" fg="#333" />
+        )}
 
         <input
           type="file"

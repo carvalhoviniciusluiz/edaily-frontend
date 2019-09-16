@@ -11,6 +11,7 @@ export const Container = styled.div`
       opacity: 0.7;
     }
 
+    canvas,
     img {
       height: 120px;
       width: 120px;

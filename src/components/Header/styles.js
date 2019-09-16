@@ -67,6 +67,7 @@ export const Profile = styled.div`
     }
   }
 
+  canvas,
   img {
     width: 32px;
     height: 32px;
