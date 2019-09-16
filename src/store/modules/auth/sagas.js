@@ -9,6 +9,8 @@ import {
   signFailure,
   forgotPasswordSuccess,
   forgotPasswordFailure,
+  resetPasswordSuccess,
+  resetPasswordFailure,
 } from './actions';
 
 export function* signIn({ payload }) {
@@ -73,7 +75,7 @@ export function* forgotPassword({ payload }) {
 
     yield call(api.post, 'forgot_password', {
       email,
-      redirect_url: 'http://localhost:3000/',
+      redirect_url: 'http://localhost:3000',
     });
 
     yield put(forgotPasswordSuccess());
@@ -86,10 +88,31 @@ export function* forgotPassword({ payload }) {
   }
 }
 
+export function* resetPassword({ payload }) {
+  try {
+    const { recovery_token, password, password_confirmation } = payload;
+
+    yield call(api.post, 'reset_password', {
+      recovery_token,
+      password,
+      password_confirmation,
+    });
+
+    yield put(resetPasswordSuccess());
+
+    history.push('/');
+  } catch (error) {
+    toast.error('Falha na requisição, verifique seus dados.');
+
+    yield put(resetPasswordFailure());
+  }
+}
+
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
   takeLatest('@auth/SIGN_OUT', signOut),
   takeLatest('@auth/FORGOT_PASSWORD_REQUEST', forgotPassword),
+  takeLatest('@auth/RESET_PASSWORD_REQUEST', resetPassword),
 ]);

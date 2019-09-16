@@ -49,3 +49,26 @@ export function forgotPasswordFailure() {
     type: '@auth/FORGOT_PASSWORD_FAILURE',
   };
 }
+
+export function resetPasswordRequest(
+  recovery_token,
+  password,
+  password_confirmation
+) {
+  return {
+    type: '@auth/RESET_PASSWORD_REQUEST',
+    payload: { recovery_token, password, password_confirmation },
+  };
+}
+
+export function resetPasswordSuccess() {
+  return {
+    type: '@auth/RESET_PASSWORD_SUCCESS',
+  };
+}
+
+export function resetPasswordFailure() {
+  return {
+    type: '@auth/RESET_PASSWORD_FAILURE',
+  };
+}

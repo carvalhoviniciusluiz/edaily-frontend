@@ -40,6 +40,18 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case '@auth/RESET_PASSWORD_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@auth/RESET_PASSWORD_SUCCESS': {
+        draft.loading = false;
+        break;
+      }
+      case '@auth/RESET_PASSWORD_FAILURE': {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });
