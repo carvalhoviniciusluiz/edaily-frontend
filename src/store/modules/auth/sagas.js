@@ -22,11 +22,11 @@ export function* signIn({ payload }) {
       password,
     });
 
-    const { token } = response.data;
+    const { token, user } = response.data;
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    yield put(signInSuccess(token));
+    yield put(signInSuccess(token, user));
 
     history.push('/dashboard');
   } catch (error) {
