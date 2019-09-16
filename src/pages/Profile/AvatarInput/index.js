@@ -19,7 +19,7 @@ export default function AvatarInput() {
   useEffect(() => {
     if (ref.current) {
       registerField({
-        name: 'avatar_id',
+        name: 'avatar_uuid',
         ref: ref.current,
         path: 'dataset.file',
       });
@@ -27,28 +27,23 @@ export default function AvatarInput() {
   }, [ref.current]); // eslint-disable-line
 
   async function handleChange(e) {
-    const formData = new FormData();
+    const data = new FormData();
 
-    formData.append('file', e.target.files[0]);
+    data.append('file', e.target.files[0]);
 
-    const response = await api.post('files', formData);
+    const response = await api.post('files', data);
+
     const { uuid, url } = response.data;
 
-    const { data } = await api.get(url, {
-      responseType: 'arraybuffer',
-    });
-
-    const buffer = Buffer.from(data, 'binary').toString('base64');
-
     setFile(uuid);
-    setPreview(buffer);
+    setPreview(url);
   }
 
   return (
     <Container>
       <label htmlFor="avatar">
         {preview ? (
-          <img src={`data:image/png;base64, ${preview}`} alt="" />
+          <img src={preview} alt="" />
         ) : (
           <Identicon string={profile.name} size={120} bg="#fff" fg="#333" />
         )}
