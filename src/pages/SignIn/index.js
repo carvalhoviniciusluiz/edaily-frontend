@@ -9,9 +9,7 @@ import { signInRequest } from '~/store/modules/auth/actions';
 import logo from '~/assets/logo.svg';
 
 const schema = Yup.object().shape({
-  email: Yup.string()
-    .email('Insira um e-mail válido.')
-    .required('O e-mail é obrigatório'),
+  credential: Yup.string().required('A credencial é obrigatória'),
   password: Yup.string()
     .min(6, 'No mínimo 6 caracteres')
     .required('A senha é obrigatória'),
@@ -21,8 +19,8 @@ export default function SignIn() {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
 
-  function handleSubmit({ email, password }) {
-    dispatch(signInRequest(email, password));
+  function handleSubmit({ credential, password }) {
+    dispatch(signInRequest(credential, password));
   }
 
   return (
@@ -30,11 +28,11 @@ export default function SignIn() {
       <img src={logo} alt="Edaily" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="email" type="email" placeholder="seu e-mail" />
+        <Input name="credential" placeholder="Informe seu CPF / E-mail" />
         <Input
           name="password"
           type="password"
-          placeholder="seu senha secreta"
+          placeholder="Sua senha secreta"
         />
 
         <button type="submit">{loading ? 'Carregando..' : 'Acessar'}</button>

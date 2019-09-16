@@ -15,10 +15,10 @@ import {
 
 export function* signIn({ payload }) {
   try {
-    const { email, password } = payload;
+    const { credential, password } = payload;
 
     const response = yield call(api.post, 'sessions', {
-      email,
+      credential,
       password,
     });
 
