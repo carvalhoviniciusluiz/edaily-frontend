@@ -7,6 +7,8 @@ import SignUp from '~/pages/SignUp';
 import ForgotPassword from '~/pages/ForgotPassword';
 import ResetPassword from '~/pages/ResetPassword';
 
+import Dashboard02 from '~/pages/Dashboard02';
+
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 
@@ -14,12 +16,18 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
-      <Route path="/register" component={SignUp} />
+      <Route path="/signup" component={SignUp} />
       <Route path="/recover" component={ForgotPassword} />
       <Route path="/reset" component={ResetPassword} />
 
+      <Route path="/register" exact component={Dashboard02} />
+      <Route path="/register/organization" exact component={SignUp} />
+      <Route path="/register/company" exact component={ForgotPassword} />
+
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
+
+      <Route path="*" component={SignIn} />
     </Switch>
   );
 }

@@ -31,8 +31,7 @@ export default function SignIn() {
         <button type="submit">
           {loading ? 'Enviando..' : 'Enviar email de recuperação'}
         </button>
-        <Link to="/register">Criar conta gratuita</Link>
-        <Link to="/">Voltar para o login</Link>
+        <Link to="/">Voltar ao login</Link>
       </Form>
     </>
   );
