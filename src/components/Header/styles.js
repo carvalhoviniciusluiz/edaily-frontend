@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   background: #fff;
@@ -38,7 +39,7 @@ export const Content = styled.div`
   }
 `;
 
-export const Profile = styled.div`
+export const Profile = styled(Link)`
   display: flex;
   margin-left: 20px;
   padding-left: 20px;
@@ -47,13 +48,14 @@ export const Profile = styled.div`
   div {
     text-align: right;
     margin-right: 10px;
+    margin-top: 5px;
 
     strong {
       display: block;
       color: #333;
     }
 
-    a {
+    span {
       display: block;
       margin-top: 2px;
       font-size: 12px;
@@ -69,8 +71,10 @@ export const Profile = styled.div`
 
   canvas,
   img {
-    width: 32px;
-    height: 32px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
+    border: 2px solid #599bc1;
+    background: #eee;
   }
 `;

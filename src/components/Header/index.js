@@ -23,10 +23,10 @@ export default function Header() {
         <aside>
           <Notifications />
 
-          <Profile>
+          <Profile to="/profile">
             <div>
               <strong>{profile.name}</strong>
-              <Link to="/profile">Meu perfil</Link>
+              <span>{profile.email}</span>
             </div>
 
             {profile.avatar ? (
