@@ -1,6 +1,6 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
-import Route from '~/routes/Route';
+import { Route, Switch } from 'react-router-dom';
+import RouteCustom from '~/routes/Route';
 
 import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
@@ -8,6 +8,7 @@ import ForgotPassword from '~/pages/ForgotPassword';
 import ResetPassword from '~/pages/ResetPassword';
 
 import Dashboard02 from '~/pages/Dashboard02';
+import PrivateCompanyRegistration from '~/pages/PrivateCompanyRegistration';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
@@ -15,19 +16,23 @@ import Profile from '~/pages/Profile';
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={SignIn} />
-      <Route path="/signup" component={SignUp} />
-      <Route path="/recover" component={ForgotPassword} />
-      <Route path="/reset" component={ResetPassword} />
+      <RouteCustom path="/" exact component={SignIn} />
+      <RouteCustom path="/signup" component={SignUp} />
+      <RouteCustom path="/recover" component={ForgotPassword} />
+      <RouteCustom path="/reset" component={ResetPassword} />
 
-      <Route path="/register" exact component={Dashboard02} />
-      <Route path="/register/organization" exact component={SignUp} />
-      <Route path="/register/company" exact component={ForgotPassword} />
+      <RouteCustom path="/register" exact component={Dashboard02} />
+      <RouteCustom path="/register/organization" exact component={SignUp} />
+      <Route
+        path="/register/company"
+        exact
+        component={PrivateCompanyRegistration}
+      />
 
-      <Route path="/dashboard" component={Dashboard} isPrivate />
-      <Route path="/profile" component={Profile} isPrivate />
+      <RouteCustom path="/dashboard" component={Dashboard} isPrivate />
+      <RouteCustom path="/profile" component={Profile} isPrivate />
 
-      <Route path="*" component={SignIn} />
+      <RouteCustom path="*" component={SignIn} />
     </Switch>
   );
 }
