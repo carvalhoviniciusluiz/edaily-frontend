@@ -18,7 +18,7 @@ export default function PublicForms() {
         </li>
 
         <li>
-          <Link to="/signup">
+          <Link to="/register/company">
             <IoMdAnalytics size={32} />
 
             <strong>Empresa Privada</strong>
