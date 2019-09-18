@@ -13,7 +13,6 @@ export const Content = styled.div`
   margin: 0 auto;
 
   display: flex;
-  -webkit-box-pack: center;
   justify-content: space-between;
   align-items: center;
 
