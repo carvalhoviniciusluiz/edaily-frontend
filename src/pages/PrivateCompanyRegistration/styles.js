@@ -81,6 +81,10 @@ export const Content = styled.div`
         height: 0.95em;
         width: 0.95em;
       }
+
+      a {
+        text-decoration: underline;
+      }
     }
 
     button {

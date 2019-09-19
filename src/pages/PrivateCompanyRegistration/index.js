@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input, Scope } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import logo from '~/assets/logo.svg';
 
+import { createOrganizationRequest } from '~/store/modules/organization/actions';
+
 import { Wrapper, Content, Address, Title, SubstituteCard } from './styles';
+
+import initialFormData from './data';
 
 const schema = Yup.object().shape({
   'customer.firstname': Yup.string().required('O nome é obrigatório'),
@@ -71,6 +76,13 @@ const schema = Yup.object().shape({
 
 export default function PrivateCompanyRegistration() {
   const [substitute, setSubstitute] = useState(false);
+  const [data] = useState(initialFormData);
+
+  const dispatch = useDispatch();
+
+  function handleSubmit(formData) {
+    dispatch(createOrganizationRequest(formData));
+  }
 
   function handleOpenPanel() {
     setSubstitute(true);
@@ -85,7 +97,7 @@ export default function PrivateCompanyRegistration() {
       <Content>
         <img src={logo} alt="Edaily" />
 
-        <Form schema={schema}>
+        <Form schema={schema} onSubmit={handleSubmit} initialData={data}>
           <Title>Dados do responsável</Title>
           <Address>
             <div>
@@ -181,13 +193,21 @@ export default function PrivateCompanyRegistration() {
           </Address>
 
           <label htmlFor="sending-authorized">
-            <input id="sending-authorized" name="authorized" type="checkbox" />
+            <input id="sending-authorized" name="sending" type="checkbox" />
             <span>Autorizo comunicação da Imprensa Oficial por e-mail</span>
           </label>
 
           <label htmlFor="billing-authorized">
-            <input id="billing-authorized" name="authorized" type="checkbox" />
+            <input id="billing-authorized" name="billing" type="checkbox" />
             <span>Autorizo receber boletos de cobrança por e-mail</span>
+          </label>
+
+          <label htmlFor="terms-authorized">
+            <input id="terms-authorized" name="terms" type="checkbox" />
+            <span>
+              Eu concordo e aceito os <a href="#terms">termos de uso</a> e as{' '}
+              <a href="#security">politícas de segurança</a> para esse sistema.
+            </span>
           </label>
 
           <button type="submit">Criar conta</button>
