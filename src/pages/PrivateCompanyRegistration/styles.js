@@ -101,6 +101,10 @@ export const Content = styled.div`
       &:hover {
         background: ${darken(0.03, '#3b9eff')};
       }
+
+      &:disabled {
+        background: #444;
+      }
     }
 
     a {
