@@ -1,5 +1,5 @@
 export default {
-  customer: {
+  responsible: {
     firstname: 'Vinícius',
     lastname: 'Carvalho',
     email: 'carvalho.viniciusluiz@gmail.com',
@@ -7,8 +7,6 @@ export default {
     rg: '785420',
     phone: '+5596981183628',
     birthday: '1984-02-19',
-  },
-  customer_address: {
     zipcode: '68900075',
     street: 'Rua Jovino Dinoa',
     street_number: '8125',
@@ -24,8 +22,6 @@ export default {
     rg: '348751',
     phone: '+559632230611',
     birthday: '2006-01-06',
-  },
-  substitute_address: {
     zipcode: '68900075',
     street: 'Rua Jovino Dinoa',
     street_number: '8125',
@@ -39,8 +35,6 @@ export default {
     billing_email: 'diofe@sead.ap.gov.br',
     cnpj: '02.287.757/0001-33',
     phone1: '(96) 3084-8000',
-  },
-  company_address: {
     zipcode: '68901-260',
     street: 'Rua Paraná',
     street_number: '311',
