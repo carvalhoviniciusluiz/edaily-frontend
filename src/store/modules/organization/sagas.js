@@ -10,11 +10,20 @@ import {
 
 export function* createOrganization({ payload }) {
   try {
-    const { company, responsible } = payload.data;
+    const {
+      company,
+      responsible,
+      shippingAllowed,
+      chargeAllowed,
+      termsAccepted,
+    } = payload.data;
 
     const response = yield call(api.post, 'organizations', {
       company: { definition: 'company', ...company },
       responsible,
+      sending_authorized_email: !!shippingAllowed,
+      billing_authorized_email: !!chargeAllowed,
+      authorized_and_accepted_policy_terms: !!termsAccepted,
     });
 
     toast.success('Dados foram processados com sucesso.');

@@ -14,22 +14,29 @@ import schema from './validation';
 
 export default function PrivateCompanyRegistration() {
   const [substitute, setSubstitute] = useState(false);
-  const [sendingAuthorized, setSendingAuthorized] = useState(false);
-  const [billingAuthorized, setBillingAuthorized] = useState(false);
-  const [termsAuthorized, setTermsAuthorized] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [shippingAllowed, setShippingAllowed] = useState(false);
+  const [chargeAllowed, setChargeAllowed] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [unautorized, setUnautorized] = useState(false);
 
   // const [data] = useState(initialFormData);
 
   const dispatch = useDispatch();
 
   function handleSubmit(formData) {
-    if (disabled) {
+    if (unautorized) {
       history.push('/register');
       return;
     }
 
-    dispatch(createOrganizationRequest(formData));
+    dispatch(
+      createOrganizationRequest({
+        ...formData,
+        shippingAllowed,
+        chargeAllowed,
+        termsAccepted,
+      })
+    );
   }
 
   function handleOpenPanel() {
@@ -41,8 +48,8 @@ export default function PrivateCompanyRegistration() {
   }
 
   useEffect(() => {
-    setDisabled(!(sendingAuthorized && billingAuthorized && termsAuthorized));
-  }, [billingAuthorized, sendingAuthorized, termsAuthorized]);
+    setUnautorized(!(shippingAllowed && chargeAllowed && termsAccepted));
+  }, [chargeAllowed, shippingAllowed, termsAccepted]);
 
   return (
     <Wrapper>
@@ -153,8 +160,8 @@ export default function PrivateCompanyRegistration() {
               id="sending-authorized"
               name="sending"
               type="checkbox"
-              onChange={() => setSendingAuthorized(!sendingAuthorized)}
-              checked={sendingAuthorized}
+              onChange={() => setShippingAllowed(!shippingAllowed)}
+              checked={shippingAllowed}
             />
             <span>Autorizo comunicação da Imprensa Oficial por e-mail</span>
           </label>
@@ -164,8 +171,8 @@ export default function PrivateCompanyRegistration() {
               id="billing-authorized"
               name="billing"
               type="checkbox"
-              onChange={() => setBillingAuthorized(!billingAuthorized)}
-              checked={billingAuthorized}
+              onChange={() => setChargeAllowed(!chargeAllowed)}
+              checked={chargeAllowed}
             />
             <span>Autorizo receber boletos de cobrança por e-mail</span>
           </label>
@@ -175,8 +182,8 @@ export default function PrivateCompanyRegistration() {
               id="terms-authorized"
               name="terms"
               type="checkbox"
-              onChange={() => setTermsAuthorized(!termsAuthorized)}
-              checked={termsAuthorized}
+              onChange={() => setTermsAccepted(!termsAccepted)}
+              checked={termsAccepted}
             />
             <span>
               Concordo com os <a href="#terms">termos de uso</a> e as{' '}
@@ -184,7 +191,7 @@ export default function PrivateCompanyRegistration() {
             </span>
           </label>
 
-          <button type="submit" disabled={disabled}>
+          <button type="submit" disabled={unautorized}>
             Criar conta
           </button>
 
