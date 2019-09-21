@@ -21,9 +21,10 @@ const schema = Yup.object().shape({
 
 export default function ResetPassword() {
   const urlParams = new URLSearchParams(window.location.search);
-
   const token = urlParams.get('token');
-  if (!token && token.length < 32) {
+  const tokenValid = token.length < 32;
+
+  if (!token && tokenValid) {
     history.push('/');
   }
 
