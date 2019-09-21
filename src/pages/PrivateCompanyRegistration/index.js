@@ -9,7 +9,7 @@ import logo from '~/assets/logo.svg';
 import history from '~/services/history';
 import { Wrapper, Content, Address, Title, SubstituteCard } from './styles';
 
-import viacep from '~/services/viacep';
+import * as fetch from '~/services/fetch';
 
 import schema from './validation';
 // import initialFormData from './data';
@@ -21,7 +21,10 @@ export default function PrivateCompanyRegistration() {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [unautorized, setUnautorized] = useState(false);
 
-  // const [data, setData] = useState(initialFormData);
+  // const [data] = useState(initialFormData);
+
+  const handleOpenPanel = () => setSubstitute(true);
+  const handleClosePanel = () => setSubstitute(false);
 
   const dispatch = useDispatch();
 
@@ -41,21 +44,13 @@ export default function PrivateCompanyRegistration() {
     );
   }
 
-  function handleOpenPanel() {
-    setSubstitute(true);
-  }
-
-  function handleClosePanel() {
-    setSubstitute(false);
-  }
-
   useEffect(() => {
     setUnautorized(!(shippingAllowed && chargeAllowed && termsAccepted));
   }, [chargeAllowed, shippingAllowed, termsAccepted]);
 
   async function fetchAddress(zipcode, prefix) {
     if (zipcode) {
-      const { street, neighborhood, city, state } = await viacep(zipcode);
+      const { street, neighborhood, city, state } = await fetch.viacep(zipcode);
 
       document.getElementById(`${prefix}.street`).value = street;
       document.getElementById(`${prefix}.neighborhood`).value = neighborhood;
@@ -64,23 +59,14 @@ export default function PrivateCompanyRegistration() {
     }
   }
 
-  async function handleResponsibleAddress(e) {
-    const { value } = e.target;
+  const handleResponsibleAddress = async e =>
+    fetchAddress(e.target.value, 'responsible');
 
-    fetchAddress(value, 'responsible');
-  }
+  const handleCompanyAddress = async e =>
+    fetchAddress(e.target.value, 'company');
 
-  async function handleCompanyAddress(e) {
-    const { value } = e.target;
-
-    fetchAddress(value, 'company');
-  }
-
-  async function handleSubstituteAddress(e) {
-    const { value } = e.target;
-
-    fetchAddress(value, 'substitute');
-  }
+  const handleSubstituteAddress = async e =>
+    fetchAddress(e.target.value, 'substitute');
 
   return (
     <Wrapper>
