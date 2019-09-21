@@ -9,6 +9,8 @@ import logo from '~/assets/logo.svg';
 import history from '~/services/history';
 import { Wrapper, Content, Address, Title, SubstituteCard } from './styles';
 
+import viacep from '~/services/viacep';
+
 import schema from './validation';
 // import initialFormData from './data';
 
@@ -19,7 +21,7 @@ export default function PrivateCompanyRegistration() {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [unautorized, setUnautorized] = useState(false);
 
-  // const [data] = useState(initialFormData);
+  // const [data, setData] = useState(initialFormData);
 
   const dispatch = useDispatch();
 
@@ -51,6 +53,35 @@ export default function PrivateCompanyRegistration() {
     setUnautorized(!(shippingAllowed && chargeAllowed && termsAccepted));
   }, [chargeAllowed, shippingAllowed, termsAccepted]);
 
+  async function fetchAddress(zipcode, prefix) {
+    if (zipcode) {
+      const { street, neighborhood, city, state } = await viacep(zipcode);
+
+      document.getElementById(`${prefix}.street`).value = street;
+      document.getElementById(`${prefix}.neighborhood`).value = neighborhood;
+      document.getElementById(`${prefix}.city`).value = city;
+      document.getElementById(`${prefix}.state`).value = state;
+    }
+  }
+
+  async function handleResponsibleAddress(e) {
+    const { value } = e.target;
+
+    fetchAddress(value, 'responsible');
+  }
+
+  async function handleCompanyAddress(e) {
+    const { value } = e.target;
+
+    fetchAddress(value, 'company');
+  }
+
+  async function handleSubstituteAddress(e) {
+    const { value } = e.target;
+
+    fetchAddress(value, 'substitute');
+  }
+
   return (
     <Wrapper>
       <Content>
@@ -77,7 +108,11 @@ export default function PrivateCompanyRegistration() {
             <div>
               <h3>Endereço</h3>
               <Scope path="responsible">
-                <Input name="zipcode" label="CEP" />
+                <Input
+                  name="zipcode"
+                  label="CEP"
+                  onBlur={handleResponsibleAddress}
+                />
                 <Input name="street" label="Logradouro" />
                 <Input name="street_number" label="Número" />
                 <Input name="neighborhood" label="Bairro" />
@@ -105,7 +140,11 @@ export default function PrivateCompanyRegistration() {
                 <div>
                   <h3>Endereço</h3>
                   <Scope path="substitute">
-                    <Input name="zipcode" label="CEP" />
+                    <Input
+                      name="zipcode"
+                      label="CEP"
+                      onBlur={handleSubstituteAddress}
+                    />
                     <Input name="street" label="Logradouro" />
                     <Input name="street_number" label="Número" />
                     <Input name="neighborhood" label="Bairro" />
@@ -145,7 +184,11 @@ export default function PrivateCompanyRegistration() {
             <div>
               <h3>Endereço</h3>
               <Scope path="company">
-                <Input name="zipcode" label="CEP" />
+                <Input
+                  name="zipcode"
+                  label="CEP"
+                  onBlur={handleCompanyAddress}
+                />
                 <Input name="street" label="Logradouro" />
                 <Input name="street_number" label="Número" />
                 <Input name="neighborhood" label="Bairro" />
