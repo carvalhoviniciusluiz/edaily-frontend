@@ -46,7 +46,12 @@ export default function AvatarInput() {
         {preview ? (
           <img src={preview} alt="" />
         ) : (
-          <Identicon string={profile.name} size={120} bg="#fff" fg="#333" />
+          <Identicon
+            string={`${profile.firstname} ${profile.lastname}`}
+            size={120}
+            bg="#fff"
+            fg="#333"
+          />
         )}
 
         <input

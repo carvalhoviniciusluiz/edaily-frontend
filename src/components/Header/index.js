@@ -25,14 +25,21 @@ export default function Header() {
 
           <Profile to="/profile">
             <div>
-              <strong>{profile.name}</strong>
+              <strong>
+                {profile.firstname} {profile.lastname}
+              </strong>
               <span>{profile.email}</span>
             </div>
 
             {profile.avatar ? (
               <img src={profile.avatar.url} alt="Avatar" />
             ) : (
-              <Identicon string={profile.name} size={32} bg="#fff" fg="#333" />
+              <Identicon
+                string={`${profile.firstname} ${profile.lastname}`}
+                size={32}
+                bg="#fff"
+                fg="#333"
+              />
             )}
           </Profile>
         </aside>
