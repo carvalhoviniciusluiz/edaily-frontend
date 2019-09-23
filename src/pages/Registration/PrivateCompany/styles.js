@@ -17,6 +17,11 @@ export const Content = styled.div`
   margin-top: 100px;
   margin-bottom: 100px;
 
+  img {
+    width: 250px;
+    height: 250px;
+  }
+
   form {
     display: flex;
     flex-direction: column;

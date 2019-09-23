@@ -29,6 +29,10 @@ export default createGlobalStyle`
     font: 14px 'Roboto', sans-serif;
   }
 
+  input, select, textarea {
+    width: 100%;
+  }
+
   a {
     text-decoration: none;
   }

@@ -16,10 +16,14 @@ export const Content = styled.div`
   max-width: 315px;
   text-align: center;
 
+  img {
+    width: 250px;
+    height: 250px;
+  }
+
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
 
     input {
       background: rgba(0, 0, 0, 0.1);
