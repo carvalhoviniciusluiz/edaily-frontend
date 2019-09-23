@@ -35,6 +35,12 @@ export const Container = styled.div`
       }
     }
 
+    input:disabled {
+      cursor: not-allowed;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: bold;
+    }
+
     span {
       color: #fb6f91;
       align-self: flex-start;
@@ -74,5 +80,31 @@ export const Container = styled.div`
     &:hover {
       background: ${darken(0.08, '#f64c75')};
     }
+  }
+`;
+
+export const InputGroup = styled.div`
+  display: flex;
+
+  & > div:first-child {
+    margin-right: 20px;
+  }
+
+  @media (max-width: 662px) {
+    flex-direction: column;
+
+    & > div:first-child {
+      margin-right: 0;
+    }
+  }
+`;
+
+export const InputItem = styled.div`
+  width: 380px;
+  position: relative;
+  margin-bottom: 10px;
+
+  @media (max-width: 662px) {
+    width: 100%;
   }
 `;

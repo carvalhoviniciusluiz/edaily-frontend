@@ -7,7 +7,7 @@ import { updateProfileRequest } from '~/store/modules/user/actions';
 
 import AvatarInput from './AvatarInput';
 
-import { Container } from './styles';
+import { Container, InputGroup, InputItem } from './styles';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -26,21 +26,62 @@ export default function Profile() {
       <Form initialData={profile} onSubmit={handleSubmit}>
         <AvatarInput name="avatar_uuid" />
 
-        <Input name="firstname" label="Nome" />
-        <Input name="lastname" label="Sobre nome" />
-        <Input type="email" name="email" label="Email" />
-        <Input name="cpf" label="CPF" />
-        <Input name="rg" label="RG" />
-        <Input name="phone" label="Celular" />
+        <InputGroup>
+          <InputItem>
+            <Input name="firstname" label="Nome" />
+          </InputItem>
+
+          <InputItem>
+            <Input name="lastname" label="Sobre nome" />
+          </InputItem>
+        </InputGroup>
+
+        <InputGroup>
+          <InputItem>
+            <Input type="email" name="email" label="Email" disabled />
+          </InputItem>
+          <InputItem>
+            <Input name="phone" label="Celular" />
+          </InputItem>
+        </InputGroup>
+
+        <InputGroup>
+          <InputItem>
+            <Input name="cpf" label="CPF" disabled />
+          </InputItem>
+          <InputItem>
+            <Input name="rg" label="RG" disabled />
+          </InputItem>
+        </InputGroup>
 
         <hr />
 
-        <Input name="zipcode" label="CEP" />
-        <Input name="street" label="Logradouro" />
-        <Input name="street_number" label="Número" />
-        <Input name="neighborhood" label="Bairro" />
-        <Input name="city" label="Cidade" />
-        <Input name="state" label="UF" />
+        <InputGroup>
+          <InputItem>
+            <Input name="zipcode" label="CEP" disabled />
+          </InputItem>
+          <InputItem>
+            <Input name="street_number" label="Número" disabled />
+          </InputItem>
+        </InputGroup>
+
+        <InputGroup>
+          <InputItem>
+            <Input name="neighborhood" label="Bairro" disabled />
+          </InputItem>
+          <InputItem>
+            <Input name="street" label="Logradouro" disabled />
+          </InputItem>
+        </InputGroup>
+
+        <InputGroup>
+          <InputItem>
+            <Input name="city" label="Cidade" disabled />
+          </InputItem>
+          <InputItem>
+            <Input name="state" label="UF" disabled />
+          </InputItem>
+        </InputGroup>
 
         <hr />
 
