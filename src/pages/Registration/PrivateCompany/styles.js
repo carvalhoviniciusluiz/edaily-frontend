@@ -22,6 +22,17 @@ export const Content = styled.div`
     flex-direction: column;
     margin-top: 30px;
 
+    select {
+      background: rgba(0, 0, 0, 0.1);
+      border: 0;
+      border-radius: 4px;
+      height: 44px;
+      padding: 0 15px;
+      color: #fff;
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
     input {
       background: rgba(0, 0, 0, 0.1);
       border: 0;
@@ -45,6 +56,7 @@ export const Content = styled.div`
           font-size: 12px;
         }
       }
+      select,
       button[type='submit'] {
         margin: 0 10px;
       }

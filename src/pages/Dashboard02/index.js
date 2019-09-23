@@ -9,7 +9,7 @@ export default function PublicForms() {
     <div className="main-container">
       <ServiceList>
         <li>
-          <Link to="/signup">
+          <Link to="/register/government">
             <IoMdPeople size={32} />
 
             <strong>Entidade Governamental</strong>

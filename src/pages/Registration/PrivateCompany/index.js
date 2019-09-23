@@ -11,10 +11,10 @@ import { Wrapper, Content, Address, Title, SubstituteCard } from './styles';
 
 import * as fetch from '~/services/fetch';
 
-import schema from './validation';
-// import initialFormData from './data';
+import schema from '~/pages/Registration/validation';
+// import initialFormData from '~/pages/Registration/data';
 
-export default function PrivateCompanyRegistration() {
+export default function PrivateCompany() {
   const [substitute, setSubstitute] = useState(false);
   const [shippingAllowed, setShippingAllowed] = useState(false);
   const [chargeAllowed, setChargeAllowed] = useState(false);

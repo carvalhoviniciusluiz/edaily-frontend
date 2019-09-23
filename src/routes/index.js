@@ -8,7 +8,8 @@ import ForgotPassword from '~/pages/ForgotPassword';
 import ResetPassword from '~/pages/ResetPassword';
 
 import Dashboard02 from '~/pages/Dashboard02';
-import PrivateCompanyRegistration from '~/pages/PrivateCompanyRegistration';
+import PrivateCompany from '~/pages/Registration/PrivateCompany';
+import GovernmentEntity from '~/pages/Registration/GovernmentEntity';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
@@ -23,11 +24,8 @@ export default function Routes() {
 
       <RouteCustom path="/register" exact component={Dashboard02} />
       <RouteCustom path="/register/organization" exact component={SignUp} />
-      <Route
-        path="/register/company"
-        exact
-        component={PrivateCompanyRegistration}
-      />
+      <Route path="/register/company" exact component={PrivateCompany} />
+      <Route path="/register/government" exact component={GovernmentEntity} />
 
       <RouteCustom path="/dashboard" component={Dashboard} isPrivate />
       <RouteCustom path="/profile" component={Profile} isPrivate />
