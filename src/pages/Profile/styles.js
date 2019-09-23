@@ -5,10 +5,21 @@ export const Container = styled.div`
   max-width: 600px;
   margin: 50px auto;
 
+  @media (max-width: 662px) {
+    padding: 0 10px;
+  }
+
   form {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
 
     input {
       background: rgba(0, 0, 0, 0.1);

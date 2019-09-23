@@ -26,23 +26,32 @@ export default function Profile() {
       <Form initialData={profile} onSubmit={handleSubmit}>
         <AvatarInput name="avatar_uuid" />
 
-        <Input name="name" placeholder="Nome completo" />
-        <Input type="email" name="email" placeholder="Seu endereço de e-mail" />
+        <Input name="firstname" label="Nome" />
+        <Input name="lastname" label="Sobre nome" />
+        <Input type="email" name="email" label="Email" />
+        <Input name="cpf" label="CPF" />
+        <Input name="rg" label="RG" />
+        <Input name="phone" label="Celular" />
 
         <hr />
 
-        <Input
-          type="password"
-          name="old_password"
-          placeholder="Sua senha atual"
-        />
+        <Input name="zipcode" label="CEP" />
+        <Input name="street" label="Logradouro" />
+        <Input name="street_number" label="Número" />
+        <Input name="neighborhood" label="Bairro" />
+        <Input name="city" label="Cidade" />
+        <Input name="state" label="UF" />
 
-        <Input name="password" type="password" placeholder="Nova senha" />
+        <hr />
+
+        <Input type="password" name="old_password" label="Senha atual" />
+
+        <Input name="password" type="password" label="Nova senha" />
 
         <Input
           type="password"
           name="password_confirmation"
-          placeholder="Confirmação de senha"
+          label="Confirmação de senha"
         />
 
         <button type="submit">Atualizar perfil</button>
