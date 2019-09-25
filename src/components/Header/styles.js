@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
+export const Container = styled.header`
   background: #fff;
   padding: 0 30px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
 `;
 
 export const Content = styled.div`
