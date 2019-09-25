@@ -12,6 +12,7 @@ import PrivateCompany from '~/pages/Registration/PrivateCompany';
 import GovernmentEntity from '~/pages/Registration/GovernmentEntity';
 
 import Dashboard from '~/pages/Dashboard';
+import Accompaniment from '~/pages/Accompaniment';
 import Profile from '~/pages/Profile';
 
 export default function Routes() {
@@ -28,6 +29,7 @@ export default function Routes() {
       <Route path="/register/government" exact component={GovernmentEntity} />
 
       <RouteCustom path="/dashboard" component={Dashboard} isPrivate />
+      <RouteCustom path="/accompaniment" component={Accompaniment} isPrivate />
       <RouteCustom path="/profile" component={Profile} isPrivate />
 
       <RouteCustom path="*" component={SignIn} />

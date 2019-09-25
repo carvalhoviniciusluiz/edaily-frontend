@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
 export const Container = styled.div`
   .container {
     display: flex;
@@ -16,7 +11,7 @@ export const Container = styled.div`
       }
     }
 
-    div {
+    a {
       background: #333;
       border-radius: 4px;
       margin: 8px 4px;
@@ -26,11 +21,16 @@ export const Container = styled.div`
       color: #fff;
 
       display: flex;
+      flex-direction: column;
       text-align: center;
       justify-content: center;
       align-items: center;
 
       cursor: pointer;
+
+      span {
+        margin-top: 10px;
+      }
 
       &:hover {
         font-weight: bold;

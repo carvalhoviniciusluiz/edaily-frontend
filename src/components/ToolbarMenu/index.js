@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   MdInbox,
@@ -14,26 +15,31 @@ export default function ToolbarMenu() {
   return (
     <Container>
       <div className="container center">
-        <div>
+        <Link to="/">
           <MdInbox color="#fff" size={20} />
           <span>Enviar</span>
-        </div>
-        <div className="active">
+        </Link>
+        <Link
+          to="/accompaniment"
+          className={
+            window.location.pathname === '/accompaniment' ? 'active' : ''
+          }
+        >
           <MdSend color="#fff" size={20} />
           <span>Acompanhar</span>
-        </div>
-        <div>
+        </Link>
+        <Link to="/">
           <MdNoEncryption color="#fff" size={20} />
           <span>Autorizar</span>
-        </div>
-        <div>
+        </Link>
+        <Link to="/">
           <MdInsertDriveFile color="#fff" size={20} />
           <span>Rascunhos</span>
-        </div>
-        <div>
+        </Link>
+        <Link to="/">
           <MdSupervisorAccount color="#fff" size={20} />
           <span>Usuários</span>
-        </div>
+        </Link>
       </div>
     </Container>
   );
