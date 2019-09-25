@@ -34,7 +34,12 @@ export const Container = styled.div`
 
       &:hover {
         font-weight: bold;
-        background: rgb(25, 24, 31);
+        background: #444;
+      }
+
+      &.active {
+        background: #222;
+        font-weight: bold;
       }
     }
   }

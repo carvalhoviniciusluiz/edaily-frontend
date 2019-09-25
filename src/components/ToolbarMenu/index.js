@@ -18,7 +18,7 @@ export default function ToolbarMenu() {
           <MdInbox color="#fff" size={20} />
           <span>Enviar</span>
         </div>
-        <div>
+        <div className="active">
           <MdSend color="#fff" size={20} />
           <span>Acompanhar</span>
         </div>
