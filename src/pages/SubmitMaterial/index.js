@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Select } from '@rocketseat/unform';
 
 import ToolbarMenu from '~/components/ToolbarMenu';
@@ -9,6 +9,8 @@ import FileUpload from './FileUpload';
 import { Container, Form, Group } from './styles';
 
 export default function Dashboard() {
+  const [publicationDate, setPublicationDate] = useState(false);
+
   const options = [
     { id: '1', title: 'ADJUDICAÇÃO' },
     { id: '2', title: 'ATA' },
@@ -53,6 +55,23 @@ export default function Dashboard() {
             <div className="title">
               <Input name="firstname" label="Título da publicação" />
             </div>
+
+            <label htmlFor="publication-date">
+              <div>
+                <input
+                  id="publication-date"
+                  name="publication-date"
+                  type="checkbox"
+                  onChange={() => setPublicationDate(!publicationDate)}
+                  checked={publicationDate}
+                />
+                <span>Definir data para publicação futura</span>
+              </div>
+
+              {publicationDate && (
+                <Input name="publication-date" placeholder="__/__/____" />
+              )}
+            </label>
           </Group>
 
           <hr />

@@ -72,7 +72,7 @@ export const Form = styled(__Form)`
     margin: 0 0 10px;
 
     &::placeholder {
-      color: rgba(255, 255, 255, 0.7);
+      color: #333;
     }
   }
 
@@ -105,27 +105,53 @@ export const Group = styled.div`
     display: flex;
     flex-direction: column;
 
-    input,
-    select {
-      width: 100% !important;
+    div {
+      input,
+      select {
+        width: 100% !important;
+      }
     }
   }
 
-  label {
-    display: block;
-    color: #444;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 4px;
-    margin-top: 15px;
+  & > label {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      display: block;
+      margin-top: 15px;
+      color: #444;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+
+      input[type='checkbox'] {
+        width: 0;
+        height: 1em;
+        width: 1.5em;
+      }
+    }
   }
 
-  select {
-    width: 270px;
-    font-size: 14px;
-  }
+  div {
+    display: flex;
+    flex-direction: column;
 
-  input {
-    width: 270px;
+    label {
+      color: #444;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      margin-top: 15px;
+    }
+
+    select {
+      width: 270px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 270px;
+    }
   }
 `;
