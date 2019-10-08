@@ -1,37 +1,74 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-import Dropzone from 'react-dropzone';
-import { DropContainer, UploadMessage } from './styles';
+import { uniqueId } from 'lodash';
+import filesize from 'filesize';
 
-export default function FileUpload({ onUpload }) {
-  function renderDragMessage(isDragActive, isDragReject) {
-    if (!isDragActive) {
-      return <UploadMessage>Arraste seus arquivos aqui..</UploadMessage>;
-    }
+import Dropzone from '../Dropzone';
+import FileList from '../FileList';
 
-    if (isDragReject) {
-      return <UploadMessage type="error">Arquivo não suportado</UploadMessage>;
-    }
+import api from '~/services/api';
+
+export default class Upload extends PureComponent {
+  state = {
+    uploadedFiles: [],
+  };
+
+  updateFile = (id, data) => {
+    const { uploadedFiles } = this.state;
+
+    this.setState({
+      uploadedFiles: uploadedFiles.map(uploadedFile => {
+        return uploadedFile.id === id
+          ? { ...uploadedFile, ...data }
+          : uploadedFile;
+      }),
+    });
+  };
+
+  processUpload = uploadedFile => {
+    const data = new FormData();
+
+    data.append('file', uploadedFile.file, uploadedFile.name);
+
+    api.post('avatars', data, {
+      onUploadProgress: e => {
+        const progress = parseInt(Math.round((e.loaded * 100) / e.total), 10);
+
+        this.updateFile(uploadedFile.id, { progress });
+      },
+    });
+  };
+
+  handleUpload = async acceptFiles => {
+    const { uploadedFiles } = this.state;
+
+    const processFiles = acceptFiles.map(file => ({
+      file,
+      id: uniqueId(),
+      name: file.name,
+      readableSize: filesize(file.size),
+      preview: URL.createObjectURL(file),
+      progress: 0,
+      uploaded: false,
+      error: false,
+      url: null,
+    }));
+
+    this.setState({
+      uploadedFiles: [...uploadedFiles, ...processFiles],
+    });
+
+    processFiles.forEach(this.processUpload);
+  };
+
+  render() {
+    const { uploadedFiles } = this.state;
 
     return (
-      <UploadMessage type="success">
-        Arraste e solte seus arquivos aqui ou clique para selecionar
-      </UploadMessage>
+      <>
+        <Dropzone onUpload={this.handleUpload} />
+        {!!uploadedFiles.length && <FileList files={uploadedFiles} />}
+      </>
     );
   }
-
-  return (
-    <Dropzone accept="image/*" onDrop={onUpload}>
-      {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-        <DropContainer
-          {...getRootProps()}
-          isDragActive={isDragActive}
-          isDragReject={isDragReject}
-        >
-          <input {...getInputProps()} />
-          {renderDragMessage(isDragActive, isDragReject)}
-        </DropContainer>
-      )}
-    </Dropzone>
-  );
 }

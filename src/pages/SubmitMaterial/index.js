@@ -5,7 +5,7 @@ import { Input, Select } from '@rocketseat/unform';
 
 import ToolbarMenu from '~/components/ToolbarMenu';
 
-import Upload from './Upload';
+import FileUpload from './FileUpload';
 
 import { Container, Form, Group } from './styles';
 
@@ -77,7 +77,7 @@ export default function Dashboard() {
 
           <hr />
 
-          <Upload />
+          <FileUpload />
 
           <button type="submit">Confirmar envio</button>
         </Form>

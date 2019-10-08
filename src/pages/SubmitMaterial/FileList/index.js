@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
@@ -50,3 +51,7 @@ export default function FileList({ files }) {
     </Container>
   );
 }
+
+FileList.propTypes = {
+  files: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
