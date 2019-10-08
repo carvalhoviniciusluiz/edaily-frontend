@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+
 import { Input, Select } from '@rocketseat/unform';
 
 import ToolbarMenu from '~/components/ToolbarMenu';
 
-import FileUpload from './FileUpload';
+import Upload from './Upload';
 
 import { Container, Form, Group } from './styles';
 
@@ -76,13 +77,7 @@ export default function Dashboard() {
 
           <hr />
 
-          <header>
-            <strong>Anexo de matérias</strong>
-          </header>
-
-          <FileUpload />
-
-          <hr />
+          <Upload />
 
           <button type="submit">Confirmar envio</button>
         </Form>
