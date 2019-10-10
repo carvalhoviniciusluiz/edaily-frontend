@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import { DropContainer, UploadMessage } from './styles';
 
-export default function FileUpload({ onUpload }) {
+export default function DropRegion({ onUpload }) {
   function renderDragMessage(isDragActive, isDragReject) {
     if (!isDragActive) {
       return <UploadMessage>Arraste seus arquivos aqui..</UploadMessage>;
@@ -37,6 +37,6 @@ export default function FileUpload({ onUpload }) {
   );
 }
 
-FileUpload.propTypes = {
+DropRegion.propTypes = {
   onUpload: PropTypes.func.isRequired,
 };
