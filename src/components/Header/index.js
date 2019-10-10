@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Identicon from 'react-identicons';
+
+import { MdArrowBack } from 'react-icons/md';
 
 import Notifications from '~/components/Notifications';
 
@@ -10,6 +12,12 @@ import logo from '~/assets/logo-purple.svg';
 import { Container, Content, Profile } from './styles';
 
 export default function Header() {
+  const [isAccompaniment, setIsAccompaniment] = useState(true);
+
+  useEffect(() => {
+    setIsAccompaniment(window.location.pathname === '/accompaniment');
+  }, [window.location.pathname]);  // eslint-disable-line
+
   const profile = useSelector(state => state.user.profile);
 
   return (
@@ -17,7 +25,13 @@ export default function Header() {
       <Content>
         <nav>
           <img src={logo} alt="Edaily" />
-          <Link to="/dashboard">DASHBOARD</Link>
+
+          {!isAccompaniment && (
+            <Link to="/accompaniment">
+              <MdArrowBack size={14} />
+              Voltar
+            </Link>
+          )}
         </nav>
 
         <aside>

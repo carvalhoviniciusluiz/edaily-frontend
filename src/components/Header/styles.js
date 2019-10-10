@@ -28,8 +28,13 @@ export const Content = styled.div`
     }
 
     a {
+      display: flex;
       font-weight: bold;
-      color: #599bc1;
+      color: #333;
+
+      svg {
+        margin-right: 13px;
+      }
     }
   }
 
