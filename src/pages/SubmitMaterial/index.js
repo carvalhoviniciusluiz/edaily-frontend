@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-
 import { Input, Select } from '@rocketseat/unform';
 
 import ToolbarMenu from '~/components/ToolbarMenu';

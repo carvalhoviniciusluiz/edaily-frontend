@@ -28,6 +28,13 @@ export const FileInfo = styled.div`
     display: flex;
     flex-direction: column;
 
+    strong {
+      width: 250px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     span {
       font-size: 12px;
       color: #999;

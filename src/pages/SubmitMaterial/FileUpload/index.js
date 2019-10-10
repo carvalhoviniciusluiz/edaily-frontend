@@ -13,6 +13,12 @@ export default class Upload extends PureComponent {
     uploadedFiles: [],
   };
 
+  componentWillUnmount() {
+    const { uploadedFiles } = this.state;
+
+    uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
+  }
+
   updateFile = (id, data) => {
     const { uploadedFiles } = this.state;
 
@@ -30,13 +36,26 @@ export default class Upload extends PureComponent {
 
     data.append('file', uploadedFile.file, uploadedFile.name);
 
-    api.post('avatars', data, {
-      onUploadProgress: e => {
-        const progress = parseInt(Math.round((e.loaded * 100) / e.total), 10);
+    api
+      .post('avatars', data, {
+        onUploadProgress: e => {
+          const progress = parseInt(Math.round((e.loaded * 100) / e.total), 10);
 
-        this.updateFile(uploadedFile.id, { progress });
-      },
-    });
+          this.updateFile(uploadedFile.id, { progress });
+        },
+      })
+      .then(response => {
+        this.updateFile(uploadedFile.id, {
+          uploaded: true,
+          id: response.data.uuid,
+          url: response.data.url,
+        });
+      })
+      .catch(() => {
+        this.updateFile(uploadedFile.id, {
+          error: true,
+        });
+      });
   };
 
   handleUpload = async acceptFiles => {
@@ -61,13 +80,25 @@ export default class Upload extends PureComponent {
     processFiles.forEach(this.processUpload);
   };
 
+  handlerDelete = async id => {
+    const { uploadedFiles } = this.state;
+
+    // await api.delete(`avatars/${id}`);
+
+    this.setState({
+      uploadedFiles: uploadedFiles.filter(file => file.id !== id),
+    });
+  };
+
   render() {
     const { uploadedFiles } = this.state;
 
     return (
       <>
         <Dropzone onUpload={this.handleUpload} />
-        {!!uploadedFiles.length && <FileList files={uploadedFiles} />}
+        {!!uploadedFiles.length && (
+          <FileList files={uploadedFiles} onDelete={this.handlerDelete} />
+        )}
       </>
     );
   }
