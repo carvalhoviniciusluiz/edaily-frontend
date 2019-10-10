@@ -3,12 +3,12 @@ import React, { PureComponent } from 'react';
 import { uniqueId } from 'lodash';
 import filesize from 'filesize';
 
-import Dropzone from '../Dropzone';
+import DropRegion from '../DropRegion';
 import FileList from '../FileList';
 
 import api from '~/services/api';
 
-export default class Upload extends PureComponent {
+export default class FileUpload extends PureComponent {
   state = {
     uploadedFiles: [],
   };
@@ -95,7 +95,7 @@ export default class Upload extends PureComponent {
 
     return (
       <>
-        <Dropzone onUpload={this.handleUpload} />
+        <DropRegion onUpload={this.handleUpload} />
         {!!uploadedFiles.length && (
           <FileList files={uploadedFiles} onDelete={this.handlerDelete} />
         )}
