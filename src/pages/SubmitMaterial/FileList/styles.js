@@ -44,20 +44,15 @@ export const FileInfo = styled.div`
         border: 0;
         background: transparent;
         color: #e57878;
-        margin-left: 5px;
+        margin-right: 5px;
         cursor: pointer;
       }
     }
   }
 `;
 
-export const Preview = styled.div`
-  width: 36px;
-  height: 36px;
-  border-radius: 5px;
-  background-image: url(${props => props.src});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
+export const Preview = styled.canvas`
+  width: 46px !important;
+  height: 56px !important;
   margin-right: 10px;
 `;

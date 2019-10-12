@@ -37,7 +37,7 @@ export default class FileUpload extends PureComponent {
     data.append('file', uploadedFile.file, uploadedFile.name);
 
     api
-      .post('avatars', data, {
+      .post('files', data, {
         onUploadProgress: e => {
           const progress = parseInt(Math.round((e.loaded * 100) / e.total), 10);
 
@@ -83,7 +83,7 @@ export default class FileUpload extends PureComponent {
   handlerDelete = async id => {
     const { uploadedFiles } = this.state;
 
-    // await api.delete(`avatars/${id}`);
+    // await api.delete(`files/${id}`);
 
     this.setState({
       uploadedFiles: uploadedFiles.filter(file => file.id !== id),

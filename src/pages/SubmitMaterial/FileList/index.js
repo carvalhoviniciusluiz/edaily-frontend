@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
-import { Container, FileInfo, Preview } from './styles';
+import { Container, FileInfo } from './styles';
+
+// import Preview from './Preview';
 
 export default function FileList({ files, onDelete }) {
   return (
@@ -11,16 +13,16 @@ export default function FileList({ files, onDelete }) {
       {files.map(file => (
         <li key={file.id}>
           <FileInfo>
-            <Preview src={file.preview} />
+            {/* <Preview file={file.preview} /> */}
             <div>
               <strong>{file.name}</strong>
               <span>
-                {file.readableSize}
                 {!!file.url && (
                   <button type="button" onClick={() => onDelete(file.id)}>
                     Excluir
                   </button>
                 )}
+                {file.readableSize}
               </span>
             </div>
           </FileInfo>
