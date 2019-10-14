@@ -46,7 +46,7 @@ export default function Header() {
             </div>
 
             {profile.avatar ? (
-              <img src={profile.avatar.url} alt="Avatar" />
+              <img src={profile.avatar.avatar} alt="Avatar" />
             ) : (
               <Identicon
                 string={`${profile.firstname} ${profile.lastname}`}

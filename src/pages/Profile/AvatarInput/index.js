@@ -13,7 +13,7 @@ export default function AvatarInput() {
   const profile = useSelector(state => state.user.profile);
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
-  const [preview, setPreview] = useState(defaultValue && defaultValue.url);
+  const [preview, setPreview] = useState(defaultValue && defaultValue.avatar);
 
   const ref = useRef();
 
