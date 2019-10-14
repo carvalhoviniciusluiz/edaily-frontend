@@ -9,10 +9,10 @@ import { Container, FileInfo, FileActions } from './styles';
 import PDFViewer from './PDFViewer';
 
 export default function FileList({ files, onDelete }) {
-  const [renderPdf, setRenderPdf] = useState(false);
+  const [target, setTarget] = useState(null);
 
-  const toggleRender = () => {
-    setRenderPdf(!renderPdf);
+  const toggleRender = id => {
+    setTarget(id);
   };
 
   return (
@@ -49,7 +49,7 @@ export default function FileList({ files, onDelete }) {
               <a
                 href="#viewer"
                 rel="noopener noreferrer"
-                onClick={toggleRender}
+                onClick={() => toggleRender(file.id)}
               >
                 <MdLink style={{ marginRight: 8 }} size={24} color="#222" />
               </a>
@@ -59,7 +59,9 @@ export default function FileList({ files, onDelete }) {
             {file.error && <MdError size={24} color="#e57878" />}
           </div>
 
-          {renderPdf && <PDFViewer file={file} toggleRender={toggleRender} />}
+          {file.id === target && (
+            <PDFViewer file={file} toggleRender={toggleRender} />
+          )}
         </li>
       ))}
     </Container>

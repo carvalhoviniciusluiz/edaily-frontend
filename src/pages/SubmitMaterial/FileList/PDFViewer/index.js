@@ -13,7 +13,7 @@ export default function PDFViewer({ file, toggleRender }) {
     'keydown',
     event => {
       if (event.keyCode === 27) {
-        toggleRender();
+        toggleRender(null);
       }
     },
     false
@@ -24,7 +24,7 @@ export default function PDFViewer({ file, toggleRender }) {
   };
 
   return (
-    <Lockscreen onClick={toggleRender}>
+    <Lockscreen>
       <Document file={file.preview} onLoadSuccess={onDocumentLoadSuccess}>
         {Array.from(new Array(numPages), (_, i) => (
           <Page key={`page_${i + 1}`} pageNumber={i + 1} scale={1.2} />
