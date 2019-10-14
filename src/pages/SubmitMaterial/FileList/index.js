@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { CircularProgressbar } from 'react-circular-progressbar';
-import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
-import { Container, FileInfo } from './styles';
 
-// import Preview from './Preview';
+import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
+import { Container, FileInfo, FileActions } from './styles';
+
+import PDFViewer from './PDFViewer';
 
 export default function FileList({ files, onDelete }) {
+  const [renderPdf, setRenderPdf] = useState(false);
+
+  const toggleRender = () => {
+    setRenderPdf(!renderPdf);
+  };
+
   return (
     <Container>
       {files.map(file => (
         <li key={file.id}>
           <FileInfo>
-            {/* <Preview file={file.preview} /> */}
-            <div>
+            <FileActions>
               <strong>{file.name}</strong>
               <span>
                 {!!file.url && (
@@ -24,7 +30,7 @@ export default function FileList({ files, onDelete }) {
                 )}
                 {file.readableSize}
               </span>
-            </div>
+            </FileActions>
           </FileInfo>
 
           <div>
@@ -40,7 +46,11 @@ export default function FileList({ files, onDelete }) {
             )}
 
             {file.url && (
-              <a href={file.url} target="_blank" rel="noopener noreferrer">
+              <a
+                href="#viewer"
+                rel="noopener noreferrer"
+                onClick={toggleRender}
+              >
                 <MdLink style={{ marginRight: 8 }} size={24} color="#222" />
               </a>
             )}
@@ -48,6 +58,8 @@ export default function FileList({ files, onDelete }) {
             {file.uploaded && <MdCheckCircle size={24} color="#78e5d5" />}
             {file.error && <MdError size={24} color="#e57878" />}
           </div>
+
+          {renderPdf && <PDFViewer file={file} toggleRender={toggleRender} />}
         </li>
       ))}
     </Container>

@@ -23,36 +23,30 @@ export const Container = styled.ul`
 export const FileInfo = styled.div`
   display: flex;
   align-items: center;
-
-  div {
-    display: flex;
-    flex-direction: column;
-
-    strong {
-      width: 250px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    span {
-      font-size: 12px;
-      color: #999;
-      margin-top: 5px;
-
-      button {
-        border: 0;
-        background: transparent;
-        color: #e57878;
-        margin-right: 5px;
-        cursor: pointer;
-      }
-    }
-  }
 `;
 
-export const Preview = styled.canvas`
-  width: 46px !important;
-  height: 56px !important;
-  margin-right: 10px;
+export const FileActions = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  span {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+
+    button {
+      border: 0;
+      background: transparent;
+      color: #e57878;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
 `;
