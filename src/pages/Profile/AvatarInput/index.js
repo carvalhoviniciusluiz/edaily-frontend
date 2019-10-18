@@ -34,10 +34,10 @@ export default function AvatarInput() {
 
     const response = await api.post('avatars', data);
 
-    const { uuid, url } = response.data;
+    const { uuid, avatar } = response.data;
 
     setFile(uuid);
-    setPreview(url);
+    setPreview(avatar);
   }
 
   return (
