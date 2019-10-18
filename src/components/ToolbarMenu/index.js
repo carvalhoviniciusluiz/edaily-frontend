@@ -20,7 +20,7 @@ export default function ToolbarMenu() {
           className={window.location.pathname === '/submit' ? 'active' : ''}
         >
           <MdInbox color="#fff" size={20} />
-          <span>Enviar</span>
+          <span>Encaminhar</span>
         </Link>
         <Link
           to="/accompaniment"
@@ -33,11 +33,11 @@ export default function ToolbarMenu() {
         </Link>
         <Link to="/">
           <MdInsertDriveFile color="#fff" size={20} />
-          <span>Rascunhos</span>
+          <span>Processando</span>
         </Link>
         <Link to="/">
           <MdNoEncryption color="#fff" size={20} />
-          <span>Autorização</span>
+          <span>Autorizar</span>
         </Link>
         <Link to="/">
           <MdSupervisorAccount color="#fff" size={20} />
