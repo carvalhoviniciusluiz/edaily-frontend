@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Input, Select } from '@rocketseat/unform';
 
+import InputMask from 'react-input-mask';
+
 import ToolbarMenu from '~/components/ToolbarMenu';
 import FileUpload from './FileUpload';
 
@@ -67,7 +69,11 @@ export default function SubmitMaterial() {
               </div>
 
               {publicationDate && (
-                <Input name="publication-date" placeholder="__/__/____" />
+                <InputMask
+                  name="publication-date"
+                  mask="99/99/9999"
+                  placeholder="__/__/____"
+                />
               )}
             </label>
           </Group>
