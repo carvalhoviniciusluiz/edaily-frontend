@@ -83,7 +83,7 @@ export default class FileUpload extends PureComponent {
   handlerDelete = async id => {
     const { uploadedFiles } = this.state;
 
-    // await api.delete(`files/${id}`);
+    await api.delete(`files/${id}`);
 
     this.setState({
       uploadedFiles: uploadedFiles.filter(file => file.id !== id),
