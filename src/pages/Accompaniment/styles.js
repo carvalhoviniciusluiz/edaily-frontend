@@ -25,9 +25,6 @@ export const Container = styled.div`
   }
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 15px;
     margin-top: 30px;
   }
 `;
@@ -38,6 +35,18 @@ export const Panel = styled.li`
   background: #fff;
 
   opacity: ${props => (props.past ? 0.6 : 1)};
+
+  & + li {
+    margin-top: 15px;
+  }
+
+  @media (max-width: 662px) {
+    margin: 0 10px;
+
+    p {
+      width: inherit !important;
+    }
+  }
 
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
