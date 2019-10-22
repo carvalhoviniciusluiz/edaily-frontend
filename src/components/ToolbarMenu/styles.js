@@ -7,7 +7,12 @@ export const Container = styled.div`
 
     @media (max-width: 512px) {
       & {
-        display: none;
+        flex-direction: column;
+
+        a {
+          width: inherit !important;
+          margin: 4px 10px !important;
+        }
       }
     }
 
@@ -35,6 +40,11 @@ export const Container = styled.div`
       &:hover {
         font-weight: bold;
         background: #444;
+      }
+
+      &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(50, 100, 150, 0.4);
       }
 
       &.active {

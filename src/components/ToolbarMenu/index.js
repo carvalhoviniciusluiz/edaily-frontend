@@ -31,7 +31,10 @@ export default function ToolbarMenu() {
           <MdSend color="#fff" size={20} />
           <span>Acompanhar</span>
         </Link>
-        <Link to="/">
+        <Link
+          to="/processing"
+          className={window.location.pathname === '/processing' ? 'active' : ''}
+        >
           <MdInsertDriveFile color="#fff" size={20} />
           <span>Processando</span>
         </Link>
