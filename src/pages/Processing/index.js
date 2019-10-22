@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import { format } from 'date-fns';
+import { utcToZonedTime } from 'date-fns-tz';
+import pt from 'date-fns/locale/pt';
 
 import Swal from 'sweetalert2';
 
@@ -10,9 +14,39 @@ import {
 } from 'react-icons/md';
 import ToolbarMenu from '~/components/ToolbarMenu';
 
+import api from '~/services/api';
+
 import { Container, Panel } from './styles';
 
 export default function Dashboard() {
+  const [meta, setMeta] = useState({});
+  const [matters, setMatters] = useState([]);
+
+  useEffect(() => {
+    async function loadMatters() {
+      const { limit = '', page = '' } = meta;
+      const response = await api.get(`matters?limit=${limit}&page=${page}`);
+      const { data, ...rest } = response.data;
+
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      setMeta(rest);
+      setMatters(
+        data.map(({ createdAt, ...params }) => {
+          const datetime = utcToZonedTime(createdAt, timezone);
+
+          return {
+            ...params,
+            date: format(datetime, "dd/MM/yyyy", { locale: pt }), // eslint-disable-line
+            time: format(datetime, "HH:mm", { locale: pt }), // eslint-disable-line
+            createdAt: utcToZonedTime(createdAt, timezone),
+          };
+        })
+      );
+    }
+    loadMatters();
+  }, []) // eslint-disable-line
+
   const handleDelete = async id => {
     const { value } = await Swal.fire({
       type: 'question',
@@ -24,7 +58,15 @@ export default function Dashboard() {
     });
 
     if (value) {
-      console.tron.log(id);
+      setMatters(
+        matters.filter(matter => {
+          if (matter.id === id) {
+            api.delete(`files/${matter.file.id}`);
+          }
+
+          return matter.id !== id;
+        })
+      );
     }
   };
 
@@ -38,239 +80,43 @@ export default function Dashboard() {
         </header>
 
         <ul>
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <div>
-              <p>
-                <Link to="/">
-                  No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                  denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                  dezembro de 2018, veio a esta camara Arbitral denominado
-                  SISBACOMBRA - Sistema Brasileiro
-                </Link>
-              </p>
+          {matters.map(matter => (
+            <Panel key={matter.id}>
+              <div>
+                <strong className="time">{matter.time}</strong>
+                <strong>
+                  <MdSupervisorAccount size={22} />
+                  <span>{matter.organization.initials}</span>
+                </strong>
+                <strong>
+                  <MdPermIdentity size={22} />
+                  <span>
+                    {matter.author.firstname} {matter.author.lastname}
+                  </span>
+                </strong>
+                <strong>
+                  <MdAccessTime />
+                  <span>{matter.date}</span>
+                </strong>
+              </div>
+              <div>
+                <p>
+                  <Link to="/">{matter.file.name}</Link>
+                </p>
 
-              <button
-                type="button"
-                className="delete"
-                onClick={() => handleDelete(123)}
-              >
-                Excluir
-              </button>
-              <button type="button" className="send">
-                Enviar
-              </button>
-            </div>
-          </Panel>
-
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <div>
-              <p>
-                <Link to="/">
-                  No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                  denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                  dezembro de 2018, veio a esta camara Arbitral denominado
-                  SISBACOMBRA - Sistema Brasileiro
-                </Link>
-              </p>
-
-              <button
-                type="button"
-                className="delete"
-                onClick={() => handleDelete(123)}
-              >
-                Excluir
-              </button>
-              <button type="button" className="send">
-                Enviar
-              </button>
-            </div>
-          </Panel>
-
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <div>
-              <p>
-                <Link to="/">
-                  No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                  denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                  dezembro de 2018, veio a esta camara Arbitral denominado
-                  SISBACOMBRA - Sistema Brasileiro
-                </Link>
-              </p>
-
-              <button
-                type="button"
-                className="delete"
-                onClick={() => handleDelete(123)}
-              >
-                Excluir
-              </button>
-              <button type="button" className="send">
-                Enviar
-              </button>
-            </div>
-          </Panel>
-
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <div>
-              <p>
-                <Link to="/">
-                  No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                  denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                  dezembro de 2018, veio a esta camara Arbitral denominado
-                  SISBACOMBRA - Sistema Brasileiro
-                </Link>
-              </p>
-
-              <button
-                type="button"
-                className="delete"
-                onClick={() => handleDelete(123)}
-              >
-                Excluir
-              </button>
-              <button type="button" className="send">
-                Enviar
-              </button>
-            </div>
-          </Panel>
-
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <div>
-              <p>
-                <Link to="/">
-                  No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                  denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                  dezembro de 2018, veio a esta camara Arbitral denominado
-                  SISBACOMBRA - Sistema Brasileiro
-                </Link>
-              </p>
-
-              <button
-                type="button"
-                className="delete"
-                onClick={() => handleDelete(123)}
-              >
-                Excluir
-              </button>
-              <button type="button" className="send">
-                Enviar
-              </button>
-            </div>
-          </Panel>
-
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <div>
-              <p>
-                <Link to="/">
-                  No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                  denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                  dezembro de 2018, veio a esta camara Arbitral denominado
-                  SISBACOMBRA - Sistema Brasileiro
-                </Link>
-              </p>
-
-              <button
-                type="button"
-                className="delete"
-                onClick={() => handleDelete(123)}
-              >
-                Excluir
-              </button>
-              <button type="button" className="send">
-                Enviar
-              </button>
-            </div>
-          </Panel>
+                <button
+                  type="button"
+                  className="delete"
+                  onClick={() => handleDelete(matter.id)}
+                >
+                  Excluir
+                </button>
+                <button type="button" className="send">
+                  Enviar
+                </button>
+              </div>
+            </Panel>
+          ))}
         </ul>
       </Container>
     </>
