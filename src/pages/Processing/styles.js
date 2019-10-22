@@ -28,7 +28,7 @@ export const Container = styled.div`
 `;
 
 export const Panel = styled.li`
-  padding: 20px;
+  padding: 26px 20px;
   border-radius: 4px;
   background: #fff;
 
