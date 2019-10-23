@@ -7,6 +7,8 @@ import pt from 'date-fns/locale/pt';
 import Swal from 'sweetalert2';
 
 import {
+  MdChevronLeft,
+  MdChevronRight,
   MdAccessTime,
   MdSupervisorAccount,
   MdPermIdentity,
@@ -17,16 +19,19 @@ import api from '~/services/api';
 
 import PDFViewer from '~/components/PDFViewer';
 
-import { Container, Panel } from './styles';
+import { Container, Panel, Button } from './styles';
 
 export default function Dashboard() {
+  const [desablePrev, setDesablePrev] = useState(true);
+  const [desableNext, setDesableNext] = useState(false);
+  const [page, setPage] = useState(1);
   const [meta, setMeta] = useState({});
   const [matters, setMatters] = useState([]);
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
     async function loadMatters() {
-      const { limit = '', page = '' } = meta;
+      const { limit = '' } = meta;
       const response = await api.get(`matters?limit=${limit}&page=${page}`);
       const { data, ...rest } = response.data;
 
@@ -47,7 +52,7 @@ export default function Dashboard() {
       );
     }
     loadMatters();
-  }, []) // eslint-disable-line
+  }, [page]) // eslint-disable-line
 
   const handleDelete = async id => {
     const { value } = await Swal.fire({
@@ -72,13 +77,33 @@ export default function Dashboard() {
     }
   };
 
+  function handlePrevPage() {
+    setDesablePrev(page < meta.pages);
+    setDesableNext(meta.page === 1);
+
+    setPage(page - 1);
+  }
+
+  function handleNextPage() {
+    setDesablePrev(desableNext);
+    setDesableNext(page + 1 === meta.pages);
+
+    setPage(page + 1);
+  }
+
   return (
     <>
       <ToolbarMenu />
 
       <Container>
         <header>
+          <Button type="button" onClick={handlePrevPage} desable={desablePrev}>
+            <MdChevronLeft size={36} color="#fff" />
+          </Button>
           <strong>Aguardando liberação</strong>
+          <Button type="button" onClick={handleNextPage} desable={desableNext}>
+            <MdChevronRight size={36} color="#fff" />
+          </Button>
         </header>
 
         {url && <PDFViewer url={url} toggleRender={setUrl} />}

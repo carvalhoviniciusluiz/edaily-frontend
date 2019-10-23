@@ -2,6 +2,15 @@ import styled from 'styled-components';
 
 import { darken } from 'polished';
 
+export const Button = styled.button.attrs(props => ({
+  disabled: props.desable,
+}))`
+  border: 0;
+  background: none;
+
+  opacity: ${props => (props.desable ? 0.2 : 1)};
+`;
+
 export const Container = styled.div`
   max-width: 600px;
   margin: 50px auto;
@@ -13,7 +22,6 @@ export const Container = styled.div`
     display: flex;
     align-self: center;
     align-items: center;
-    margin-top: 11px;
 
     strong {
       color: #fff;
