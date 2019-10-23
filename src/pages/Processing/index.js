@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -16,11 +15,14 @@ import ToolbarMenu from '~/components/ToolbarMenu';
 
 import api from '~/services/api';
 
+import PDFViewer from '~/components/PDFViewer';
+
 import { Container, Panel } from './styles';
 
 export default function Dashboard() {
   const [meta, setMeta] = useState({});
   const [matters, setMatters] = useState([]);
+  const [url, setUrl] = useState(null);
 
   useEffect(() => {
     async function loadMatters() {
@@ -79,6 +81,8 @@ export default function Dashboard() {
           <strong>Aguardando liberação</strong>
         </header>
 
+        {url && <PDFViewer url={url} toggleRender={setUrl} />}
+
         <ul>
           {matters.map(matter => (
             <Panel key={matter.id}>
@@ -101,7 +105,13 @@ export default function Dashboard() {
               </div>
               <div>
                 <p>
-                  <Link to="/">{matter.file.name}</Link>
+                  <a
+                    href="#viewer"
+                    rel="noopener noreferrer"
+                    onClick={() => setUrl(matter.file.url)}
+                  >
+                    {matter.file.name}
+                  </a>
                 </p>
 
                 <button
