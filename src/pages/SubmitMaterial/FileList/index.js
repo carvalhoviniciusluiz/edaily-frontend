@@ -6,17 +6,15 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
 import { Container, FileInfo, FileActions } from './styles';
 
-import PDFViewer from './PDFViewer';
+import PDFViewer from '~/components/PDFViewer';
 
 export default function FileList({ files, onDelete }) {
-  const [target, setTarget] = useState(null);
-
-  const toggleRender = id => {
-    setTarget(id);
-  };
+  const [url, setUrl] = useState(null);
 
   return (
     <Container>
+      {url && <PDFViewer url={url} toggleRender={setUrl} />}
+
       {files.map(file => (
         <li key={file.id}>
           <FileInfo>
@@ -49,7 +47,7 @@ export default function FileList({ files, onDelete }) {
               <a
                 href="#viewer"
                 rel="noopener noreferrer"
-                onClick={() => toggleRender(file.id)}
+                onClick={() => setUrl(file.url)}
               >
                 <MdLink style={{ marginRight: 8 }} size={24} color="#222" />
               </a>
@@ -58,10 +56,6 @@ export default function FileList({ files, onDelete }) {
             {file.uploaded && <MdCheckCircle size={24} color="#78e5d5" />}
             {file.error && <MdError size={24} color="#e57878" />}
           </div>
-
-          {file.id === target && (
-            <PDFViewer file={file} toggleRender={toggleRender} />
-          )}
         </li>
       ))}
     </Container>

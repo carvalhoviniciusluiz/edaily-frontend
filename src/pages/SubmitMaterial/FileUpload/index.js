@@ -13,12 +13,6 @@ export default class FileUpload extends PureComponent {
     uploadedFiles: [],
   };
 
-  componentWillUnmount() {
-    const { uploadedFiles } = this.state;
-
-    uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
-  }
-
   updateFile = (id, data) => {
     const { uploadedFiles } = this.state;
 
@@ -66,7 +60,6 @@ export default class FileUpload extends PureComponent {
       id: uniqueId(),
       name: file.name,
       readableSize: filesize(file.size),
-      preview: URL.createObjectURL(file),
       progress: 0,
       uploaded: false,
       error: false,
