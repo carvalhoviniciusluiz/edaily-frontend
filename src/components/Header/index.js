@@ -7,7 +7,7 @@ import { MdArrowBack } from 'react-icons/md';
 
 import Notifications from '~/components/Notifications';
 
-import logo from '~/assets/logo-purple.svg';
+import logo from '~/assets/logo2.svg';
 
 import { Container, Content, Profile } from './styles';
 
