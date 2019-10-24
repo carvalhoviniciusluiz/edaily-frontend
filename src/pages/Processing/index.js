@@ -19,6 +19,7 @@ import { Container, Panel, Button } from './styles';
 import {
   matterRequest,
   matterDestroy,
+  matterForward,
   matterClean,
 } from '~/store/modules/matter/actions';
 
@@ -58,6 +59,29 @@ export default function Dashboard() {
         matters.filter(matter => {
           if (matter.id === id) {
             dispatch(matterDestroy(matter.file.id));
+          }
+          return matter.id !== id;
+        })
+      );
+    }
+  };
+
+  const handleForward = async id => {
+    const { value } = await Swal.fire({
+      type: 'question',
+      title: 'Você confirma essa ação',
+      text: 'Essa matéria poderá ser visualizada pelo acompanhamento',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      confirmButtonText: 'Sim',
+      heightAuto: false,
+    });
+
+    if (value) {
+      setMatters(
+        matters.filter(matter => {
+          if (matter.id === id) {
+            dispatch(matterForward(matter.id));
           }
           return matter.id !== id;
         })
@@ -134,7 +158,11 @@ export default function Dashboard() {
                 >
                   Excluir
                 </button>
-                <button type="button" className="send">
+                <button
+                  type="button"
+                  className="send"
+                  onClick={() => handleForward(matter.id)}
+                >
                   Enviar
                 </button>
               </div>

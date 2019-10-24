@@ -9,10 +9,6 @@ const INITIAL_STATE = {
 export default function matter(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
-      case '@matter/MATTER_DESTROY': {
-        draft.loading = true;
-        break;
-      }
       case '@matter/MATTER_REQUEST': {
         draft.loading = true;
         break;
@@ -23,6 +19,14 @@ export default function matter(state = INITIAL_STATE, action) {
         draft.data = data;
         draft.meta = meta;
         draft.loading = false;
+        break;
+      }
+      case '@matter/MATTER_DESTROY': {
+        draft.loading = true;
+        break;
+      }
+      case '@matter/MATTER_FORWARD': {
+        draft.loading = true;
         break;
       }
       case '@matter/MATTER_FAILURE': {

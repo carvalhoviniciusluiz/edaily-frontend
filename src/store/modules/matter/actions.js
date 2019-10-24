@@ -19,6 +19,13 @@ export function matterDestroy(id) {
   };
 }
 
+export function matterForward(id) {
+  return {
+    type: '@matter/MATTER_FORWARD',
+    payload: { id },
+  };
+}
+
 export function matterFailure() {
   return {
     type: '@matter/MATTER_FAILURE',

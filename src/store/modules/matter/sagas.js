@@ -45,7 +45,19 @@ export function* destroy({ payload }) {
   }
 }
 
+export function* forward({ payload }) {
+  try {
+    const { id } = payload;
+    yield call(api.put, `matters/${id}/forward`);
+  } catch (error) {
+    toast.error('Falha na recuperação dos dados, verifique sua conexão.');
+
+    yield put(matterFailure());
+  }
+}
+
 export default all([
   takeLatest('@matter/MATTER_REQUEST', resquest),
   takeLatest('@matter/MATTER_DESTROY', destroy),
+  takeLatest('@matter/MATTER_FORWARD', forward),
 ]);
