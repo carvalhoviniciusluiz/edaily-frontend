@@ -90,17 +90,19 @@ export default function Dashboard() {
   };
 
   function handlePrevPage() {
-    setDesablePrev(page < meta.pages);
-    setDesableNext(meta.page === 1);
+    const newPage = page - 1;
 
-    setPage(page - 1);
+    setPage(newPage);
+    setDesablePrev(newPage === 1);
+    setDesableNext(newPage === meta.pages);
   }
 
   function handleNextPage() {
-    setDesablePrev(desableNext);
-    setDesableNext(page + 1 === meta.pages);
+    const newPage = page + 1;
 
-    setPage(page + 1);
+    setPage(newPage);
+    setDesablePrev(desableNext);
+    setDesableNext(newPage === meta.pages);
   }
 
   return (
