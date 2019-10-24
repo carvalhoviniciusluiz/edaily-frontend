@@ -6,14 +6,14 @@ const INITIAL_STATE = {
   loading: false,
 };
 
-export default function matter(state = INITIAL_STATE, action) {
+export default function document(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
-      case '@matter/MATTER_REQUEST': {
+      case '@document/DOCUMENT_REQUEST': {
         draft.loading = true;
         break;
       }
-      case '@matter/MATTER_SUCCESS': {
+      case '@document/DOCUMENT_SUCCESS': {
         const { data, meta } = action.payload;
 
         draft.data = data;
@@ -21,19 +21,19 @@ export default function matter(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
-      case '@matter/MATTER_DESTROY': {
+      case '@document/DOCUMENT_DESTROY': {
         draft.loading = true;
         break;
       }
-      case '@matter/MATTER_FORWARD': {
+      case '@document/DOCUMENT_FORWARD': {
         draft.loading = true;
         break;
       }
-      case '@matter/MATTER_FAILURE': {
+      case '@document/DOCUMENT_FAILURE': {
         draft.loading = false;
         break;
       }
-      case '@matter/MATTER_CLEAN': {
+      case '@document/DOCUMENT_CLEAN': {
         draft.data = [];
         draft.meta = {};
         draft.loading = false;

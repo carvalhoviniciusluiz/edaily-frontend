@@ -7,16 +7,19 @@ import pt from 'date-fns/locale/pt';
 
 import api from '~/services/api';
 
-import { matterSuccess, matterFailure } from './actions';
+import { documentSuccess, documentFailure } from './actions';
 
 export function* resquest({ payload }) {
   try {
     const { limit = 10, page = 1 } = payload;
-    const response = yield call(api.get, `matters?limit=${limit}&page=${page}`);
-    const { data: matters, ...meta } = response.data;
+    const response = yield call(
+      api.get,
+      `documents?limit=${limit}&page=${page}`
+    );
+    const { data: documents, ...meta } = response.data;
 
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const data = matters.map(({ createdAt, ...rest }) => {
+    const data = documents.map(({ createdAt, ...rest }) => {
       const datetime = utcToZonedTime(createdAt, timezone);
       return {
         ...rest,
@@ -26,11 +29,11 @@ export function* resquest({ payload }) {
       };
     });
 
-    yield put(matterSuccess(data, meta));
+    yield put(documentSuccess(data, meta));
   } catch (error) {
     toast.error('Falha na recuperação dos dados, verifique sua conexão.');
 
-    yield put(matterFailure());
+    yield put(documentFailure());
   }
 }
 
@@ -41,23 +44,23 @@ export function* destroy({ payload }) {
   } catch (error) {
     toast.error('Falha na recuperação dos dados, verifique sua conexão.');
 
-    yield put(matterFailure());
+    yield put(documentFailure());
   }
 }
 
 export function* forward({ payload }) {
   try {
     const { id } = payload;
-    yield call(api.put, `matters/${id}/forward`);
+    yield call(api.put, `documents/${id}/forward`);
   } catch (error) {
     toast.error('Falha na recuperação dos dados, verifique sua conexão.');
 
-    yield put(matterFailure());
+    yield put(documentFailure());
   }
 }
 
 export default all([
-  takeLatest('@matter/MATTER_REQUEST', resquest),
-  takeLatest('@matter/MATTER_DESTROY', destroy),
-  takeLatest('@matter/MATTER_FORWARD', forward),
+  takeLatest('@document/DOCUMENT_REQUEST', resquest),
+  takeLatest('@document/DOCUMENT_DESTROY', destroy),
+  takeLatest('@document/DOCUMENT_FORWARD', forward),
 ]);

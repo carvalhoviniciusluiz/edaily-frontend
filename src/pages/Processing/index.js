@@ -17,19 +17,19 @@ import PDFViewer from '~/components/PDFViewer';
 import { Container, Panel, Button } from './styles';
 
 import {
-  matterRequest,
-  matterDestroy,
-  matterForward,
-  matterClean,
-} from '~/store/modules/matter/actions';
+  documentRequest,
+  documentDestroy,
+  documentForward,
+  documentClean,
+} from '~/store/modules/document/actions';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
 
-  const data = useSelector(state => state.matter.data);
-  const meta = useSelector(state => state.matter.meta);
+  const data = useSelector(state => state.document.data);
+  const meta = useSelector(state => state.document.meta);
 
-  const [matters, setMatters] = useState([]);
+  const [documents, setDocuments] = useState([]);
 
   const [desablePrev, setDesablePrev] = useState(true);
   const [desableNext, setDesableNext] = useState(false);
@@ -38,11 +38,11 @@ export default function Dashboard() {
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
-    dispatch(matterRequest({ page }));
-    return () => dispatch(matterClean());
+    dispatch(documentRequest({ page }));
+    return () => dispatch(documentClean());
   }, [page]); // eslint-disable-line
 
-  useEffect(() => setMatters(data), [data]);
+  useEffect(() => setDocuments(data), [data]);
 
   const handleDelete = async id => {
     const { value } = await Swal.fire({
@@ -55,12 +55,12 @@ export default function Dashboard() {
     });
 
     if (value) {
-      setMatters(
-        matters.filter(matter => {
-          if (matter.id === id) {
-            dispatch(matterDestroy(matter.file.id));
+      setDocuments(
+        documents.filter(document => {
+          if (document.id === id) {
+            dispatch(documentDestroy(document.file.id));
           }
-          return matter.id !== id;
+          return document.id !== id;
         })
       );
     }
@@ -78,12 +78,12 @@ export default function Dashboard() {
     });
 
     if (value) {
-      setMatters(
-        matters.filter(matter => {
-          if (matter.id === id) {
-            dispatch(matterForward(matter.id));
+      setDocuments(
+        documents.filter(document => {
+          if (document.id === id) {
+            dispatch(documentForward(document.id));
           }
-          return matter.id !== id;
+          return document.id !== id;
         })
       );
     }
@@ -123,23 +123,23 @@ export default function Dashboard() {
         {url && <PDFViewer url={url} toggleRender={setUrl} />}
 
         <ul>
-          {matters.map(matter => (
-            <Panel key={matter.id}>
+          {documents.map(document => (
+            <Panel key={document.id}>
               <div>
-                <strong className="time">{matter.time}</strong>
+                <strong className="time">{document.time}</strong>
                 <strong>
                   <MdSupervisorAccount size={22} />
-                  <span>{matter.organization.initials}</span>
+                  <span>{document.organization.initials}</span>
                 </strong>
                 <strong>
                   <MdPermIdentity size={22} />
                   <span>
-                    {matter.author.firstname} {matter.author.lastname}
+                    {document.author.firstname} {document.author.lastname}
                   </span>
                 </strong>
                 <strong>
                   <MdAccessTime />
-                  <span>{matter.date}</span>
+                  <span>{document.date}</span>
                 </strong>
               </div>
               <div>
@@ -147,23 +147,23 @@ export default function Dashboard() {
                   <a
                     href="#viewer"
                     rel="noopener noreferrer"
-                    onClick={() => setUrl(matter.file.url)}
+                    onClick={() => setUrl(document.file.url)}
                   >
-                    {matter.file.name}
+                    {document.file.name}
                   </a>
                 </p>
 
                 <button
                   type="button"
                   className="delete"
-                  onClick={() => handleDelete(matter.id)}
+                  onClick={() => handleDelete(document.id)}
                 >
                   Excluir
                 </button>
                 <button
                   type="button"
                   className="send"
-                  onClick={() => handleForward(matter.id)}
+                  onClick={() => handleForward(document.id)}
                 >
                   Enviar
                 </button>
