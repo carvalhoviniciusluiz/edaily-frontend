@@ -21,13 +21,13 @@ import {
   documentDestroy,
   documentForward,
   documentClean,
-} from '~/store/modules/document/actions';
+} from '~/store/modules/document/processing/actions';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
 
-  const data = useSelector(state => state.document.data);
-  const meta = useSelector(state => state.document.meta);
+  const data = useSelector(state => state.documentprocess.data);
+  const meta = useSelector(state => state.documentprocess.meta);
 
   const [documents, setDocuments] = useState([]);
   const [hasDocuments, setHasDocuments] = useState(false);

@@ -9,7 +9,7 @@ import api from '~/services/api';
 
 import { documentSuccess, documentFailure } from './actions';
 
-export function* resquest({ payload }) {
+export function* documentResquest({ payload }) {
   try {
     const { limit = 10, page = 1 } = payload;
     const response = yield call(
@@ -60,7 +60,7 @@ export function* forward({ payload }) {
 }
 
 export default all([
-  takeLatest('@document/DOCUMENT_REQUEST', resquest),
+  takeLatest('@document/DOCUMENT_REQUEST', documentResquest),
   takeLatest('@document/DOCUMENT_DESTROY', destroy),
   takeLatest('@document/DOCUMENT_FORWARD', forward),
 ]);
