@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-import { format } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
-import pt from 'date-fns/locale/pt';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Swal from 'sweetalert2';
 
@@ -13,46 +10,38 @@ import {
   MdSupervisorAccount,
   MdPermIdentity,
 } from 'react-icons/md';
+
 import ToolbarMenu from '~/components/ToolbarMenu';
-
-import api from '~/services/api';
-
 import PDFViewer from '~/components/PDFViewer';
 
 import { Container, Panel, Button } from './styles';
 
+import {
+  matterRequest,
+  matterDestroy,
+  matterClean,
+} from '~/store/modules/matter/actions';
+
 export default function Dashboard() {
+  const dispatch = useDispatch();
+
+  const data = useSelector(state => state.matter.data);
+  const meta = useSelector(state => state.matter.meta);
+
+  const [matters, setMatters] = useState([]);
+
   const [desablePrev, setDesablePrev] = useState(true);
   const [desableNext, setDesableNext] = useState(false);
+
   const [page, setPage] = useState(1);
-  const [meta, setMeta] = useState({});
-  const [matters, setMatters] = useState([]);
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
-    async function loadMatters() {
-      const { limit = '' } = meta;
-      const response = await api.get(`matters?limit=${limit}&page=${page}`);
-      const { data, ...rest } = response.data;
+    dispatch(matterRequest({ page }));
+    return () => dispatch(matterClean());
+  }, [page]); // eslint-disable-line
 
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-      setMeta(rest);
-      setMatters(
-        data.map(({ createdAt, ...params }) => {
-          const datetime = utcToZonedTime(createdAt, timezone);
-
-          return {
-            ...params,
-            date: format(datetime, "dd/MM/yyyy", { locale: pt }), // eslint-disable-line
-            time: format(datetime, "HH:mm", { locale: pt }), // eslint-disable-line
-            createdAt: utcToZonedTime(createdAt, timezone),
-          };
-        })
-      );
-    }
-    loadMatters();
-  }, [page]) // eslint-disable-line
+  useEffect(() => setMatters(data), [data]);
 
   const handleDelete = async id => {
     const { value } = await Swal.fire({
@@ -68,9 +57,8 @@ export default function Dashboard() {
       setMatters(
         matters.filter(matter => {
           if (matter.id === id) {
-            api.delete(`files/${matter.file.id}`);
+            dispatch(matterDestroy(matter.file.id));
           }
-
           return matter.id !== id;
         })
       );
