@@ -39,10 +39,6 @@ export default function ToolbarMenu() {
           <span>Processando</span>
         </Link>
         <Link to="/">
-          <MdNoEncryption color="#fff" size={20} />
-          <span>Autorizar</span>
-        </Link>
-        <Link to="/">
           <MdSupervisorAccount color="#fff" size={20} />
           <span>Usuários</span>
         </Link>
