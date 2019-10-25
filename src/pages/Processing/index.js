@@ -94,8 +94,8 @@ export default function Dashboard() {
   };
 
   function handlePrevPage() {
-    if (!hasDocuments) return;
     const newPage = page - 1;
+    if (newPage < meta.pages) return;
 
     setPage(newPage);
     setDesablePrev(newPage === 1);
@@ -103,8 +103,11 @@ export default function Dashboard() {
   }
 
   function handleNextPage() {
-    if (!hasDocuments) return;
     const newPage = page + 1;
+    if (newPage > meta.pages) {
+      setDesableNext(true);
+      return;
+    }
 
     setPage(newPage);
     setDesablePrev(desableNext);
