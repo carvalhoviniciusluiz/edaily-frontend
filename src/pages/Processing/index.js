@@ -30,7 +30,6 @@ export default function Dashboard() {
   const meta = useSelector(state => state.documentprocess.meta);
 
   const [documents, setDocuments] = useState([]);
-  const [hasDocuments, setHasDocuments] = useState(false);
 
   const [desablePrev, setDesablePrev] = useState(true);
   const [desableNext, setDesableNext] = useState(false);
@@ -43,10 +42,7 @@ export default function Dashboard() {
     return () => dispatch(documentClean());
   }, [page]); // eslint-disable-line
 
-  useEffect(() => {
-    setDocuments(data);
-    setHasDocuments(!!data.length);
-  }, [data]);
+  useEffect(() => setDocuments(data), [data]);
 
   const handleDelete = async id => {
     const { value } = await Swal.fire({
