@@ -12,15 +12,21 @@ export const Container = styled.div`
     align-self: center;
     align-items: center;
 
-    button {
-      border: 0;
-      background: none;
-    }
+    div {
+      input[type='text'] {
+        border: 0;
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.2);
+        max-width: 60px;
+        text-align: center;
+      }
 
-    strong {
-      color: #fff;
-      font-size: 24px;
-      margin: 0 15px;
+      strong,
+      input {
+        color: #fff;
+        font-size: 24px;
+        margin: 10px;
+      }
     }
   }
 
@@ -46,30 +52,6 @@ export const Panel = styled.li`
     p {
       width: inherit !important;
     }
-  }
-
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-
-  &:hover {
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
-      0 6px 6px rgba(0, 0, 0, 0.23);
-    -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
-      0 6px 6px rgba(0, 0, 0, 0.23);
-    -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
-      0 6px 6px rgba(0, 0, 0, 0.23);
-    -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
-      0 6px 6px rgba(0, 0, 0, 0.23);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   div {
@@ -102,7 +84,7 @@ export const Panel = styled.li`
     margin-top: 15px;
 
     strong {
-      font-size: 28px;
+      font-size: 18px;
       margin-right: 28px;
       font-weight: normal;
     }
@@ -116,4 +98,13 @@ export const Panel = styled.li`
       }
     }
   }
+`;
+
+export const Button = styled.button.attrs(props => ({
+  disabled: props.desable,
+}))`
+  border: 0;
+  background: none;
+
+  opacity: ${props => (props.desable ? 0.2 : 1)};
 `;

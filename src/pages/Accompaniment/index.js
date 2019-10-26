@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   MdChevronLeft,
@@ -8,183 +8,134 @@ import {
   MdSupervisorAccount,
   MdPermIdentity,
 } from 'react-icons/md';
-import ToolbarMenu from '~/components/ToolbarMenu';
 
-import { Container, Panel } from './styles';
+import ToolbarMenu from '~/components/ToolbarMenu';
+import PDFViewer from '~/components/PDFViewer';
+
+import { Container, Panel, Button } from './styles';
+
+import {
+  documentFollowRequest,
+  documentFollowClean,
+} from '~/store/modules/document/following/actions';
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+
+  const data = useSelector(state => state.documentfollow.data);
+  const meta = useSelector(state => state.documentfollow.meta);
+
+  const [documents, setDocuments] = useState([]);
+
+  const [page, setPage] = useState(1);
+  const [url, setUrl] = useState(null);
+
+  const [inputValue, setInputValue] = useState(1);
+
+  const [desablePrev, setDesablePrev] = useState(true);
+  const [desableNext, setDesableNext] = useState(false);
+
+  useEffect(() => {
+    dispatch(documentFollowRequest({ page }));
+    return () => dispatch(documentFollowClean());
+  }, [page]); // eslint-disable-line
+
+  useEffect(() => {
+    setDocuments(data);
+  }, [data]);
+
+  const handleChangeInputValue = e => {
+    setInputValue(e.target.value);
+  };
+
+  const handleFetchPage = e => {
+    if (!e.target.value) {
+      setInputValue(page);
+      return;
+    }
+    setPage(e.target.value);
+  };
+
+  function handlePrevPage() {
+    const newPage = page - 1;
+    if (newPage === meta.pages) return;
+
+    setPage(newPage);
+    setDesablePrev(newPage === 1);
+    setDesableNext(newPage === meta.pages);
+  }
+
+  function handleNextPage() {
+    const newPage = page + 1;
+    if (newPage > meta.pages) {
+      setDesableNext(true);
+      return;
+    }
+
+    setPage(newPage);
+    setDesablePrev(desableNext);
+    setDesableNext(newPage === meta.pages);
+  }
+
   return (
     <>
       <ToolbarMenu />
 
       <Container>
         <header>
-          <button type="button">
+          <Button onClick={handlePrevPage} desable={desablePrev}>
             <MdChevronLeft size={36} color="#fff" />
-          </button>
-          <strong>24 de setembro de 2019</strong>
-          <button type="button">
+          </Button>
+          <div>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleChangeInputValue}
+              onBlur={handleFetchPage}
+            />
+            <strong>/</strong>
+            <strong>{meta.pages}</strong>
+          </div>
+          <Button onClick={handleNextPage} desable={desableNext}>
             <MdChevronRight size={36} color="#fff" />
-          </button>
+          </Button>
         </header>
 
+        {url && <PDFViewer url={url} toggleRender={setUrl} />}
+
         <ul>
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <p>
-              <strong>765498/2019</strong>
-              <Link to="/">
-                No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                dezembro de 2018, veio a esta camara Arbitral denominado
-                SISBACOMBRA - Sistema Brasileiro
-              </Link>
-            </p>
-          </Panel>
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <p>
-              <strong>765498/2019</strong>
-              <Link to="/">
-                No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                dezembro de 2018, veio a esta camara Arbitral denominado
-                SISBACOMBRA - Sistema Brasileiro
-              </Link>
-            </p>
-          </Panel>
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <p>
-              <strong>765498/2019</strong>
-              <Link to="/">
-                No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                dezembro de 2018, veio a esta camara Arbitral denominado
-                SISBACOMBRA - Sistema Brasileiro
-              </Link>
-            </p>
-          </Panel>
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <p>
-              <strong>765498/2019</strong>
-              <Link to="/">
-                No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                dezembro de 2018, veio a esta camara Arbitral denominado
-                SISBACOMBRA - Sistema Brasileiro
-              </Link>
-            </p>
-          </Panel>
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <p>
-              <strong>765498/2019</strong>
-              <Link to="/">
-                No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                dezembro de 2018, veio a esta camara Arbitral denominado
-                SISBACOMBRA - Sistema Brasileiro
-              </Link>
-            </p>
-          </Panel>
-          <Panel>
-            <div>
-              <strong className="time">19:23</strong>
-              <strong>
-                <MdSupervisorAccount size={22} />
-                <span>PRODAP</span>
-              </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span>Jorge</span>
-              </strong>
-              <strong>
-                <MdAccessTime />
-                <span>24/07/2019</span>
-              </strong>
-            </div>
-            <p>
-              <strong>765498/2019</strong>
-              <Link to="/">
-                No dia 13 de dezembro de 2018, veio a esta camara Arbitral
-                denominado SISBACOMBRA - Sistema Brasileiro No dia 13 de
-                dezembro de 2018, veio a esta camara Arbitral denominado
-                SISBACOMBRA - Sistema Brasileiro
-              </Link>
-            </p>
-          </Panel>
+          {documents.map(document => (
+            <Panel key={document.id} className="with-shading">
+              <div>
+                <strong className="time">{document.time}</strong>
+                <strong>
+                  <MdSupervisorAccount size={22} />
+                  <span>{document.organization.initials}</span>
+                </strong>
+                <strong>
+                  <MdPermIdentity size={22} />
+                  <span>
+                    {document.responsable.firstname}{' '}
+                    {document.responsable.lastname}
+                  </span>
+                </strong>
+                <strong>
+                  <MdAccessTime />
+                  <span>{document.date}</span>
+                </strong>
+              </div>
+              <p>
+                <strong>{document.protocolNumber}</strong>
+                <a
+                  href="#viewer"
+                  rel="noopener noreferrer"
+                  onClick={() => setUrl(document.file.url)}
+                >
+                  {document.file.name}
+                </a>
+              </p>
+            </Panel>
+          ))}
         </ul>
       </Container>
     </>
