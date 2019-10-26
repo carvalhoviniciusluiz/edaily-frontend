@@ -129,7 +129,7 @@ export default function Dashboard() {
 
         <ul>
           {documents.map(document => (
-            <Panel key={document.id}>
+            <Panel key={document.id} className="with-shading">
               <div>
                 <strong className="time">{document.time}</strong>
                 <strong>
