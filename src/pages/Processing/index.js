@@ -91,7 +91,7 @@ export default function Dashboard() {
 
   function handlePrevPage() {
     const newPage = page - 1;
-    if (newPage < meta.pages) return;
+    if (newPage === meta.pages) return;
 
     setPage(newPage);
     setDesablePrev(newPage === 1);
