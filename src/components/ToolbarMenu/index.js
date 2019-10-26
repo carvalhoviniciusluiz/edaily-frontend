@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import {
   MdInbox,
   MdSend,
-  MdNoEncryption,
   MdInsertDriveFile,
   MdSupervisorAccount,
 } from 'react-icons/md';
