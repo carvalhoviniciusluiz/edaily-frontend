@@ -36,7 +36,7 @@ export default function DefaultLayout({ children }) {
               to="/submit"
               className={applyActiveIf(
                 '/submit',
-                '/accompaniment',
+                '/follow',
                 '/review',
                 '/users'
               )}

@@ -22,10 +22,8 @@ export default function ToolbarMenu() {
           <span>Encaminhar</span>
         </Link>
         <Link
-          to="/accompaniment"
-          className={
-            window.location.pathname === '/accompaniment' ? 'active' : ''
-          }
+          to="/follow"
+          className={window.location.pathname === '/follow' ? 'active' : ''}
         >
           <MdSend color="#fff" size={20} />
           <span>Acompanhar</span>

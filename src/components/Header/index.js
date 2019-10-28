@@ -12,10 +12,10 @@ import logo from '~/assets/logo2.svg';
 import { Container, Content, Profile } from './styles';
 
 export default function Header() {
-  const [isAccompaniment, setIsAccompaniment] = useState(true);
+  const [isFollower, setIsFollower] = useState(true);
 
   useEffect(() => {
-    setIsAccompaniment(window.location.pathname === '/accompaniment');
+    setIsFollower(window.location.pathname === '/follow');
   }, [window.location.pathname]);  // eslint-disable-line
 
   const profile = useSelector(state => state.user.profile);
@@ -26,8 +26,8 @@ export default function Header() {
         <nav>
           <img src={logo} alt="Edaily" />
 
-          {!isAccompaniment && (
-            <Link to="/accompaniment">
+          {!isFollower && (
+            <Link to="/follow">
               <MdArrowBack size={14} />
               Voltar
             </Link>

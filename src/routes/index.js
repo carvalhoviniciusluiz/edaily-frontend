@@ -14,7 +14,7 @@ import GovernmentEntity from '~/pages/Registration/GovernmentEntity';
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 
-import Accompaniment from '~/pages/Client/Accompaniment';
+import Follower from '~/pages/Client/Follower';
 import Reviewer from '~/pages/Client/Reviewer';
 import Submit from '~/pages/Client/Submit';
 import User from '~/pages/Client/User';
@@ -33,7 +33,7 @@ export default function Routes() {
       <Route path="/register/government" exact component={GovernmentEntity} />
 
       <RouteCustom path="/dashboard" component={Dashboard} isPrivate />
-      <RouteCustom path="/accompaniment" component={Accompaniment} isPrivate />
+      <RouteCustom path="/follow" component={Follower} isPrivate />
       <RouteCustom path="/review" component={Reviewer} isPrivate />
       <RouteCustom path="/submit" component={Submit} isPrivate />
       <RouteCustom path="/users" component={User} isPrivate />

@@ -17,7 +17,7 @@ import { Container, Panel, Button } from './styles';
 import {
   documentFollowRequest,
   documentFollowClean,
-} from '~/store/modules/document/following/actions';
+} from '~/store/modules/document/follower/actions';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
