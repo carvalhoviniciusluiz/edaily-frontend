@@ -139,7 +139,8 @@ export default function Dashboard() {
                 <strong>
                   <MdPermIdentity size={22} />
                   <span>
-                    {document.author.firstname} {document.author.lastname}
+                    {document.author.firstname}
+                    <span>{document.author.lastname}</span>
                   </span>
                 </strong>
                 <strong>

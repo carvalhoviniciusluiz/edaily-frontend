@@ -56,6 +56,12 @@ export const Panel = styled.li`
     p {
       width: inherit !important;
     }
+
+    div strong {
+      span span {
+        display: none;
+      }
+    }
   }
 
   div {
@@ -72,6 +78,10 @@ export const Panel = styled.li`
       color: #666;
 
       font-weight: normal;
+
+      span span {
+        margin-left: 5px;
+      }
 
       svg {
         margin-right: 5px;

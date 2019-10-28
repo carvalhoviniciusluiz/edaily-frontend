@@ -43,6 +43,12 @@ export const Panel = styled.li`
 
   @media (max-width: 662px) {
     margin: 0 10px;
+
+    div strong {
+      span span {
+        display: none;
+      }
+    }
   }
 
   div {
@@ -59,6 +65,10 @@ export const Panel = styled.li`
       color: #666;
 
       font-weight: normal;
+
+      span span {
+        margin-left: 5px;
+      }
 
       svg {
         margin-right: 5px;

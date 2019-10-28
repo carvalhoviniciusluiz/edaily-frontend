@@ -115,8 +115,8 @@ export default function Dashboard() {
                 <strong>
                   <MdPermIdentity size={22} />
                   <span>
-                    {document.responsable.firstname}{' '}
-                    {document.responsable.lastname}
+                    {document.responsable.firstname}
+                    <span>{document.responsable.lastname}</span>
                   </span>
                 </strong>
                 <strong>
