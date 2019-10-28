@@ -77,6 +77,7 @@ export const Form = styled.form`
   @media (max-width: 662px) {
     margin: 0 10px;
     margin-top: 40px;
+    margin-bottom: 40px;
   }
 
   header {

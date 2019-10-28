@@ -13,7 +13,7 @@ import { Container } from './styles';
 export default function ToolbarMenu() {
   return (
     <Container>
-      <div className="container center">
+      <div className="center">
         <Link
           to="/submit"
           className={window.location.pathname === '/submit' ? 'active' : ''}
