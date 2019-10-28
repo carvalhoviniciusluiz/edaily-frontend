@@ -37,7 +37,8 @@ export default function DefaultLayout({ children }) {
               className={applyActiveIf(
                 '/submit',
                 '/accompaniment',
-                '/processing'
+                '/review',
+                '/users'
               )}
             >
               Cliente

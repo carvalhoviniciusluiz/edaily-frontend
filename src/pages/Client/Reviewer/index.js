@@ -21,13 +21,13 @@ import {
   documentDestroy,
   documentForward,
   documentClean,
-} from '~/store/modules/document/processing/actions';
+} from '~/store/modules/document/reviewer/actions';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
 
-  const data = useSelector(state => state.documentprocess.data);
-  const meta = useSelector(state => state.documentprocess.meta);
+  const data = useSelector(state => state.documentreview.data);
+  const meta = useSelector(state => state.documentreview.meta);
 
   const [documents, setDocuments] = useState([]);
 
