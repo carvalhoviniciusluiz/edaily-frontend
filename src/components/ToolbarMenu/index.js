@@ -37,7 +37,10 @@ export default function ToolbarMenu() {
           <MdInsertDriveFile color="#fff" size={20} />
           <span>Revisão</span>
         </Link>
-        <Link to="/">
+        <Link
+          to="/users"
+          className={window.location.pathname === '/users' ? 'active' : ''}
+        >
           <MdSupervisorAccount color="#fff" size={20} />
           <span>Usuários</span>
         </Link>
