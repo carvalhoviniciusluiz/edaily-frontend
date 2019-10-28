@@ -22,7 +22,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   padding: 20px;
   border-radius: 4px;
   background: #fff;
@@ -101,7 +101,6 @@ export const Form = styled.form`
     border-color: #008d4c;
     border-radius: 4px;
     font-size: 16px;
-    margin: 50px 0 0;
     transition: background 0.2s;
 
     &:hover {
