@@ -12,10 +12,12 @@ import PrivateCompany from '~/pages/Registration/PrivateCompany';
 import GovernmentEntity from '~/pages/Registration/GovernmentEntity';
 
 import Dashboard from '~/pages/Dashboard';
+import Profile from '~/pages/Profile';
+
 import Accompaniment from '~/pages/Client/Accompaniment';
 import Reviewer from '~/pages/Client/Reviewer';
 import Submit from '~/pages/Client/Submit';
-import Profile from '~/pages/Profile';
+import User from '~/pages/Client/User';
 
 export default function Routes() {
   return (
@@ -34,6 +36,7 @@ export default function Routes() {
       <RouteCustom path="/accompaniment" component={Accompaniment} isPrivate />
       <RouteCustom path="/review" component={Reviewer} isPrivate />
       <RouteCustom path="/submit" component={Submit} isPrivate />
+      <RouteCustom path="/users" component={User} isPrivate />
       <RouteCustom path="/profile" component={Profile} isPrivate />
 
       <RouteCustom path="*" component={SignIn} />
