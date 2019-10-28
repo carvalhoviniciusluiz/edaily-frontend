@@ -87,6 +87,13 @@ export const UserPanel = styled.li`
     background: #eee;
   }
 
+  @media (max-width: 662px) {
+    a {
+      border-left: 1px solid #666;
+      padding-left: 15px;
+    }
+  }
+
   a {
     margin: 0 10px;
 
