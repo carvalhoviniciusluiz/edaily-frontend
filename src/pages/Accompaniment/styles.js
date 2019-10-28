@@ -33,10 +33,8 @@ export const Container = styled.div`
   ul {
     margin-top: 30px;
 
-    @media (max-width: 662px) {
-      li:last-child {
-        margin-bottom: 50px;
-      }
+    li:last-child {
+      margin-bottom: 50px;
     }
   }
 `;
