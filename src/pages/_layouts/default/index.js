@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
@@ -9,20 +9,27 @@ import Header from '~/components/Header';
 import { Wrapper, Container } from './styles';
 
 export default function DefaultLayout({ children }) {
+  const [checked, setChecked] = useState(true);
+
   const applyActiveIf = (...paths) => {
     return paths.includes(window.location.pathname) ? 'active' : '';
+  };
+
+  const handleInputChange = e => {
+    const { target } = e;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+
+    setChecked(value);
   };
 
   return (
     <Wrapper>
       <Container>
         <Header />
-
-        <input type="checkbox" />
+        <input type="checkbox" checked={checked} onChange={handleInputChange} />
         <span className="hamburger">
           <MdMenu size={33} color="#fff" />
         </span>
-
         <ul>
           <li>
             <Link
@@ -61,7 +68,6 @@ export default function DefaultLayout({ children }) {
             <a href="#configuration">Configurações</a>
           </li>
         </ul>
-
         {children}
       </Container>
     </Wrapper>
