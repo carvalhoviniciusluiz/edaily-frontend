@@ -113,7 +113,7 @@ export default class FileUpload extends PureComponent {
             <hr />
 
             <button type="submit" onClick={this.handleClicked}>
-              Buscar PDf's
+              PDf&apos;s
             </button>
           </Form>
         </Container>

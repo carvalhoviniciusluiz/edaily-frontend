@@ -17,13 +17,13 @@ import { Container, Panel, Button } from './styles';
 import {
   documentFollowRequest,
   documentFollowClean,
-} from '~/store/modules/document/follower/actions';
+} from '~/store/modules/client/follower/actions';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
 
-  const data = useSelector(state => state.documentfollow.data);
-  const meta = useSelector(state => state.documentfollow.meta);
+  const data = useSelector(state => state.follow.data);
+  const meta = useSelector(state => state.follow.meta);
 
   const [documents, setDocuments] = useState([]);
 

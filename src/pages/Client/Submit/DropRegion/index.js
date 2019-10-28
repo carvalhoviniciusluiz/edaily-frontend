@@ -7,7 +7,7 @@ import { DropContainer, UploadMessage } from './styles';
 export default function DropRegion({ onUpload }) {
   function renderDragMessage(isDragActive, isDragReject) {
     if (!isDragActive) {
-      return <UploadMessage>Arraste seus PDF's aqui..</UploadMessage>;
+      return <UploadMessage>Arraste seus PDF&apos;s aqui..</UploadMessage>;
     }
     if (isDragReject) {
       return <UploadMessage type="error">Arquivo não suportado</UploadMessage>;
