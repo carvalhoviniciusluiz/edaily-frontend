@@ -26,7 +26,7 @@ export default function SubmitMaterial() {
 
           <FileUpload />
 
-          <button type="submit">Encaminhar para analise</button>
+          <button type="submit">Encaminhar para revisão</button>
         </Form>
       </Container>
     </>

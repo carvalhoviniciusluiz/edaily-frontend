@@ -12,9 +12,9 @@ import PrivateCompany from '~/pages/Registration/PrivateCompany';
 import GovernmentEntity from '~/pages/Registration/GovernmentEntity';
 
 import Dashboard from '~/pages/Dashboard';
-import Accompaniment from '~/pages/Accompaniment';
-import Processing from '~/pages/Processing';
-import SubmitMaterial from '~/pages/SubmitMaterial';
+import Accompaniment from '~/pages/Client/Accompaniment';
+import Reviewer from '~/pages/Client/Reviewer';
+import Submit from '~/pages/Client/Submit';
 import Profile from '~/pages/Profile';
 
 export default function Routes() {
@@ -32,8 +32,8 @@ export default function Routes() {
 
       <RouteCustom path="/dashboard" component={Dashboard} isPrivate />
       <RouteCustom path="/accompaniment" component={Accompaniment} isPrivate />
-      <RouteCustom path="/processing" component={Processing} isPrivate />
-      <RouteCustom path="/submit" component={SubmitMaterial} isPrivate />
+      <RouteCustom path="/review" component={Reviewer} isPrivate />
+      <RouteCustom path="/submit" component={Submit} isPrivate />
       <RouteCustom path="/profile" component={Profile} isPrivate />
 
       <RouteCustom path="*" component={SignIn} />

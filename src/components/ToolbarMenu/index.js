@@ -31,11 +31,11 @@ export default function ToolbarMenu() {
           <span>Acompanhar</span>
         </Link>
         <Link
-          to="/processing"
-          className={window.location.pathname === '/processing' ? 'active' : ''}
+          to="/review"
+          className={window.location.pathname === '/review' ? 'active' : ''}
         >
           <MdInsertDriveFile color="#fff" size={20} />
-          <span>Processando</span>
+          <span>Revisão</span>
         </Link>
         <Link to="/">
           <MdSupervisorAccount color="#fff" size={20} />
