@@ -4,6 +4,7 @@ import { darken } from 'polished';
 export const Container = styled.div`
   max-width: 600px;
   margin: 50px auto;
+  margin-bottom: 100px;
 
   @media (max-width: 662px) {
     padding: 0 10px;
