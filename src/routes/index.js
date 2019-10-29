@@ -7,11 +7,10 @@ import SignUp from '~/pages/SignUp';
 import ForgotPassword from '~/pages/ForgotPassword';
 import ResetPassword from '~/pages/ResetPassword';
 
-import Dashboard02 from '~/pages/Dashboard02';
+import Dashboard from '~/pages/Dashboard';
 import PrivateCompany from '~/pages/Registration/PrivateCompany';
 import GovernmentEntity from '~/pages/Registration/GovernmentEntity';
 
-import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 
 import Follower from '~/pages/Client/Follower';
@@ -27,12 +26,11 @@ export default function Routes() {
       <RouteCustom path="/recover" component={ForgotPassword} />
       <RouteCustom path="/reset" component={ResetPassword} />
 
-      <RouteCustom path="/register" exact component={Dashboard02} />
+      <RouteCustom path="/register" exact component={Dashboard} />
       <RouteCustom path="/register/organization" exact component={SignUp} />
       <Route path="/register/company" exact component={PrivateCompany} />
       <Route path="/register/government" exact component={GovernmentEntity} />
 
-      <RouteCustom path="/dashboard" component={Dashboard} isPrivate />
       <RouteCustom path="/follow" component={Follower} isPrivate />
       <RouteCustom path="/review" component={Reviewer} isPrivate />
       <RouteCustom path="/submit" component={Submit} isPrivate />
