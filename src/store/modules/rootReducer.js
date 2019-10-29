@@ -5,6 +5,7 @@ import user from './user/reducer';
 import organization from './organization/reducer';
 import review from './client/reviewer/reducer';
 import follow from './client/follower/reducer';
+import clientUser from './client/user/reducer';
 
 export default combineReducers({
   auth,
@@ -12,4 +13,5 @@ export default combineReducers({
   organization,
   review,
   follow,
+  clientUser,
 });

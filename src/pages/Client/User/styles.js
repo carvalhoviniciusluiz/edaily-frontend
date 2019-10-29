@@ -32,7 +32,7 @@ export const Container = styled.div`
 
   ul {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(${props => (props.length > 1 ? 2 : 1)}, 1fr);
     grid-gap: 15px;
     margin-top: 30px;
     margin-bottom: 50px;
