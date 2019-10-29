@@ -30,8 +30,12 @@ export function* signIn({ payload }) {
 
     history.push('/follow');
   } catch (error) {
-    toast.error('Falha na autenticação, verifique os seus dados.');
+    const message =
+      error.response.status === 401
+        ? 'Esta conta encontra-se inativa.'
+        : 'Falha na autenticação, verifique os seus dados.';
 
+    toast.error(message);
     yield put(signFailure());
   }
 }
