@@ -93,7 +93,7 @@ export default function User() {
           {users.map(user => (
             <UserPanel
               key={String(user.id)}
-              inative={false}
+              inative={!user.is_active}
               length={users.length}
               className="with-shading"
             >
