@@ -66,8 +66,23 @@ export const Body = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 22px;
     margin-bottom: 15px;
+
+    div.avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+
+      img {
+        height: 120px;
+        width: 120px;
+        border-radius: 4px;
+        border: 1px solid #eee;
+        background: #eee;
+      }
+    }
 
     label {
       display: block;

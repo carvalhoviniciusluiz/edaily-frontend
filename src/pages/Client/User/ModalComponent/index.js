@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Input } from '@rocketseat/unform';
 
-import { MdInfoOutline, MdMailOutline } from 'react-icons/md';
+import { MdMailOutline } from 'react-icons/md';
 
 import Modal from '~/components/Modal';
 
@@ -52,6 +52,10 @@ export default function ModalComponent({ setShow, show }) {
 
       <Body>
         <Form initialData={user}>
+          <div className="avatar">
+            {user && <img src={user.avatar.avatar} alt="Avatar" />}
+          </div>
+
           <InputGroup>
             <InputItem>
               <Input name="firstname" label="Nome" />
