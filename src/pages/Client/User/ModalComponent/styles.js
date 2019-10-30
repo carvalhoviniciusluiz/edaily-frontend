@@ -113,6 +113,7 @@ export const Body = styled.div`
 
     hr {
       background: rgba(0, 0, 0, 0.2);
+      margin: 20px 0 20px;
     }
 
     a {
@@ -120,7 +121,7 @@ export const Body = styled.div`
       align-items: center;
 
       border: 0;
-      margin-top: 15px;
+      margin: 10px 0;
       color: #333;
 
       span {

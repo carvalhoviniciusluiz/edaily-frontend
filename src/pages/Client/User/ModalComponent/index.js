@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Input } from '@rocketseat/unform';
 
-import { MdMailOutline } from 'react-icons/md';
+import { MdMailOutline, MdInfoOutline } from 'react-icons/md';
 
 import Modal from '~/components/Modal';
 
@@ -134,6 +134,13 @@ export default function ModalComponent({ setShow, show }) {
           <a href="#sending" onClick={handleConfirmationRequest}>
             <MdMailOutline size={22} />
             <span>Enviar email para alteração de senha</span>
+          </a>
+
+          <hr />
+
+          <a href="#sending" onClick={handleConfirmationRequest}>
+            <MdInfoOutline size={22} />
+            <span>Consultar histórico de envio de matérias</span>
           </a>
         </Form>
       </Body>
