@@ -4,20 +4,11 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import ToolbarMenu from '~/components/ToolbarMenu';
 
-import {
-  Container,
-  ArrowButton,
-  UserPanel,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  CancelButton,
-  SaveButton,
-} from './styles';
+import ModalComponent from './ModalComponent';
+
+import { Container, ArrowButton, UserPanel } from './styles';
 
 import { request, clean } from '~/store/modules/client/user/actions';
-
-import Modal from '~/components/Modal';
 
 export default function User() {
   const dispatch = useDispatch();
@@ -30,7 +21,7 @@ export default function User() {
 
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState(1);
-  const [modalShow, setModalShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   const [desablePrev, setDesablePrev] = useState(true);
   const [desableNext, setDesableNext] = useState(false);
@@ -80,41 +71,14 @@ export default function User() {
   const handleUserClick = uuid => {
     console.tron.log(uuid);
 
-    setModalShow(true);
+    setShow(true);
   };
 
   return (
     <>
       <ToolbarMenu />
 
-      <Modal show={modalShow} height={500}>
-        <ModalHeader>
-          <h4 className="modal-title">
-            Vinicius <span>Carvalho</span> <small>#424-67554-5643-64533</small>
-          </h4>
-          <button type="button" onClick={() => setModalShow(false)}>
-            <span>×</span>
-          </button>
-        </ModalHeader>
-
-        <ModalBody>
-          {[...new Array(50)]
-            .map(
-              () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-            )
-            .join('\n')}
-        </ModalBody>
-
-        <ModalFooter>
-          <CancelButton onClick={() => setModalShow(false)}>
-            cancelar
-          </CancelButton>
-          <SaveButton>Salvar</SaveButton>
-        </ModalFooter>
-      </Modal>
+      <ModalComponent show={show} setShow={setShow} />
 
       <Container>
         <header>
