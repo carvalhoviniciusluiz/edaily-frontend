@@ -32,7 +32,7 @@ export default function Profile() {
           </InputItem>
 
           <InputItem>
-            <Input name="lastname" label="Sobre nome" />
+            <Input name="lastname" label="Sobrenome" />
           </InputItem>
         </InputGroup>
 

@@ -58,7 +58,7 @@ export default function ModalComponent({ setShow, show }) {
             </InputItem>
 
             <InputItem>
-              <Input name="lastname" label="Sobre nome" />
+              <Input name="lastname" label="Sobrenome" />
             </InputItem>
           </InputGroup>
 
