@@ -1,6 +1,7 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
+  user: undefined,
   data: [],
   meta: {},
   loading: false,
@@ -11,6 +12,15 @@ export default function(state = INITIAL_STATE, action) {
     switch (action.type) {
       case '@user/REQUEST': {
         draft.loading = true;
+        break;
+      }
+      case '@user/FETCH': {
+        draft.loading = true;
+        break;
+      }
+      case '@user/FETCH/SUCCESS': {
+        draft.user = action.payload.user;
+        draft.loading = false;
         break;
       }
       case '@user/SUCCESS': {
@@ -26,6 +36,7 @@ export default function(state = INITIAL_STATE, action) {
         break;
       }
       case '@user/CLEAN': {
+        draft.user = undefined;
         draft.data = [];
         draft.meta = {};
         draft.loading = false;

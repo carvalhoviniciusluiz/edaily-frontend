@@ -1,16 +1,49 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import PropTypes from 'prop-types';
+import { Form, Input } from '@rocketseat/unform';
+
+import { MdInfoOutline, MdMailOutline } from 'react-icons/md';
 
 import Modal from '~/components/Modal';
 
-import { Header, Body, Footer, CancelButton, SaveButton } from './styles';
+import {
+  Header,
+  Body,
+  Footer,
+  CancelButton,
+  SaveButton,
+  InputGroup,
+  InputItem,
+} from './styles';
 
 export default function ModalComponent({ setShow, show }) {
+  const user = useSelector(state => state.clientUser.user);
+
+  const disable = target => {
+    return target && target.is_responsible;
+  };
+
+  const getAttr = (attr, target) => {
+    return target && target[attr];
+  };
+
+  const handlePasswordRequest = () => {
+    console.log('handlePasswordRequest');
+  };
+
+  const handleConfirmationRequest = () => {
+    console.log('handleConfirmationRequest');
+  };
+
   return (
     <Modal show={show} height={500}>
       <Header>
         <h4 className="title">
-          Vinicius <span>Carvalho</span> <small>#424-67554-5643-64533</small>
+          {getAttr('firstname', user)}
+          <span>{getAttr('lastname', user)}</span>
+          <small>#{getAttr('uuid', user)}</small>
         </h4>
         <button type="button" onClick={() => setShow(false)}>
           <span>×</span>
@@ -18,14 +51,87 @@ export default function ModalComponent({ setShow, show }) {
       </Header>
 
       <Body>
-        {[...new Array(50)]
-          .map(
-            () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-          )
-          .join('\n')}
+        <Form initialData={user}>
+          <InputGroup>
+            <InputItem>
+              <Input name="firstname" label="Nome" />
+            </InputItem>
+
+            <InputItem>
+              <Input name="lastname" label="Sobre nome" />
+            </InputItem>
+          </InputGroup>
+
+          <InputGroup>
+            <InputItem>
+              <Input type="email" name="email" label="Email" disabled />
+            </InputItem>
+            <InputItem>
+              <Input name="phone" label="Celular" />
+            </InputItem>
+          </InputGroup>
+
+          <InputGroup>
+            <InputItem>
+              <Input name="cpf" label="CPF" disabled />
+            </InputItem>
+            <InputItem>
+              <Input name="rg" label="RG" disabled />
+            </InputItem>
+          </InputGroup>
+
+          <hr />
+
+          <InputGroup>
+            <InputItem>
+              <Input name="zipcode" label="CEP" disabled={disable(user)} />
+            </InputItem>
+            <InputItem>
+              <Input
+                name="street_number"
+                label="Número"
+                disabled={disable(user)}
+              />
+            </InputItem>
+          </InputGroup>
+
+          <InputGroup>
+            <InputItem>
+              <Input
+                name="neighborhood"
+                label="Bairro"
+                disabled={disable(user)}
+              />
+            </InputItem>
+            <InputItem>
+              <Input
+                name="street"
+                label="Logradouro"
+                disabled={disable(user)}
+              />
+            </InputItem>
+          </InputGroup>
+
+          <InputGroup>
+            <InputItem>
+              <Input name="city" label="Cidade" disabled={disable(user)} />
+            </InputItem>
+            <InputItem>
+              <Input name="state" label="UF" disabled={disable(user)} />
+            </InputItem>
+          </InputGroup>
+
+          <hr />
+
+          <a href="#sending" onClick={handlePasswordRequest}>
+            <MdMailOutline size={22} />
+            <span>Enviar email de confirmação</span>
+          </a>
+          <a href="#sending" onClick={handleConfirmationRequest}>
+            <MdMailOutline size={22} />
+            <span>Enviar email para alteração de senha</span>
+          </a>
+        </Form>
       </Body>
 
       <Footer>

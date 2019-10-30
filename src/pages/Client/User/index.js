@@ -8,7 +8,7 @@ import ModalComponent from './ModalComponent';
 
 import { Container, ArrowButton, UserPanel } from './styles';
 
-import { request, clean } from '~/store/modules/client/user/actions';
+import { request, fetch, clean } from '~/store/modules/client/user/actions';
 
 export default function User() {
   const dispatch = useDispatch();
@@ -27,7 +27,9 @@ export default function User() {
   const [desableNext, setDesableNext] = useState(false);
 
   useEffect(() => {
-    dispatch(request({ page, organization }));
+    const { uuid: organizationId } = organization;
+
+    dispatch(request({ page, organizationId }));
     return () => dispatch(clean());
   }, [page]); // eslint-disable-line
 
@@ -68,9 +70,10 @@ export default function User() {
     setDesableNext(newPage === meta.pages);
   }
 
-  const handleUserClick = uuid => {
-    console.tron.log(uuid);
+  const handleUserClick = async userId => {
+    const { uuid: organizationId } = organization;
 
+    await dispatch(fetch({ organizationId, userId }));
     setShow(true);
   };
 

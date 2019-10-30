@@ -1,7 +1,21 @@
-export function request({ limit = 10, page = 1, ...data }) {
+export function request({ limit = 10, page = 1, organizationId }) {
   return {
     type: '@user/REQUEST',
-    payload: { limit, page, ...data },
+    payload: { limit, page, organizationId },
+  };
+}
+
+export function fetch({ organizationId, userId }) {
+  return {
+    type: '@user/FETCH',
+    payload: { organizationId, userId },
+  };
+}
+
+export function fetchSuccess(user) {
+  return {
+    type: '@user/FETCH/SUCCESS',
+    payload: { user },
   };
 }
 
