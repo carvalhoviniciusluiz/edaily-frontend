@@ -78,7 +78,7 @@ export const Container = styled.div`
     left: -300px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 882px) {
     & > input[type='checkbox'],
     .hamburger {
       border-radius: 0;
