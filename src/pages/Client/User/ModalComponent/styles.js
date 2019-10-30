@@ -67,6 +67,7 @@ export const Body = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+    margin-bottom: 15px;
 
     label {
       display: block;
