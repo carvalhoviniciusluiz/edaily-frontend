@@ -151,6 +151,7 @@ export const Footer = styled.div`
 export const CancelButton = styled.button`
   border: 0;
   color: #333;
+  background: transparent;
   margin-right: 15px;
 
   &:hover {
