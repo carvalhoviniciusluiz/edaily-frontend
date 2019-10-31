@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -72,8 +73,14 @@ export default function Modal({ setShow, show }) {
             </InputGroup>
 
             <InputGroup>
-              <InputItem>
-                <Input type="email" name="email" label="Email" disabled />
+              <InputItem className="custom-field">
+                <label>Email</label>
+                <div>
+                  <Input type="email" name="email" disabled />
+                  <div className="actions">
+                    <button type="button">Alterar</button>
+                  </div>
+                </div>
               </InputItem>
               <InputItem>
                 <Input name="phone" label="Celular" />
@@ -81,26 +88,46 @@ export default function Modal({ setShow, show }) {
             </InputGroup>
 
             <InputGroup>
-              <InputItem>
-                <Input name="cpf" label="CPF" disabled />
+              <InputItem className="custom-field">
+                <label>CPF</label>
+                <div>
+                  <Input name="cpf" disabled />
+                  <div className="actions">
+                    <button type="button">Alterar</button>
+                  </div>
+                </div>
               </InputItem>
-              <InputItem>
-                <Input name="rg" label="RG" disabled />
+              <InputItem className="custom-field">
+                <label>RG</label>
+                <div>
+                  <Input name="rg" disabled />
+                  <div className="actions">
+                    <button type="button">Alterar</button>
+                  </div>
+                </div>
               </InputItem>
             </InputGroup>
 
             <hr />
 
             <InputGroup>
-              <InputItem>
-                <Input name="zipcode" label="CEP" disabled={disable(user)} />
+              <InputItem className="custom-field">
+                <label>CEP</label>
+                <div>
+                  <Input name="zipcode" disabled={disable(user)} />
+                  <div className="actions">
+                    <button type="button">Alterar</button>
+                  </div>
+                </div>
               </InputItem>
-              <InputItem>
-                <Input
-                  name="street_number"
-                  label="Número"
-                  disabled={disable(user)}
-                />
+              <InputItem className="custom-field">
+                <label>Número</label>
+                <div>
+                  <Input name="street_number" disabled={disable(user)} />
+                  <div className="actions">
+                    <button type="button">Alterar</button>
+                  </div>
+                </div>
               </InputItem>
             </InputGroup>
 

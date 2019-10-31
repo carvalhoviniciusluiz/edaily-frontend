@@ -203,4 +203,45 @@ export const InputItem = styled.div`
   @media (max-width: 662px) {
     width: 100%;
   }
+
+  &.custom-field {
+    div {
+      display: flex;
+
+      input {
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        font-size: 14px;
+        border-right: none;
+        padding-right: 6px;
+        background: transparent;
+        border: 2px solid #e5e5e5;
+        border-right: 0;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 44px;
+        color: rgb(68, 67, 75);
+        background: transparent;
+        border: 2px solid #e5e5e5;
+        border-left: 0;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        padding-right: 16px;
+
+        button {
+          background: transparent;
+          border: 0;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
 `;
