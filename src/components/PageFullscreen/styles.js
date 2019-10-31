@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const PaperFullScreen = styled.div`
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  position: fixed;
   width: 100vw;
   height: 100vh;
+  padding-bottom: 150px;
+  background: ${props => (props.background ? props.background : '#fff')};
   overflow-x: hidden;
-  background: #fff;
   z-index: 99999;
 `;
 
@@ -28,6 +29,7 @@ export const PaperActions = styled.div`
     height: 50px;
     border-radius: 4px;
 
+    background: transparent;
     color: #999;
 
     &:hover {

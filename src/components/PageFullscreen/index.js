@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { PaperFullScreen, PaperActions } from './styles';
 
 export default function PageFullscreen({ children, ...res }) {
-  const { open, setOpen } = res;
+  const { open, setOpen, background } = res;
 
   if (!open) {
     return null;
   }
 
   return (
-    <PaperFullScreen>
+    <PaperFullScreen background={background}>
       <PaperActions>
         <button type="button" onClick={() => setOpen(false)}>
           x
