@@ -4,7 +4,7 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import ToolbarMenu from '~/components/ToolbarMenu';
 
-import ModalComponent from './ModalComponent';
+import Modal from './Modal';
 
 import { Container, ArrowButton, UserPanel } from './styles';
 
@@ -81,7 +81,7 @@ export default function User() {
     <>
       <ToolbarMenu />
 
-      <ModalComponent show={show} setShow={setShow} />
+      <Modal show={show} setShow={setShow} />
 
       <Container>
         <header>

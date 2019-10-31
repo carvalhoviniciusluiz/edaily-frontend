@@ -6,8 +6,8 @@ import { Form, Input } from '@rocketseat/unform';
 
 import { MdMailOutline, MdInfoOutline } from 'react-icons/md';
 
-import Modal from '~/components/Modal';
-import PanelComponent from './PanelComponent';
+import ModalComponent from '~/components/Modal';
+import PageFullscreen from '../PageFullscreen';
 
 import {
   Header,
@@ -19,7 +19,7 @@ import {
   InputItem,
 } from './styles';
 
-export default function ModalComponent({ setShow, show }) {
+export default function Modal({ setShow, show }) {
   const user = useSelector(state => state.clientUser.user);
   const [openPage, setOpenPage] = useState(false);
 
@@ -32,7 +32,7 @@ export default function ModalComponent({ setShow, show }) {
   };
 
   const handlePasswordRequest = () => {
-    console.log('handlePasswordRequest');
+    console.tron.log('handlePasswordRequest');
   };
 
   const handleConfirmationRequest = () => {
@@ -41,9 +41,9 @@ export default function ModalComponent({ setShow, show }) {
 
   return (
     <>
-      <PanelComponent open={openPage} onClose={setOpenPage} />
+      <PageFullscreen open={openPage} setOpen={setOpenPage} />
 
-      <Modal show={show} height={500}>
+      <ModalComponent show={show} height={500}>
         <Header>
           <h4 className="title">
             {getAttr('firstname', user)}
@@ -154,12 +154,12 @@ export default function ModalComponent({ setShow, show }) {
           <CancelButton onClick={() => setShow(false)}>cancelar</CancelButton>
           <SaveButton>Salvar</SaveButton>
         </Footer>
-      </Modal>
+      </ModalComponent>
     </>
   );
 }
 
-ModalComponent.propTypes = {
+Modal.propTypes = {
   show: PropTypes.bool.isRequired,
   setShow: PropTypes.func.isRequired,
 };
