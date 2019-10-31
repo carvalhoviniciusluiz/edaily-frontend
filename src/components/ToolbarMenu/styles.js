@@ -12,6 +12,7 @@ export const Container = styled.div`
         height: 60px !important;
         margin: 0 !important;
         border-bottom: 1px solid #fff;
+        transition: 0.1s;
 
         span {
           display: none;
@@ -32,6 +33,7 @@ export const Container = styled.div`
       text-align: center;
       justify-content: center;
       align-items: center;
+      transition: 0.1s;
 
       background: rgba(0, 0, 0, 0.1);
 
