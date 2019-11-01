@@ -16,8 +16,6 @@ import schema from '~/pages/Registration/validation';
 
 export default function PrivateCompany() {
   const [substitute, setSubstitute] = useState(false);
-  const [shippingAllowed, setShippingAllowed] = useState(false);
-  const [chargeAllowed, setChargeAllowed] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [unautorized, setUnautorized] = useState(false);
 
@@ -34,19 +32,12 @@ export default function PrivateCompany() {
       return;
     }
 
-    dispatch(
-      createOrganizationRequest({
-        ...formData,
-        shippingAllowed,
-        chargeAllowed,
-        termsAccepted,
-      })
-    );
+    dispatch(createOrganizationRequest({ ...formData, termsAccepted }));
   }
 
   useEffect(() => {
-    setUnautorized(!(shippingAllowed && chargeAllowed && termsAccepted));
-  }, [chargeAllowed, shippingAllowed, termsAccepted]);
+    setUnautorized(!termsAccepted);
+  }, [termsAccepted]);
 
   async function fetchAddress(zipcode, prefix) {
     if (zipcode) {
@@ -183,28 +174,6 @@ export default function PrivateCompany() {
               </Scope>
             </div>
           </Address>
-
-          <label htmlFor="sending-authorized">
-            <input
-              id="sending-authorized"
-              name="sending"
-              type="checkbox"
-              onChange={() => setShippingAllowed(!shippingAllowed)}
-              checked={shippingAllowed}
-            />
-            <span>Autorizo comunicação da Imprensa Oficial por e-mail</span>
-          </label>
-
-          <label htmlFor="billing-authorized">
-            <input
-              id="billing-authorized"
-              name="billing"
-              type="checkbox"
-              onChange={() => setChargeAllowed(!chargeAllowed)}
-              checked={chargeAllowed}
-            />
-            <span>Autorizo receber boletos de cobrança por e-mail</span>
-          </label>
 
           <label htmlFor="terms-authorized">
             <input
