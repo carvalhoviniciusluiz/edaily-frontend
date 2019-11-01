@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { darken } from 'polished';
+
 export const Container = styled.div`
   max-width: 600px;
   margin: 50px auto;
@@ -89,26 +91,54 @@ export const Panel = styled.li`
     }
   }
 
-  p {
-    width: 560px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
+  div.actions {
+    display: flex;
+    align-items: center;
     margin-top: 15px;
 
-    strong {
-      font-size: 18px;
-      margin-right: 28px;
-      font-weight: normal;
+    p {
+      display: flex;
+      width: 500px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      strong {
+        font-size: 18px;
+        margin-right: 28px;
+        font-weight: normal;
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        color: #333;
+        font-size: 18px;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
-    a {
+    & > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #333;
       font-size: 18px;
+      border: 0;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
 
       &:hover {
-        text-decoration: underline;
+        background: ${darken(0.03, '#3b9eff')};
+        color: #fff;
+
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       }
     }
   }

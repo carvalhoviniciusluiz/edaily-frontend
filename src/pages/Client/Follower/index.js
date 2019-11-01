@@ -7,6 +7,7 @@ import {
   MdAccessTime,
   MdSupervisorAccount,
   MdPermIdentity,
+  MdGames,
 } from 'react-icons/md';
 
 import ToolbarMenu from '~/components/ToolbarMenu';
@@ -124,16 +125,21 @@ export default function Dashboard() {
                   <span>{document.date}</span>
                 </strong>
               </div>
-              <p>
-                <strong>{document.protocolNumber}</strong>
-                <a
-                  href="#viewer"
-                  rel="noopener noreferrer"
-                  onClick={() => setUrl(document.file.url)}
-                >
-                  {document.file.name}
-                </a>
-              </p>
+              <div className="actions">
+                <p>
+                  <strong>{document.protocolNumber}</strong>
+                  <span
+                    onClick={() => setUrl(document.file.url)}
+                    role="presentation"
+                  >
+                    {document.file.name}
+                  </span>
+                </p>
+
+                <span>
+                  <MdGames />
+                </span>
+              </div>
             </Panel>
           ))}
         </ul>
