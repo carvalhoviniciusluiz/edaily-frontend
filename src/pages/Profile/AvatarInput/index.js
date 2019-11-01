@@ -12,7 +12,7 @@ export default function AvatarInput() {
   const { defaultValue, registerField } = useField('avatar');
   const profile = useSelector(state => state.user.profile);
 
-  const [file, setFile] = useState(defaultValue && defaultValue.id);
+  const [file, setFile] = useState(defaultValue && defaultValue.uuid);
   const [preview, setPreview] = useState(defaultValue && defaultValue.avatar);
 
   const ref = useRef();
@@ -44,7 +44,7 @@ export default function AvatarInput() {
     <Container>
       <label htmlFor="avatar">
         {preview ? (
-          <img src={preview} alt="" />
+          <img src={preview} alt="Avatar" />
         ) : (
           <Identicon
             string={`${profile.firstname} ${profile.lastname}`}
