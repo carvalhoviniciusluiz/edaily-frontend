@@ -87,8 +87,25 @@ export const Panel = styled.li`
     }
 
     div strong {
-      span span {
+      span {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 448px) {
+    div {
+      strong.responsable {
         display: none;
+      }
+    }
+    div.actions {
+      p {
+        a {
+          display: none !important;
+        }
       }
     }
   }

@@ -56,14 +56,14 @@ export default function PanelComponent({ ...res }) {
               <MdPeople size={22} />
               <span>NIO</span>
             </strong>
-            <strong>
+            <strong className="responsable">
               <MdPerson size={22} />
               <span>
                 Julia
                 <span>Marques</span>
               </span>
             </strong>
-            <strong>
+            <strong className="author">
               <MdPersonOutline size={22} />
               <span>
                 Vinicius
@@ -97,14 +97,14 @@ export default function PanelComponent({ ...res }) {
               <MdPeople size={22} />
               <span>NIO</span>
             </strong>
-            <strong>
+            <strong className="responsable">
               <MdPerson size={22} />
               <span>
                 Julia
                 <span>Marques</span>
               </span>
             </strong>
-            <strong>
+            <strong className="author">
               <MdPersonOutline size={22} />
               <span>
                 Vinicius
@@ -138,14 +138,14 @@ export default function PanelComponent({ ...res }) {
               <MdPeople size={22} />
               <span>NIO</span>
             </strong>
-            <strong>
+            <strong className="responsable">
               <MdPerson size={22} />
               <span>
                 Julia
                 <span>Marques</span>
               </span>
             </strong>
-            <strong>
+            <strong className="author">
               <MdPersonOutline size={22} />
               <span>
                 Vinicius
@@ -179,14 +179,14 @@ export default function PanelComponent({ ...res }) {
               <MdPeople size={22} />
               <span>NIO</span>
             </strong>
-            <strong>
+            <strong className="responsable">
               <MdPerson size={22} />
               <span>
                 Julia
                 <span>Marques</span>
               </span>
             </strong>
-            <strong>
+            <strong className="author">
               <MdPersonOutline size={22} />
               <span>
                 Vinicius
@@ -220,14 +220,14 @@ export default function PanelComponent({ ...res }) {
               <MdPeople size={22} />
               <span>NIO</span>
             </strong>
-            <strong>
+            <strong className="responsable">
               <MdPerson size={22} />
               <span>
                 Julia
                 <span>Marques</span>
               </span>
             </strong>
-            <strong>
+            <strong className="author">
               <MdPersonOutline size={22} />
               <span>
                 Vinicius
@@ -261,14 +261,14 @@ export default function PanelComponent({ ...res }) {
               <MdPeople size={22} />
               <span>NIO</span>
             </strong>
-            <strong>
+            <strong className="responsable">
               <MdPerson size={22} />
               <span>
                 Julia
                 <span>Marques</span>
               </span>
             </strong>
-            <strong>
+            <strong className="author">
               <MdPersonOutline size={22} />
               <span>
                 Vinicius
