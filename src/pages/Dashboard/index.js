@@ -12,7 +12,7 @@ export default function Dashboard() {
       <Item>
         <Link to="/register/company">
           <div>
-            <MdPeople size={32} />
+            <MdPeople size={28} />
 
             <strong>Pessoa Jurídica</strong>
           </div>
