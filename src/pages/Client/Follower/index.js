@@ -13,6 +13,8 @@ import {
 import ToolbarMenu from '~/components/ToolbarMenu';
 import PDFViewer from '~/components/PDFViewer';
 
+import Modal from './Modal';
+
 import { Container, Panel, Button } from './styles';
 
 import {
@@ -30,6 +32,7 @@ export default function Dashboard() {
 
   const [page, setPage] = useState(1);
   const [url, setUrl] = useState(null);
+  const [show, setShow] = useState(false);
 
   const [inputValue, setInputValue] = useState(1);
 
@@ -78,9 +81,17 @@ export default function Dashboard() {
     setDesableNext(newPage === meta.pages);
   }
 
+  const handleDocumentClick = async documentId => {
+    console.tron.log(documentId);
+
+    setShow(true);
+  };
+
   return (
     <>
       <ToolbarMenu />
+
+      <Modal show={show} setShow={setShow} />
 
       <Container>
         <header>
@@ -136,7 +147,10 @@ export default function Dashboard() {
                   </span>
                 </p>
 
-                <span>
+                <span
+                  onClick={() => handleDocumentClick(document.uuid)}
+                  role="presentation"
+                >
                   <MdGames />
                 </span>
               </div>
