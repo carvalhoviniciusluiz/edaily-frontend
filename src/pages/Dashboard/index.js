@@ -1,31 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IoMdPeople, IoMdAnalytics } from 'react-icons/io';
 
-import { ServiceList } from './styles';
+import { MdPeople, MdPerson } from 'react-icons/md';
+import { IoMdAnalytics } from 'react-icons/io';
 
-export default function PublicForms() {
+import { Container, Item } from './styles';
+
+export default function Dashboard() {
   return (
-    <div className="main-container">
-      <ServiceList>
-        <li>
-          <Link to="/register/government">
-            <IoMdPeople size={32} />
+    <Container>
+      <Item>
+        <Link to="/register/company">
+          <div>
+            <MdPeople size={32} />
 
-            <strong>Entidade Governamental</strong>
-            <span>Cadastro de orgãos do governo e afins</span>
-          </Link>
-        </li>
+            <strong>Pessoa Jurídica</strong>
+          </div>
+          <span>Cadastro de empresas</span>
+        </Link>
+      </Item>
 
-        <li>
-          <Link to="/register/company">
+      <Item>
+        <Link to="/register/company">
+          <div>
+            <MdPerson size={32} />
+
+            <strong>Pessoa Física</strong>
+          </div>
+          <span>Cadastro cidadão</span>
+        </Link>
+      </Item>
+
+      <Item>
+        <Link to="/register/government">
+          <div>
             <IoMdAnalytics size={32} />
 
-            <strong>Empresa Privada</strong>
-            <span>Cadastro de pessoa jurídica</span>
-          </Link>
-        </li>
-      </ServiceList>
-    </div>
+            <strong>Entidades Governamentais</strong>
+          </div>
+          <span>Cadastro de orgãos do governo e afins</span>
+        </Link>
+      </Item>
+    </Container>
   );
 }
