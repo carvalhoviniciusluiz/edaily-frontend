@@ -9,6 +9,7 @@ export const Lockscreen = styled.div`
   height: 100vh;
   overflow-x: hidden;
   background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
 
   display: flex;
   align-items: center;

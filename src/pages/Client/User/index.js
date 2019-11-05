@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import Identicon from 'react-identicons';
 
 import ToolbarMenu from '~/components/ToolbarMenu';
 
@@ -83,7 +84,7 @@ export default function User() {
 
       <Modal show={show} setShow={setShow} />
 
-      <Container>
+      <Container length={users.length}>
         <header>
           <ArrowButton onClick={handlePrevPage} desable={desablePrev}>
             <MdChevronLeft size={36} color="#fff" />
@@ -106,12 +107,20 @@ export default function User() {
         <ul>
           {users.map(user => (
             <UserPanel
-              key={String(user.id)}
+              key={String(user.uuid)}
               inative={!user.is_active}
-              length={users.length}
               className="with-shading"
             >
-              <img src={user.avatar.avatar} alt="Avatar" />
+              {user.avatar ? (
+                <img src={user.avatar.avatar} alt="Avatar" />
+              ) : (
+                <Identicon
+                  string={`${user.firstname} ${user.lastname}`}
+                  size={45}
+                  bg="#fff"
+                  fg="#333"
+                />
+              )}
 
               <div
                 role="presentation"

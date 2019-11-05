@@ -26,7 +26,7 @@ export default function PanelComponent({ ...res }) {
     <PageFullscreen open={open} setOpen={setOpen} background="#f8f8f8">
       <Avatar>
         <img
-          src="http://127.0.0.1:3333/avatars/90246adc-ee91-4152-ba72-1a1d8cfa44d6"
+          src="http://127.0.0.1:3333/avatars/1178da66-2e01-46f0-85c7-3b3a71723965"
           alt="avatar"
         />
 

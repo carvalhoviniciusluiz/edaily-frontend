@@ -79,6 +79,7 @@ export const UserPanel = styled.li`
 
   opacity: ${props => (props.inative ? 0.6 : 1)};
 
+  canvas,
   img {
     width: 45px;
     height: 45px;

@@ -75,6 +75,7 @@ export const Body = styled.div`
       justify-content: center;
       margin-bottom: 40px;
 
+      canvas,
       img {
         height: 120px;
         width: 120px;

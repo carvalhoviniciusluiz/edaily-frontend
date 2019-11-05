@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import Identicon from 'react-identicons';
 
 import PropTypes from 'prop-types';
 import { Form, Input } from '@rocketseat/unform';
@@ -59,7 +60,16 @@ export default function Modal({ setShow, show }) {
         <Body>
           <Form initialData={user}>
             <div className="avatar">
-              {user && <img src={user.avatar.avatar} alt="Avatar" />}
+              {user && user.avatar ? (
+                <img src={user.avatar.avatar} alt="Avatar" />
+              ) : (
+                <Identicon
+                  string={`${user && user.firstname} ${user && user.lastname}`}
+                  size={120}
+                  bg="#fff"
+                  fg="#333"
+                />
+              )}
             </div>
 
             <InputGroup>
