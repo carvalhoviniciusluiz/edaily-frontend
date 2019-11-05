@@ -44,7 +44,7 @@ export default function Dashboard() {
 
   useEffect(() => setDocuments(data), [data]);
 
-  const handleDelete = async id => {
+  const handleCancel = async id => {
     const { value } = await Swal.fire({
       type: 'question',
       title: 'Você tem certeza',
@@ -161,10 +161,10 @@ export default function Dashboard() {
 
                 <button
                   type="button"
-                  className="delete"
-                  onClick={() => handleDelete(document.id)}
+                  className="cancel"
+                  onClick={() => handleCancel(document.id)}
                 >
-                  Excluir
+                  Cancelar
                 </button>
                 <button
                   type="button"

@@ -114,7 +114,7 @@ export const Panel = styled.li`
       }
     }
 
-    button.delete {
+    button.cancel {
       background-color: #aaa;
       color: #fff;
 

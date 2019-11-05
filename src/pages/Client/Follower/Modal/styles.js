@@ -15,6 +15,8 @@ export const Header = styled.div`
   justify-content: space-between;
 
   .h4 {
+    display: flex;
+    flex-direction: column;
     font-size: 18px;
     font-weight: 500;
 
@@ -23,11 +25,17 @@ export const Header = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
 
+    strong {
+      color: #333;
+      font-weight: normal;
+      font-size: 22px;
+    }
+
     small {
-      font-weight: 400;
+      font-size: 12px;
       line-height: 1;
       color: #777;
-      margin-left: 5px;
+      margin-top: 10px;
     }
 
     @media (max-width: 497px) {
@@ -136,7 +144,7 @@ export const Body = styled.div`
   overflow-y: auto;
   position: relative;
   padding: 16px 24px;
-
+  height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;

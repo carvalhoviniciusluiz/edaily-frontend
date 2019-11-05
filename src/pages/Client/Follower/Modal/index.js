@@ -21,11 +21,11 @@ export default function Modal({ setShow, show }) {
   };
   return (
     <>
-      <ModalComponent show={show} height={250}>
+      <ModalComponent show={show} height={300}>
         <Header>
           <h4 className="h4">
-            Boleto0837039_14047070000025815.pdf
-            <small>#0001057.00000008/2019-74</small>
+            <strong>0001057.00000008/2019-74</strong>
+            <small>Boleto0837039_14047070000025815.pdf</small>
           </h4>
           <button type="button" onClick={() => setShow(false)}>
             <span>×</span>
