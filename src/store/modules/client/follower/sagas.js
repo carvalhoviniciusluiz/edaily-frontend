@@ -7,7 +7,11 @@ import pt from 'date-fns/locale/pt';
 
 import api from '~/services/api';
 
-import { documentFollowSuccess, documentFollowFailure } from './actions';
+import {
+  documentFollowFetchSuccess,
+  documentFollowSuccess,
+  documentFollowFailure,
+} from './actions';
 
 export function* documentFollowResquest({ payload }) {
   try {
@@ -37,6 +41,21 @@ export function* documentFollowResquest({ payload }) {
   }
 }
 
+export function* documentFollowFetch({ payload }) {
+  try {
+    const { documentId } = payload;
+
+    const response = yield call(api.get, `documents/${documentId}`);
+
+    yield put(documentFollowFetchSuccess(response.data));
+  } catch (error) {
+    toast.error('Falha na recuperação dos dados, verifique sua conexão.');
+
+    yield put(documentFollowFailure());
+  }
+}
+
 export default all([
   takeLatest('@document/DOCUMENT_FOLLOW_REQUEST', documentFollowResquest),
+  takeLatest('@document/DOCUMENT_FOLLOW_FETCH', documentFollowFetch),
 ]);

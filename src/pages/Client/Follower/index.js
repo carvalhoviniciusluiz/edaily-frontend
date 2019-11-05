@@ -19,6 +19,7 @@ import { Container, Panel, Button } from './styles';
 
 import {
   documentFollowRequest,
+  documentFollowFetch,
   documentFollowClean,
 } from '~/store/modules/client/follower/actions';
 
@@ -82,7 +83,7 @@ export default function Dashboard() {
   }
 
   const handleDocumentClick = async documentId => {
-    console.tron.log(documentId);
+    await dispatch(documentFollowFetch({ documentId }));
 
     setShow(true);
   };
@@ -148,7 +149,7 @@ export default function Dashboard() {
                 </p>
 
                 <span
-                  onClick={() => handleDocumentClick(document.uuid)}
+                  onClick={() => handleDocumentClick(document.id)}
                   role="presentation"
                 >
                   <MdGames />

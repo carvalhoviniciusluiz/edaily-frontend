@@ -5,6 +5,20 @@ export function documentFollowRequest({ limit = 10, page = 1 }) {
   };
 }
 
+export function documentFollowFetch({ documentId }) {
+  return {
+    type: '@document/DOCUMENT_FOLLOW_FETCH',
+    payload: { documentId },
+  };
+}
+
+export function documentFollowFetchSuccess(document) {
+  return {
+    type: '@document/DOCUMENT_FOLLOW_FETCH/SUCCESS',
+    payload: { document },
+  };
+}
+
 export function documentFollowSuccess(data = [], meta = {}) {
   return {
     type: '@document/DOCUMENT_FOLLOW_SUCCESS',

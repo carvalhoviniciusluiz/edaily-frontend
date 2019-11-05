@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import PropTypes from 'prop-types';
 
 import ModalComponent from '~/components/Modal';
@@ -16,23 +18,26 @@ import {
 } from './styles';
 
 export default function Modal({ setShow, show }) {
+  const document = useSelector(state => state.follow.document);
+
   const handleSubmit = data => {
     console.tron.log(data);
   };
+
   return (
     <>
       <ModalComponent show={show} height={300}>
         <Header>
           <h4 className="h4">
-            <strong>0001057.00000008/2019-74</strong>
-            <small>Boleto0837039_14047070000025815.pdf</small>
+            <strong>{document && document.protocolNumber}</strong>
+            <small>{document && document.file.name}</small>
           </h4>
           <button type="button" onClick={() => setShow(false)}>
             <span>×</span>
           </button>
         </Header>
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} initialData={document}>
           <Body>
             <InputItem className="custom-field">
               <label>Data de publicação</label>
