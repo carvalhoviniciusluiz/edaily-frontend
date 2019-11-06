@@ -164,7 +164,7 @@ export default function Dashboard() {
                   className="cancel"
                   onClick={() => handleCancel(document.id)}
                 >
-                  Cancelar
+                  Sustar
                 </button>
                 <button
                   type="button"

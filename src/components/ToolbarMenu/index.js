@@ -33,7 +33,7 @@ export default function ToolbarMenu() {
           className={window.location.pathname === '/review' ? 'active' : ''}
         >
           <MdInsertDriveFile color="#fff" size={20} />
-          <span>Revisão</span>
+          <span>Analise</span>
         </Link>
         <Link
           to="/users"
