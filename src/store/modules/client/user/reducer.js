@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   data: [],
   meta: {},
   loading: false,
+  openModal: false,
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -15,12 +16,12 @@ export default function(state = INITIAL_STATE, action) {
         break;
       }
       case '@user/FETCH': {
-        draft.loading = true;
+        draft.openModal = false;
         break;
       }
       case '@user/FETCH/SUCCESS': {
         draft.user = action.payload.user;
-        draft.loading = false;
+        draft.openModal = true;
         break;
       }
       case '@user/SUCCESS': {
@@ -33,6 +34,7 @@ export default function(state = INITIAL_STATE, action) {
       }
       case '@user/FAILURE': {
         draft.loading = false;
+        draft.openModal = false;
         break;
       }
       case '@user/CLEAN': {
@@ -40,6 +42,7 @@ export default function(state = INITIAL_STATE, action) {
         draft.data = [];
         draft.meta = {};
         draft.loading = false;
+        draft.openModal = false;
         break;
       }
       default:

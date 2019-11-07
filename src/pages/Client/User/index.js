@@ -17,6 +17,7 @@ export default function User() {
 
   const data = useSelector(state => state.clientUser.data);
   const meta = useSelector(state => state.clientUser.meta);
+  const openModal = useSelector(state => state.clientUser.openModal);
 
   const [users, setUsers] = useState([]);
 
@@ -37,6 +38,12 @@ export default function User() {
   useEffect(() => {
     setUsers(data);
   }, [data]);
+
+  useEffect(() => {
+    if (openModal) {
+      setShow(true);
+    }
+  }, [openModal]);
 
   const handleChangeInputValue = e => {
     setInputValue(e.target.value);
@@ -75,7 +82,6 @@ export default function User() {
     const { uuid: organizationId } = organization;
 
     await dispatch(fetch({ organizationId, userId }));
-    setShow(true);
   };
 
   return (
