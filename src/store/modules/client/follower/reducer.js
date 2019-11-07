@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   data: [],
   meta: {},
   loading: false,
+  openModal: false,
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -15,12 +16,12 @@ export default function(state = INITIAL_STATE, action) {
         break;
       }
       case '@document/DOCUMENT_FOLLOW_FETCH': {
-        draft.loading = true;
+        draft.openModal = false;
         break;
       }
       case '@document/DOCUMENT_FOLLOW_FETCH/SUCCESS': {
         draft.document = action.payload.document;
-        draft.loading = false;
+        draft.openModal = true;
         break;
       }
       case '@document/DOCUMENT_FOLLOW_SUCCESS': {
@@ -47,6 +48,7 @@ export default function(state = INITIAL_STATE, action) {
         draft.data = [];
         draft.meta = {};
         draft.loading = false;
+        draft.openModal = false;
         break;
       }
       default:
