@@ -24,7 +24,6 @@ import {
 export default function Modal({ setShow, show }) {
   const user = useSelector(state => state.clientUser.user);
   const [openPage, setOpenPage] = useState(false);
-  const [activeUser, setActiveUser] = useState(false);
 
   const disable = target => {
     return target && target.is_responsible;
