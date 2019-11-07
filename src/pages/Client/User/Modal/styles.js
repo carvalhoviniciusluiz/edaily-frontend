@@ -94,6 +94,8 @@ export const Body = styled.div`
       input[type='checkbox'] {
         height: 0.95em;
         width: 0.95em;
+
+        margin-top: 22px;
       }
 
       span {
@@ -215,6 +217,23 @@ export const InputItem = styled.div`
   }
 
   &.custom-field {
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 0;
+      border-radius: 2px;
+      padding: 3px 4px;
+      margin-bottom: 18px;
+      background: #3b9eff;
+      color: #fff;
+      width: 120px;
+      line-height: 1;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: inset 0 -1px 0 rgba(27, 31, 35, 0.12);
+    }
+
     div {
       display: flex;
 

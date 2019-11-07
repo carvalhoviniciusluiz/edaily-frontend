@@ -91,6 +91,13 @@ export default function Modal({ setShow, show }) {
                     <button type="button">Alterar</button>
                   </div>
                 </div>
+
+                {user && !!user.confirmed_at && (
+                  <span>
+                    Email Confirmado
+                    <MdInfoOutline size={14} />
+                  </span>
+                )}
               </InputItem>
               <InputItem>
                 <Input name="phone" label="Celular" />
@@ -167,8 +174,6 @@ export default function Modal({ setShow, show }) {
               </InputItem>
             </InputGroup>
 
-            <hr />
-
             <label htmlFor="terms-authorized">
               <Check name="is_active" />
               <span>Ativar conta de usuário</span>
@@ -176,10 +181,13 @@ export default function Modal({ setShow, show }) {
 
             <hr />
 
-            <a href="#sending" onClick={handlePasswordRequest}>
-              <MdMailOutline size={22} />
-              <span>Enviar email de confirmação</span>
-            </a>
+            {user && !user.confirmed_at && (
+              <a href="#sending" onClick={handlePasswordRequest}>
+                <MdMailOutline size={22} />
+                <span>Enviar email de confirmação</span>
+              </a>
+            )}
+
             <a href="#sending" onClick={handleConfirmationRequest}>
               <MdMailOutline size={22} />
               <span>Enviar email para alteração de senha</span>
