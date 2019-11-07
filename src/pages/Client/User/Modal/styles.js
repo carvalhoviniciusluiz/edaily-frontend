@@ -90,6 +90,15 @@ export const Body = styled.div`
       font-size: 14px;
       margin-bottom: 8px;
       color: #333;
+
+      input[type='checkbox'] {
+        height: 0.95em;
+        width: 0.95em;
+      }
+
+      span {
+        margin-left: 5px;
+      }
     }
 
     input {

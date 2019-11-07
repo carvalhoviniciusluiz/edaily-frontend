@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Identicon from 'react-identicons';
 
 import PropTypes from 'prop-types';
-import { Form, Input } from '@rocketseat/unform';
+import { Form, Input, Check } from '@rocketseat/unform';
 
 import { MdMailOutline, MdInfoOutline } from 'react-icons/md';
 
@@ -24,6 +24,7 @@ import {
 export default function Modal({ setShow, show }) {
   const user = useSelector(state => state.clientUser.user);
   const [openPage, setOpenPage] = useState(false);
+  const [activeUser, setActiveUser] = useState(false);
 
   const disable = target => {
     return target && target.is_responsible;
@@ -166,6 +167,13 @@ export default function Modal({ setShow, show }) {
                 <Input name="state" label="UF" disabled={disable(user)} />
               </InputItem>
             </InputGroup>
+
+            <hr />
+
+            <label htmlFor="terms-authorized">
+              <Check name="is_active" />
+              <span>Ativar conta de usuário</span>
+            </label>
 
             <hr />
 
