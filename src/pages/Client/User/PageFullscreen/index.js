@@ -1,5 +1,9 @@
-import React from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import Identicon from 'react-identicons';
 
 import {
   MdChevronLeft,
@@ -12,8 +16,11 @@ import {
 } from 'react-icons/md';
 
 import PageFullscreen from '~/components/PageFullscreen';
+import PDFViewer from '~/components/PDFViewer';
 
 import { Avatar, Navigation, Button, PanelList, Panel } from './styles';
+
+import { request, clean } from '~/store/modules/client/document/actions';
 
 export default function PanelComponent({ ...res }) {
   const { open, setOpen } = res;
@@ -22,279 +29,154 @@ export default function PanelComponent({ ...res }) {
     return null;
   }
 
+  const user = useSelector(state => state.clientUser.user);
+  const organization = useSelector(state => state.user.profile.organization);
+
+  const dispatch = useDispatch();
+
+  const data = useSelector(state => state.document.data);
+  const meta = useSelector(state => state.document.meta);
+
+  const [documents, setDocuments] = useState([]);
+
+  const [inputValue, setInputValue] = useState(1);
+
+  const [desablePrev, setDesablePrev] = useState(true);
+  const [desableNext, setDesableNext] = useState(false);
+
+  const [page, setPage] = useState(1);
+  const [url, setUrl] = useState(null);
+
+  useEffect(() => {
+    dispatch(
+      request({ page, organizationId: organization.uuid, userId: user.uuid })
+    );
+    return () => dispatch(clean());
+  }, [page]); // eslint-disable-line
+
+  useEffect(() => setDocuments(data), [data]);
+
+  const handleChangeInputValue = e => {
+    setInputValue(e.target.value);
+  };
+
+  const handleFetchPage = e => {
+    if (!e.target.value) {
+      setInputValue(page);
+      return;
+    }
+    setPage(e.target.value);
+  };
+
+  function handlePrevPage() {
+    const newPage = page - 1;
+    if (newPage === meta.pages) return;
+
+    setPage(newPage);
+    setDesablePrev(newPage === 1);
+    setDesableNext(newPage === meta.pages);
+  }
+
+  function handleNextPage() {
+    const newPage = page + 1;
+    if (newPage > meta.pages) {
+      setDesableNext(true);
+      return;
+    }
+
+    setPage(newPage);
+    setDesablePrev(desableNext);
+    setDesableNext(newPage === meta.pages);
+  }
+
   return (
     <PageFullscreen open={open} setOpen={setOpen} background="#f8f8f8">
       <Avatar>
-        <img
-          src="http://127.0.0.1:3333/avatars/1178da66-2e01-46f0-85c7-3b3a71723965"
-          alt="avatar"
-        />
+        {user && user.avatar ? (
+          <img src={user.avatar.avatar} alt="Avatar" />
+        ) : (
+          <Identicon
+            string={`${user && user.firstname} ${user && user.lastname}`}
+            size={120}
+            bg="#fff"
+            fg="#333"
+          />
+        )}
 
-        <strong>Vinicius Carvalho</strong>
-        <span>carvalho.viniciusluiz@gmail.com</span>
+        <strong>
+          {user.firstname} {user.lastname}
+        </strong>
+        <span>{user.email}</span>
       </Avatar>
 
       <Navigation>
-        <Button>
+        <Button type="button" onClick={handlePrevPage} desable={desablePrev}>
           <MdChevronLeft size={36} color="#333" />
         </Button>
         <div>
-          <input type="text" value={1} />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleChangeInputValue}
+            onBlur={handleFetchPage}
+          />
           <strong>/</strong>
-          <strong>2</strong>
+          <strong>{meta.pages}</strong>
         </div>
-        <Button>
+        <Button type="button" onClick={handleNextPage} desable={desableNext}>
           <MdChevronRight size={36} color="#333" />
         </Button>
       </Navigation>
 
+      {url && <PDFViewer url={url} toggleRender={setUrl} />}
+
       <PanelList>
-        <Panel className="with-shading">
-          <div>
-            <strong className="time">14:23</strong>
-            <strong>
-              <MdPeople size={22} />
-              <span>NIO</span>
-            </strong>
-            <strong className="responsable">
-              <MdPerson size={22} />
-              <span>
-                Julia
-                <span>Marques</span>
-              </span>
-            </strong>
-            <strong className="author">
-              <MdPersonOutline size={22} />
-              <span>
-                Vinicius
-                <span>Carvalho</span>
-              </span>
-            </strong>
-            <strong>
-              <MdAccessTime />
-              <span>31/10/2019</span>
-            </strong>
-          </div>
+        {documents.map(document => (
+          <Panel key={document._id} className="with-shading">
+            <div>
+              <strong className="time">{document.time}</strong>
+              <strong>
+                <MdPeople size={22} />
+                <span>{document.organization.initials}</span>
+              </strong>
+              <strong className="responsable">
+                <MdPerson size={22} />
+                <span>
+                  {document.responsable.firstname}
+                  <span>{document.responsable.lastname}</span>
+                </span>
+              </strong>
+              <strong className="author">
+                <MdPersonOutline size={22} />
+                <span>
+                  {document.author.firstname}
+                  <span>{document.author.lastname}</span>
+                </span>
+              </strong>
+              <strong>
+                <MdAccessTime />
+                <span>{document.date}</span>
+              </strong>
+            </div>
 
-          <div className="actions">
-            <p>
-              <strong>00045.0000234/2019-43</strong>
-              <a href="#viewer" rel="noopener noreferrer">
-                EDITAL DE CONCURSO PUBLICA.pdf
-              </a>
-            </p>
+            <div className="actions">
+              <p>
+                <strong>{document.protocolNumber}</strong>
+                <span
+                  onClick={() => setUrl(document.file.url)}
+                  role="presentation"
+                >
+                  {document.file.name}
+                </span>
+              </p>
 
-            <a href="#viewer" rel="noopener noreferrer">
-              <MdMenu />
-              histórico
-            </a>
-          </div>
-        </Panel>
-        <Panel className="with-shading">
-          <div>
-            <strong className="time">14:23</strong>
-            <strong>
-              <MdPeople size={22} />
-              <span>NIO</span>
-            </strong>
-            <strong className="responsable">
-              <MdPerson size={22} />
               <span>
-                Julia
-                <span>Marques</span>
+                <MdMenu />
+                histórico
               </span>
-            </strong>
-            <strong className="author">
-              <MdPersonOutline size={22} />
-              <span>
-                Vinicius
-                <span>Carvalho</span>
-              </span>
-            </strong>
-            <strong>
-              <MdAccessTime />
-              <span>31/10/2019</span>
-            </strong>
-          </div>
-
-          <div className="actions">
-            <p>
-              <strong>00045.0000234/2019-43</strong>
-              <a href="#viewer" rel="noopener noreferrer">
-                EDITAL DE CONCURSO PUBLICA.pdf
-              </a>
-            </p>
-
-            <a href="#viewer" rel="noopener noreferrer">
-              <MdMenu />
-              histórico
-            </a>
-          </div>
-        </Panel>
-        <Panel className="with-shading">
-          <div>
-            <strong className="time">14:23</strong>
-            <strong>
-              <MdPeople size={22} />
-              <span>NIO</span>
-            </strong>
-            <strong className="responsable">
-              <MdPerson size={22} />
-              <span>
-                Julia
-                <span>Marques</span>
-              </span>
-            </strong>
-            <strong className="author">
-              <MdPersonOutline size={22} />
-              <span>
-                Vinicius
-                <span>Carvalho</span>
-              </span>
-            </strong>
-            <strong>
-              <MdAccessTime />
-              <span>31/10/2019</span>
-            </strong>
-          </div>
-
-          <div className="actions">
-            <p>
-              <strong>00045.0000234/2019-43</strong>
-              <a href="#viewer" rel="noopener noreferrer">
-                EDITAL DE CONCURSO PUBLICA.pdf
-              </a>
-            </p>
-
-            <a href="#viewer" rel="noopener noreferrer">
-              <MdMenu />
-              histórico
-            </a>
-          </div>
-        </Panel>
-        <Panel className="with-shading">
-          <div>
-            <strong className="time">14:23</strong>
-            <strong>
-              <MdPeople size={22} />
-              <span>NIO</span>
-            </strong>
-            <strong className="responsable">
-              <MdPerson size={22} />
-              <span>
-                Julia
-                <span>Marques</span>
-              </span>
-            </strong>
-            <strong className="author">
-              <MdPersonOutline size={22} />
-              <span>
-                Vinicius
-                <span>Carvalho</span>
-              </span>
-            </strong>
-            <strong>
-              <MdAccessTime />
-              <span>31/10/2019</span>
-            </strong>
-          </div>
-
-          <div className="actions">
-            <p>
-              <strong>00045.0000234/2019-43</strong>
-              <a href="#viewer" rel="noopener noreferrer">
-                EDITAL DE CONCURSO PUBLICA.pdf
-              </a>
-            </p>
-
-            <a href="#viewer" rel="noopener noreferrer">
-              <MdMenu />
-              histórico
-            </a>
-          </div>
-        </Panel>
-        <Panel className="with-shading">
-          <div>
-            <strong className="time">14:23</strong>
-            <strong>
-              <MdPeople size={22} />
-              <span>NIO</span>
-            </strong>
-            <strong className="responsable">
-              <MdPerson size={22} />
-              <span>
-                Julia
-                <span>Marques</span>
-              </span>
-            </strong>
-            <strong className="author">
-              <MdPersonOutline size={22} />
-              <span>
-                Vinicius
-                <span>Carvalho</span>
-              </span>
-            </strong>
-            <strong>
-              <MdAccessTime />
-              <span>31/10/2019</span>
-            </strong>
-          </div>
-
-          <div className="actions">
-            <p>
-              <strong>00045.0000234/2019-43</strong>
-              <a href="#viewer" rel="noopener noreferrer">
-                EDITAL DE CONCURSO PUBLICA.pdf
-              </a>
-            </p>
-
-            <a href="#viewer" rel="noopener noreferrer">
-              <MdMenu />
-              histórico
-            </a>
-          </div>
-        </Panel>
-        <Panel className="with-shading">
-          <div>
-            <strong className="time">14:23</strong>
-            <strong>
-              <MdPeople size={22} />
-              <span>NIO</span>
-            </strong>
-            <strong className="responsable">
-              <MdPerson size={22} />
-              <span>
-                Julia
-                <span>Marques</span>
-              </span>
-            </strong>
-            <strong className="author">
-              <MdPersonOutline size={22} />
-              <span>
-                Vinicius
-                <span>Carvalho</span>
-              </span>
-            </strong>
-            <strong>
-              <MdAccessTime />
-              <span>31/10/2019</span>
-            </strong>
-          </div>
-
-          <div className="actions">
-            <p>
-              <strong>00045.0000234/2019-43</strong>
-              <a href="#viewer" rel="noopener noreferrer">
-                EDITAL DE CONCURSO PUBLICA.pdf
-              </a>
-            </p>
-
-            <a href="#viewer" rel="noopener noreferrer">
-              <MdMenu />
-              histórico
-            </a>
-          </div>
-        </Panel>
+            </div>
+          </Panel>
+        ))}
       </PanelList>
     </PageFullscreen>
   );

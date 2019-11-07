@@ -142,7 +142,7 @@ export const Panel = styled.li`
 
     p {
       display: flex;
-      width: 560px;
+      width: 500px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -153,11 +153,12 @@ export const Panel = styled.li`
         font-weight: normal;
       }
 
-      a {
+      span {
         display: flex;
         align-items: center;
         color: #333;
         font-size: 18px;
+        cursor: pointer;
 
         &:hover {
           text-decoration: underline;
@@ -165,13 +166,16 @@ export const Panel = styled.li`
       }
     }
 
-    & > a {
+    & > span {
       display: flex;
       align-items: center;
+      justify-content: center;
       color: #333;
       font-size: 18px;
+      border: 0;
       padding: 5px 10px;
       border-radius: 4px;
+      cursor: pointer;
 
       &:hover {
         background: ${darken(0.03, '#3b9eff')};
