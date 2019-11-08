@@ -7,8 +7,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  position: relative;
   width: 100%;
+  height: 100%;
+  position: relative;
   overflow: hidden;
 
   & > input[type='checkbox'],
