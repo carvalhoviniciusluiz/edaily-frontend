@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import {
+  MdChevronLeft,
+  MdChevronRight,
+  MdAddCircleOutline,
+} from 'react-icons/md';
 import Identicon from 'react-identicons';
 
 import ToolbarMenu from '~/components/ToolbarMenu';
@@ -140,6 +144,10 @@ export default function User() {
             </UserPanel>
           ))}
         </ul>
+
+        <button type="submit">
+          <MdAddCircleOutline size={33} />
+        </button>
       </Container>
     </>
   );

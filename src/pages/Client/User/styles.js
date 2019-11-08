@@ -1,11 +1,42 @@
 import styled from 'styled-components';
 
+import { darken } from 'polished';
+
 export const Container = styled.div`
   max-width: 600px;
   margin: 50px auto;
 
   display: flex;
   flex-direction: column;
+
+  & > button {
+    height: 44px;
+    width: 100%;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    border-color: #eee;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.03, '#fff')};
+    }
+
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  @media (max-width: 662px) {
+    & > button {
+      position: absolute;
+      border-radius: 0;
+      width: 100%;
+      top: 81%;
+      right: 0;
+      height: 66px;
+    }
+  }
 
   header {
     display: flex;
