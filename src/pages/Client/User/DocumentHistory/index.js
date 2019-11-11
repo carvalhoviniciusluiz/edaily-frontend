@@ -139,13 +139,15 @@ export default function PanelComponent({ ...res }) {
                 <MdPeople size={22} />
                 <span>{document.organization.initials}</span>
               </strong>
-              <strong className="responsable">
-                <MdPerson size={22} />
-                <span>
-                  {document.responsable.firstname}
-                  <span>{document.responsable.lastname}</span>
-                </span>
-              </strong>
+              {document.responsable && (
+                <strong className="responsable">
+                  <MdPerson size={22} />
+                  <span>
+                    {document.responsable.firstname}
+                    <span>{document.responsable.lastname}</span>
+                  </span>
+                </strong>
+              )}
               <strong className="author">
                 <MdPersonOutline size={22} />
                 <span>
