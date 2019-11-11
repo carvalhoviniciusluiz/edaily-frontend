@@ -10,6 +10,7 @@ import Identicon from 'react-identicons';
 import ToolbarMenu from '~/components/ToolbarMenu';
 
 import Modal from './Modal';
+import NewUser from './NewUser';
 
 import { Container, ArrowButton, UserPanel } from './styles';
 
@@ -28,6 +29,7 @@ export default function User() {
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState(1);
   const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const [desablePrev, setDesablePrev] = useState(true);
   const [desableNext, setDesableNext] = useState(false);
@@ -93,6 +95,7 @@ export default function User() {
       <ToolbarMenu />
 
       <Modal show={show} setShow={setShow} />
+      <NewUser open={open} setOpen={setOpen} />
 
       <Container length={users.length}>
         <header>
@@ -145,7 +148,7 @@ export default function User() {
           ))}
         </ul>
 
-        <button type="submit">
+        <button type="submit" onClick={() => setOpen(true)}>
           <MdAddCircleOutline size={33} />
         </button>
       </Container>

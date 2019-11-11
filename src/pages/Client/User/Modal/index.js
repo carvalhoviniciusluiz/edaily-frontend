@@ -9,7 +9,7 @@ import { Form, Input, Check } from '@rocketseat/unform';
 import { MdMailOutline, MdInfoOutline } from 'react-icons/md';
 
 import ModalComponent from '~/components/Modal';
-import PageFullscreen from '../PageFullscreen';
+import DocumentHistory from '../DocumentHistory';
 
 import {
   Header,
@@ -54,7 +54,7 @@ export default function Modal({ setShow, show }) {
 
   return (
     <>
-      <PageFullscreen open={openPage} setOpen={setOpenPage} />
+      <DocumentHistory open={openPage} setOpen={setOpenPage} />
 
       <ModalComponent show={show} height={500}>
         <Header>

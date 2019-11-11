@@ -14,7 +14,7 @@ export const PaperFullScreen = styled.div`
 `;
 
 export const PaperActions = styled.div`
-  display: flex;
+  display: ${props => (props.showActions ? 'flex' : 'none')};
   justify-content: flex-end;
   height: 40px;
 
