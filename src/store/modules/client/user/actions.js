@@ -1,3 +1,10 @@
+export function sendForgotPassword({ email }) {
+  return {
+    type: '@user/SEND_FORGOT_PASSWORD',
+    payload: { email },
+  };
+}
+
 export function sendConfirmation({ email }) {
   return {
     type: '@user/SEND_CONFIRMATION',

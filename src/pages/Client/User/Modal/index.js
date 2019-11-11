@@ -21,7 +21,10 @@ import {
   InputItem,
 } from './styles';
 
-import { sendConfirmation } from '~/store/modules/client/user/actions';
+import {
+  sendForgotPassword,
+  sendConfirmation,
+} from '~/store/modules/client/user/actions';
 
 export default function Modal({ setShow, show }) {
   const user = useSelector(state => state.clientUser.user);
@@ -38,7 +41,9 @@ export default function Modal({ setShow, show }) {
   };
 
   const handlePasswordRequest = () => {
-    console.tron.log('handlePasswordRequest');
+    const { email } = user;
+
+    dispatch(sendForgotPassword({ email }));
   };
 
   const handleConfirmationRequest = () => {

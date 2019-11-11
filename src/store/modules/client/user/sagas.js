@@ -61,8 +61,24 @@ export function* sendConfirmation({ payload }) {
   }
 }
 
+export function* sendForgotPassword({ payload }) {
+  try {
+    const { email } = payload;
+
+    yield call(api.post, `forgot_password`, {
+      email,
+      redirect_url: process.env.REACT_APP_URL,
+    });
+  } catch (error) {
+    toast.error('Falha na recuperação dos dados, verifique sua conexão.');
+
+    yield put(failure());
+  }
+}
+
 export default all([
   takeLatest('@user/REQUEST', request),
   takeLatest('@user/FETCH', fetch),
   takeLatest('@user/SEND_CONFIRMATION', sendConfirmation),
+  takeLatest('@user/SEND_FORGOT_PASSWORD', sendForgotPassword),
 ]);
