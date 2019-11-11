@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Identicon from 'react-identicons';
 
 import PropTypes from 'prop-types';
@@ -21,9 +21,13 @@ import {
   InputItem,
 } from './styles';
 
+import { sendConfirmation } from '~/store/modules/client/user/actions';
+
 export default function Modal({ setShow, show }) {
   const user = useSelector(state => state.clientUser.user);
   const [openPage, setOpenPage] = useState(false);
+
+  const dispatch = useDispatch();
 
   const disable = target => {
     return target && target.is_responsible;
@@ -38,7 +42,9 @@ export default function Modal({ setShow, show }) {
   };
 
   const handleConfirmationRequest = () => {
-    setOpenPage(true);
+    const { email } = user;
+
+    dispatch(sendConfirmation({ email }));
   };
 
   return (
@@ -182,23 +188,23 @@ export default function Modal({ setShow, show }) {
             <hr />
 
             {user && !user.confirmed_at && (
-              <a href="#sending" onClick={handlePasswordRequest}>
+              <strong onClick={handleConfirmationRequest} role="presentation">
                 <MdMailOutline size={22} />
                 <span>Enviar email de confirmação</span>
-              </a>
+              </strong>
             )}
 
-            <a href="#sending" onClick={handleConfirmationRequest}>
+            <strong onClick={handlePasswordRequest} role="presentation">
               <MdMailOutline size={22} />
               <span>Enviar email para alteração de senha</span>
-            </a>
+            </strong>
 
             <hr />
 
-            <a href="#sending" onClick={handleConfirmationRequest}>
+            <strong onClick={() => setOpenPage(true)} role="presentation">
               <MdInfoOutline size={22} />
               <span>Consultar histórico de envio de matérias</span>
-            </a>
+            </strong>
           </Form>
         </Body>
 

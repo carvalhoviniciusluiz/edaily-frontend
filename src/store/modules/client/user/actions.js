@@ -1,3 +1,10 @@
+export function sendConfirmation({ email }) {
+  return {
+    type: '@user/SEND_CONFIRMATION',
+    payload: { email },
+  };
+}
+
 export function request({ limit = 10, page = 1, organizationId }) {
   return {
     type: '@user/REQUEST',

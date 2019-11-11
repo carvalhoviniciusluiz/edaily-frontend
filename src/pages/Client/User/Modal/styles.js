@@ -128,13 +128,15 @@ export const Body = styled.div`
       margin: 20px 0 20px;
     }
 
-    a {
+    strong {
       display: flex;
       align-items: center;
+      font-weight: normal;
 
       border: 0;
       margin: 10px 0;
       color: #333;
+      cursor: pointer;
 
       span {
         margin-left: 5px;

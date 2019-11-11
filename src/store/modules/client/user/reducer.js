@@ -11,6 +11,10 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
+      case '@user/SEND_CONFIRMATION': {
+        draft.loading = true;
+        break;
+      }
       case '@user/REQUEST': {
         draft.loading = true;
         break;

@@ -32,7 +32,7 @@ export const Container = styled.div`
       position: absolute;
       border-radius: 0;
       width: 100%;
-      top: 81%;
+      top: 82%;
       right: 0;
       height: 66px;
     }

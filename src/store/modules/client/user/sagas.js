@@ -49,7 +49,20 @@ export function* fetch({ payload }) {
   }
 }
 
+export function* sendConfirmation({ payload }) {
+  try {
+    const { email } = payload;
+
+    yield call(api.post, `send_confirmation`, { email });
+  } catch (error) {
+    toast.error('Falha na recuperação dos dados, verifique sua conexão.');
+
+    yield put(failure());
+  }
+}
+
 export default all([
   takeLatest('@user/REQUEST', request),
   takeLatest('@user/FETCH', fetch),
+  takeLatest('@user/SEND_CONFIRMATION', sendConfirmation),
 ]);
