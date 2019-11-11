@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import PageFullscreen from '~/components/PageFullscreen';
-import { Container, Title } from './styles';
+import { Header, Body, Form, Input } from './styles';
 
 export default function NewUser({ ...res }) {
   const { open, setOpen } = res;
@@ -19,17 +19,38 @@ export default function NewUser({ ...res }) {
       background="#f8f8f8"
       showActions={false}
     >
-      <Container>
-        <Title>
-          <div className="actions">
-            <button type="button" onClick={() => setOpen(false)}>
-              x
-            </button>
-            <h2>Cadastrode usuários</h2>
+      <Header>
+        <div className="actions">
+          <button type="button" onClick={() => setOpen(false)}>
+            x
+          </button>
+          <h2>Cadastrode usuários</h2>
+        </div>
+        <button type="button">salvar</button>
+      </Header>
+
+      <Form>
+        <Body>
+          <div>
+            <h3>Dados pessoais</h3>
+            <Input name="firstname" label="Nome" />
+            <Input name="lastname" label="Sobrenome" />
+            <Input name="email" label="E-mail" />
+            <Input name="cpf" label="CPF" />
+            <Input name="rg" label="RG" />
+            <Input name="phone" label="Celular" />
           </div>
-          <button type="button">salvar</button>
-        </Title>
-      </Container>
+          <div>
+            <h3>Endereço</h3>
+            <Input name="zipcode" label="CEP" />
+            <Input name="street" label="Logradouro" />
+            <Input name="street_number" label="Número" />
+            <Input name="neighborhood" label="Bairro" />
+            <Input name="city" label="Cidade" />
+            <Input name="state" label="Estado" />
+          </div>
+        </Body>
+      </Form>
     </PageFullscreen>
   );
 }
