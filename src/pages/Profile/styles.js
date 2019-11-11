@@ -66,9 +66,10 @@ export const Container = styled.div`
     }
   }
 
-  > button {
+  & > button {
     width: 100%;
     margin: 10px 0 0;
+    margin-bottom: 100px;
     height: 44px;
     background: #f64c75;
     font-weight: bold;

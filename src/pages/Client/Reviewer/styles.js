@@ -25,7 +25,7 @@ export const Container = styled.div`
     margin-top: 30px;
 
     li:last-child {
-      margin-bottom: 50px;
+      margin-bottom: 100px;
     }
   }
 `;
