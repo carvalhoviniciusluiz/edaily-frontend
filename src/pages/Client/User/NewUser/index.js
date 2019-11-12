@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { MdClose } from 'react-icons/md';
 
+import * as fetch from '~/services/fetch';
+
 import PageFullscreen from '~/components/PageFullscreen';
 import { Header, Body, Form, Input } from './styles';
 
@@ -32,6 +34,23 @@ export default function NewUser({ ...res }) {
     state: Yup.string().required('O estado é obrigatório'),
   });
 
+  const fetchAddress = async e => {
+    const val = e.target.value;
+
+    if (val) {
+      const { street, neighborhood, city, state } = await fetch.viacep(val);
+
+      document.getElementById('street').value = street;
+      document.getElementById('neighborhood').value = neighborhood;
+      document.getElementById('city').value = city;
+      document.getElementById('state').value = state;
+    }
+  };
+
+  const handleSubmit = formData => {
+    console.log(formData);
+  };
+
   return (
     <PageFullscreen
       open={open}
@@ -46,7 +65,7 @@ export default function NewUser({ ...res }) {
         </button>
       </Header>
 
-      <Form schema={schema}>
+      <Form schema={schema} onSubmit={handleSubmit}>
         <Body>
           <div>
             <h3>Dados pessoais</h3>
@@ -72,7 +91,7 @@ export default function NewUser({ ...res }) {
           <div>
             <h3>Endereço</h3>
             <div className="fields">
-              <Input name="zipcode" label="CEP" />
+              <Input name="zipcode" label="CEP" onBlur={fetchAddress} />
             </div>
             <div className="fields">
               <Input name="street" label="Logradouro" />

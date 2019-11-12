@@ -74,12 +74,12 @@ export const Body = styled.div`
         display: block;
         color: #333;
         font-size: 14px;
-        font-weight: bold;
+        font-weight: normal;
       }
 
       span {
         color: #fb6f91;
-        font-weight: bold;
+        font-weight: normal;
       }
     }
   }
