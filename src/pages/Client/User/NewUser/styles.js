@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { darken } from 'polished';
+
 import { Form as form, Input as input } from '@rocketseat/unform';
 
 export const Header = styled.header`
@@ -14,39 +16,10 @@ export const Header = styled.header`
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 
-  .actions {
-    display: flex;
-    align-items: center;
+  & > h2 {
+    font-weight: 444;
+    font-weight: 555;
     margin-left: 30px;
-
-    h2 {
-      font-weight: 444;
-      font-weight: 555;
-    }
-
-    button {
-      font-size: 22px;
-      padding: 5px 12px;
-      border: 0;
-      background: transparent;
-      margin-right: 15px;
-      color: #fff;
-
-      &:hover {
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.2);
-      }
-    }
-
-    @media (max-width: 882px) {
-      h2 {
-        font-size: 18px;
-      }
-      button {
-        font-size: 24px;
-        margin-right: 5px;
-      }
-    }
   }
 
   & > button {
@@ -55,7 +28,7 @@ export const Header = styled.header`
     text-transform: uppercase;
     font-weight: 555;
     padding: 10px;
-    margin-right: 15px;
+    margin-right: 34px;
     color: #fff;
 
     &:hover {
@@ -68,6 +41,7 @@ export const Header = styled.header`
   @media (max-width: 882px) {
     & > button {
       font-size: 16px;
+      margin-right: 15px;
     }
   }
 `;
@@ -85,23 +59,29 @@ export const Body = styled.div`
     padding: 0 10px;
   }
 
-  h3 {
-    color: #333;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    text-align: center;
-  }
+  div {
+    h3 {
+      color: #333;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
 
-  label {
-    display: block;
-    color: #333;
-    font-size: 14px;
-    font-weight: bold;
-  }
+    .fields {
+      margin-bottom: 18px;
 
-  span {
-    color: #fb6f91;
-    font-weight: bold;
+      label {
+        display: block;
+        color: #333;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      span {
+        color: #fb6f91;
+        font-weight: bold;
+      }
+    }
   }
 `;
 
@@ -111,6 +91,25 @@ export const Form = styled(form)`
   text-align: center;
   margin-top: 100px;
   margin: 0 auto;
+
+  button {
+    margin: 30px 0 0;
+    width: 100%;
+    height: 44px;
+    background: #3b9eff;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.03, '#3b9eff')};
+    }
+
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
 `;
 
 export const Input = styled(input)`
@@ -121,6 +120,6 @@ export const Input = styled(input)`
   padding: 15px 21px;
   margin-top: 8px;
   font-size: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 6px;
   color: #333;
 `;
