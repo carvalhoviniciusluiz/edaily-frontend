@@ -14,10 +14,21 @@ export const Container = styled.div`
     align-self: center;
     align-items: center;
 
-    strong {
-      color: #fff;
-      font-size: 24px;
-      margin: 0 15px;
+    div {
+      input[type='text'] {
+        border: 0;
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.2);
+        max-width: 60px;
+        text-align: center;
+      }
+
+      strong,
+      input {
+        color: #fff;
+        font-size: 24px;
+        margin: 10px;
+      }
     }
   }
 

@@ -48,6 +48,7 @@ export default function PanelComponent({ ...res }) {
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
+    setInputValue(page);
     dispatch(
       request({ page, organizationId: organization.uuid, userId: user.uuid })
     );

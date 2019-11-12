@@ -37,6 +37,7 @@ export default function User() {
   useEffect(() => {
     const { uuid: organizationId } = organization;
 
+    setInputValue(page);
     dispatch(request({ page, organizationId }));
     return () => dispatch(clean());
   }, [page]); // eslint-disable-line

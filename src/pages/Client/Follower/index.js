@@ -41,6 +41,7 @@ export default function Dashboard() {
   const [desableNext, setDesableNext] = useState(false);
 
   useEffect(() => {
+    setInputValue(page);
     dispatch(documentFollowRequest({ page }));
     return () => dispatch(documentFollowClean());
   }, [page]); // eslint-disable-line

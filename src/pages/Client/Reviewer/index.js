@@ -31,18 +31,23 @@ export default function Dashboard() {
 
   const [documents, setDocuments] = useState([]);
 
-  const [desablePrev, setDesablePrev] = useState(true);
-  const [desableNext, setDesableNext] = useState(false);
-
   const [page, setPage] = useState(1);
   const [url, setUrl] = useState(null);
 
+  const [inputValue, setInputValue] = useState(1);
+
+  const [desablePrev, setDesablePrev] = useState(true);
+  const [desableNext, setDesableNext] = useState(false);
+
   useEffect(() => {
+    setInputValue(page);
     dispatch(documentRequest({ page }));
     return () => dispatch(documentClean());
   }, [page]); // eslint-disable-line
 
-  useEffect(() => setDocuments(data), [data]);
+  useEffect(() => {
+    setDocuments(data);
+  }, [data]);
 
   const handleCancel = async id => {
     const { value } = await Swal.fire({
@@ -89,6 +94,18 @@ export default function Dashboard() {
     }
   };
 
+  const handleChangeInputValue = e => {
+    setInputValue(e.target.value);
+  };
+
+  const handleFetchPage = e => {
+    if (!e.target.value) {
+      setInputValue(page);
+      return;
+    }
+    setPage(e.target.value);
+  };
+
   function handlePrevPage() {
     const newPage = page - 1;
     if (newPage === meta.pages) return;
@@ -116,11 +133,20 @@ export default function Dashboard() {
 
       <Container>
         <header>
-          <Button type="button" onClick={handlePrevPage} desable={desablePrev}>
+          <Button onClick={handlePrevPage} desable={desablePrev}>
             <MdChevronLeft size={36} color="#fff" />
           </Button>
-          <strong>Aguardando liberação</strong>
-          <Button type="button" onClick={handleNextPage} desable={desableNext}>
+          <div>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleChangeInputValue}
+              onBlur={handleFetchPage}
+            />
+            <strong>/</strong>
+            <strong>{meta.pages}</strong>
+          </div>
+          <Button onClick={handleNextPage} desable={desableNext}>
             <MdChevronRight size={36} color="#fff" />
           </Button>
         </header>
