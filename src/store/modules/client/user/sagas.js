@@ -76,9 +76,24 @@ export function* sendForgotPassword({ payload }) {
   }
 }
 
+export function* save({ payload }) {
+  try {
+    const { user, organizationId } = payload;
+
+    yield call(api.post, `organizations/${organizationId}/users`, user);
+
+    toast.success('Cadastro finalizado com sucesso.');
+  } catch (error) {
+    toast.error('Falha na recuperação dos dados, verifique sua conexão.');
+
+    yield put(failure());
+  }
+}
+
 export default all([
   takeLatest('@user/REQUEST', request),
   takeLatest('@user/FETCH', fetch),
   takeLatest('@user/SEND_CONFIRMATION', sendConfirmation),
   takeLatest('@user/SEND_FORGOT_PASSWORD', sendForgotPassword),
+  takeLatest('@user/SAVE', save),
 ]);

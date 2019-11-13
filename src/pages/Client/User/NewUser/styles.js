@@ -92,7 +92,7 @@ export const Form = styled(form)`
   margin-top: 100px;
   margin: 0 auto;
 
-  button {
+  button[type='submit'] {
     margin: 30px 0 0;
     width: 100%;
     height: 44px;

@@ -17,6 +17,7 @@ export const Container = styled.div`
     background-color: #fff;
     border-color: #eee;
     border-radius: 4px;
+    margin-bottom: 100px;
     font-size: 16px;
     transition: background 0.2s;
 
@@ -35,6 +36,7 @@ export const Container = styled.div`
       top: 82%;
       right: 0;
       height: 66px;
+      margin: 0;
     }
   }
 
@@ -84,7 +86,7 @@ export const Container = styled.div`
       }
 
       li:last-child {
-        margin-bottom: 50px;
+        margin-bottom: 160px;
       }
     }
   }

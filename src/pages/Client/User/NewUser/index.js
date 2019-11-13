@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import PropTypes from 'prop-types';
 
 import * as Yup from 'yup';
@@ -10,12 +12,17 @@ import * as fetch from '~/services/fetch';
 import PageFullscreen from '~/components/PageFullscreen';
 import { Header, Body, Form, Input } from './styles';
 
+import { save, request } from '~/store/modules/client/user/actions';
+
 export default function NewUser({ ...res }) {
   const { open, setOpen } = res;
 
   if (!open) {
     return null;
   }
+
+  const dispatch = useDispatch();
+  const organization = useSelector(state => state.user.profile.organization);
 
   const schema = Yup.object().shape({
     firstname: Yup.string().required('O nome é obrigatório'),
@@ -47,8 +54,13 @@ export default function NewUser({ ...res }) {
     }
   };
 
-  const handleSubmit = formData => {
-    console.log(formData);
+  const handleSubmit = async user => {
+    const { uuid: organizationId } = organization;
+
+    await dispatch(save({ user, organizationId }));
+    await dispatch(request({ page: 1, organizationId }));
+
+    setOpen(false);
   };
 
   return (

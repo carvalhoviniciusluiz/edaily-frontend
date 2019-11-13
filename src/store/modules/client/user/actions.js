@@ -1,3 +1,10 @@
+export function save({ user, organizationId }) {
+  return {
+    type: '@user/SAVE',
+    payload: { user, organizationId },
+  };
+}
+
 export function sendForgotPassword({ email }) {
   return {
     type: '@user/SEND_FORGOT_PASSWORD',

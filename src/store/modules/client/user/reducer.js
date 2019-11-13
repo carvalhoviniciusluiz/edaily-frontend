@@ -11,6 +11,9 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
+      case '@user/SAVE': {
+        break;
+      }
       case '@user/SEND_FORGOT_PASSWORD': {
         break;
       }
