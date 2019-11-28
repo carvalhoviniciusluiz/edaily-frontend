@@ -36,6 +36,40 @@ export const NotFound = styled.div`
   height: 80vh;
 `;
 
+export const TextBox = styled.div`
+  cursor: pointer;
+  background: #686868;
+  padding: 30px;
+  border-radius: 4px;
+  border: 4px solid;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    font-size: 30px;
+    margin-bottom: 15px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    font-size: 20px;
+  }
+`;
+
+export const TryAgain = styled.div`
+  color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+`;
+
 export const Lockscreen = styled.div`
   display: block;
   position: fixed;

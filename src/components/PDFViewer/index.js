@@ -4,26 +4,30 @@ import PropTypes from 'prop-types';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { FaSpinner } from 'react-icons/fa';
 
-import { Lockscreen, Loading, NotFound } from './styles';
+import { Lockscreen, Loading, NotFound, TryAgain, TextBox } from './styles';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function PDFViewer({ url, toggleRender }) {
   const [numPages, setNumPages] = useState(null);
 
-  document.addEventListener(
-    'keydown',
-    event => {
-      if (event.keyCode === 27) {
-        toggleRender(null);
-      }
-    },
-    false
-  );
+  const handleClose = () => {
+    toggleRender(null);
+  };
 
   const onDocumentLoadSuccess = document => {
     setNumPages(document.numPages);
   };
+
+  document.addEventListener(
+    'keydown',
+    event => {
+      if (event.keyCode === 27) {
+        handleClose();
+      }
+    },
+    false
+  );
 
   return (
     <Lockscreen>
@@ -36,6 +40,14 @@ export default function PDFViewer({ url, toggleRender }) {
           </Loading>
         }
         noData={<NotFound>Nenhum arquivo PDF encontrado.</NotFound>}
+        error={
+          <TryAgain onClick={handleClose}>
+            <TextBox>
+              <strong>Por favor, tente novamente.</strong>
+              <span>Falha ao carregar o arquivo PDF.</span>
+            </TextBox>
+          </TryAgain>
+        }
       >
         {Array.from(new Array(numPages), (_, i) => (
           <Page
