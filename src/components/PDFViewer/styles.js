@@ -80,6 +80,7 @@ export const DocumentHistory = styled.div`
   background: #fff;
   padding: 15px;
   border-right: 1px solid rgba(34, 34, 48, 0.1);
+  z-index: 999999999;
 
   h4 {
     font-size: 16px;
@@ -170,6 +171,25 @@ export const Lockscreen = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1040px) {
+    ${DocumentHistory} {
+      display: none;
+    }
+    .react-pdf__Document {
+      overflow-y: auto;
+      padding-bottom: 100px !important;
+    }
+    .react-pdf__Document .react-pdf__Page {
+      margin: 0 auto 3em auto !important;
+    }
+  }
+
+  @media (max-width: 882px) {
+    .react-pdf__Document .react-pdf__Page {
+      margin: 0 10px !important;
+    }
+  }
 
   .react-pdf__Document {
     position: relative;
