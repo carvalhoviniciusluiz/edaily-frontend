@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Document, Page, pdfjs } from 'react-pdf';
-import { FaSpinner } from 'react-icons/fa';
+import { FaSpinner, FaCheck, FaInfo } from 'react-icons/fa';
 
-import { Lockscreen, Loading, NotFound, TryAgain, TextBox } from './styles';
+import {
+  Lockscreen,
+  DocumentHistory,
+  Loading,
+  NotFound,
+  TryAgain,
+  TextBox,
+} from './styles';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -31,6 +38,109 @@ export default function PDFViewer({ url, toggleRender }) {
 
   return (
     <Lockscreen>
+      <DocumentHistory>
+        <h4> Histórico </h4>
+        <ul>
+          <li>
+            <div className="timeline-figure">
+              <span className="check success">
+                <FaCheck />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria criada </h6>
+              <span>08/18/2018 – 12:42 PM</span>
+            </div>
+          </li>
+          <li>
+            <div className="timeline-figure">
+              <span className="check success">
+                <FaCheck />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria enviada </h6>
+              <span>08/18/2018 – 12:42 PM</span>
+            </div>
+          </li>
+          <li>
+            <div className="timeline-figure">
+              <span className="check success">
+                <FaCheck />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria na revisão </h6>
+              <span>08/19/2018 – 09:11 AM</span>
+            </div>
+          </li>
+          <li>
+            <div className="timeline-figure">
+              <span className="check error">
+                <FaInfo />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria devolvida </h6>
+              <span>08/19/2018 – 10:36 AM</span>
+            </div>
+          </li>
+          <li>
+            <div className="timeline-figure">
+              <span className="check warn">
+                <FaCheck />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria corrigida </h6>
+              <span>08/19/2018 – 10:36 AM</span>
+            </div>
+          </li>
+          <li>
+            <div className="timeline-figure">
+              <span className="check success">
+                <FaCheck />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria revisada </h6>
+              <span>08/19/2018 – 10:36 AM</span>
+            </div>
+          </li>
+          <li>
+            <div className="timeline-figure">
+              <span className="check success">
+                <FaCheck />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria na diagramação </h6>
+              <span>12/21/2018 – 12:42 PM</span>
+            </div>
+          </li>
+          <li>
+            <div className="timeline-figure">
+              <span className="check done">
+                <FaCheck />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria diagramada </h6>
+            </div>
+          </li>
+          <li>
+            <div className="timeline-figure">
+              <span className="check done">
+                <FaCheck />
+              </span>
+            </div>
+            <div className="timeline-body">
+              <h6> Matéria publicada </h6>
+            </div>
+          </li>
+        </ul>
+      </DocumentHistory>
+
       <Document
         file={url}
         onLoadSuccess={onDocumentLoadSuccess}
