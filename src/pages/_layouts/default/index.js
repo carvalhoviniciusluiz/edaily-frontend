@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Header from '~/components/Header';
-import AsideContent from '~/components/AsideContent';
+import AsideContent from './AsideContent';
 
 import { Wrapper } from './styles';
 
