@@ -9,35 +9,36 @@ import {
 } from 'react-icons/md';
 
 import { Container } from './styles';
+import { client } from '~/routes/paths';
 
 export default function ToolbarMenu() {
   return (
     <Container>
       <div className="center">
         <Link
-          to="/submit"
-          className={window.location.pathname === '/submit' ? 'active' : ''}
+          to={client.submit}
+          className={window.location.pathname === client.submit ? 'active' : ''}
         >
           <MdInbox color="#fff" size={20} />
           <span>Encaminhar</span>
         </Link>
         <Link
-          to="/follow"
-          className={window.location.pathname === '/follow' ? 'active' : ''}
+          to={client.follow}
+          className={window.location.pathname === client.follow ? 'active' : ''}
         >
           <MdSend color="#fff" size={20} />
           <span>Acompanhar</span>
         </Link>
         <Link
-          to="/review"
-          className={window.location.pathname === '/review' ? 'active' : ''}
+          to={client.review}
+          className={window.location.pathname === client.review ? 'active' : ''}
         >
           <MdInsertDriveFile color="#fff" size={20} />
           <span>Analise</span>
         </Link>
         <Link
-          to="/users"
-          className={window.location.pathname === '/users' ? 'active' : ''}
+          to={client.users}
+          className={window.location.pathname === client.users ? 'active' : ''}
         >
           <MdSupervisorAccount color="#fff" size={20} />
           <span>Usuários</span>

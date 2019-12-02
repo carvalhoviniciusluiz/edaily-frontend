@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Header from '~/components/Header';
+import { client } from '~/routes/paths';
+
 import AsideContent from './AsideContent';
 
 import { Wrapper } from './styles';
@@ -30,40 +32,40 @@ export default function DefaultLayout({ children }) {
         <ul>
           <li>
             <Link
-              to="/submit"
+              to={client.submit}
               className={applyActiveIf(
-                '/submit',
-                '/follow',
-                '/review',
-                '/users'
+                client.submit,
+                client.follow,
+                client.review,
+                client.users
               )}
             >
               Cliente
             </Link>
           </li>
           <li>
-            <a href="#revision">Revisão</a>
+            <a href="#/#">Revisão</a>
           </li>
           <li>
-            <a href="#financial">Financeiro</a>
+            <a href="#/#">Financeiro</a>
           </li>
           <li>
-            <a href="#diagramming">Diagramação</a>
+            <a href="#/#">Diagramação</a>
           </li>
           <li>
-            <a href="#collection">Acervo</a>
-          </li>
-          <li>
-            <hr />
-          </li>
-          <li>
-            <a href="#site">Portal</a>
+            <a href="#/#">Acervo</a>
           </li>
           <li>
             <hr />
           </li>
           <li>
-            <a href="#configuration">Configurações</a>
+            <a href="#/#">Portal</a>
+          </li>
+          <li>
+            <hr />
+          </li>
+          <li>
+            <a href="#/#">Configurações</a>
           </li>
         </ul>
         {children}

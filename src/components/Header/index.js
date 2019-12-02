@@ -6,6 +6,7 @@ import Identicon from 'react-identicons';
 import { MdArrowBack } from 'react-icons/md';
 
 import Notifications from '~/components/Notifications';
+import { client } from '~/routes/paths';
 
 import logo from '~/assets/logo2.svg';
 
@@ -15,7 +16,7 @@ export default function Header() {
   const [isFollower, setIsFollower] = useState(true);
 
   useEffect(() => {
-    setIsFollower(window.location.pathname === '/follow');
+    setIsFollower(window.location.pathname === client.follow);
   }, [window.location.pathname]);  // eslint-disable-line
 
   const profile = useSelector(state => state.user.profile);
@@ -27,7 +28,7 @@ export default function Header() {
           <img src={logo} alt="Edaily" />
 
           {!isFollower && (
-            <Link to="/follow">
+            <Link to={client.follow}>
               <MdArrowBack size={14} />
               Voltar
             </Link>
@@ -37,7 +38,7 @@ export default function Header() {
         <aside>
           <Notifications />
 
-          <Profile to="/profile">
+          <Profile to={client.profile}>
             <div>
               <strong>
                 {profile.firstname} {profile.lastname}

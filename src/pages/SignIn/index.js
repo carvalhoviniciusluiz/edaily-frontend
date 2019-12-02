@@ -5,6 +5,7 @@ import { Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import { signInRequest } from '~/store/modules/auth/actions';
+import { auth, registration } from '~/routes/paths';
 
 import { Form } from './styles';
 
@@ -38,8 +39,8 @@ export default function SignIn() {
         />
 
         <button type="submit">{loading ? 'Carregando..' : 'Acessar'}</button>
-        <Link to="/register">Criar conta gratuita</Link>
-        <Link to="/recover">Quero recuperar minha senha</Link>
+        <Link to={registration.register}>Criar conta gratuita</Link>
+        <Link to={auth.recover}>Quero recuperar minha senha</Link>
       </Form>
     </>
   );

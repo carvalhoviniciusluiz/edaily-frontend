@@ -7,6 +7,7 @@ import AuthLayout from '~/pages/_layouts/auth';
 import DefaultLayout from '~/pages/_layouts/default';
 
 import { store } from '~/store';
+import { client } from '~/routes/paths';
 
 export default function RouteWrapper({
   component: Component,
@@ -20,7 +21,7 @@ export default function RouteWrapper({
   }
 
   if (signed && !isPrivate) {
-    return <Redirect to="/follow" />;
+    return <Redirect to={client.follow} />;
   }
 
   const Layout = signed ? DefaultLayout : AuthLayout;

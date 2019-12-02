@@ -18,24 +18,42 @@ import Reviewer from '~/pages/Client/Reviewer';
 import Submit from '~/pages/Client/Submit';
 import User from '~/pages/Client/User';
 
+import * as paths from './paths';
+
 export default function Routes() {
   return (
     <Switch>
       <RouteCustom path="/" exact component={SignIn} />
-      <RouteCustom path="/signup" component={SignUp} />
-      <RouteCustom path="/recover" component={ForgotPassword} />
-      <RouteCustom path="/reset" component={ResetPassword} />
+      <RouteCustom path={paths.auth.signup} component={SignUp} />
+      <RouteCustom path={paths.auth.recover} component={ForgotPassword} />
+      <RouteCustom path={paths.auth.reset} component={ResetPassword} />
 
-      <RouteCustom path="/register" exact component={Dashboard} />
-      <RouteCustom path="/register/organization" exact component={SignUp} />
-      <Route path="/register/company" exact component={PrivateCompany} />
-      <Route path="/register/government" exact component={GovernmentEntity} />
+      <RouteCustom
+        path={paths.registration.register}
+        exact
+        component={Dashboard}
+      />
+      <RouteCustom
+        path={paths.registration.organization}
+        exact
+        component={SignUp}
+      />
+      <Route
+        path={paths.registration.company}
+        exact
+        component={PrivateCompany}
+      />
+      <Route
+        path={paths.registration.government}
+        exact
+        component={GovernmentEntity}
+      />
 
-      <RouteCustom path="/follow" component={Follower} isPrivate />
-      <RouteCustom path="/review" component={Reviewer} isPrivate />
-      <RouteCustom path="/submit" component={Submit} isPrivate />
-      <RouteCustom path="/users" component={User} isPrivate />
-      <RouteCustom path="/profile" component={Profile} isPrivate />
+      <RouteCustom path={paths.client.follow} component={Follower} isPrivate />
+      <RouteCustom path={paths.client.review} component={Reviewer} isPrivate />
+      <RouteCustom path={paths.client.submit} component={Submit} isPrivate />
+      <RouteCustom path={paths.client.users} component={User} isPrivate />
+      <RouteCustom path={paths.client.profile} component={Profile} isPrivate />
 
       <RouteCustom path="*" component={SignIn} />
     </Switch>

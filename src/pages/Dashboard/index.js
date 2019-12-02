@@ -6,11 +6,13 @@ import { IoMdAnalytics } from 'react-icons/io';
 
 import { Container, Item } from './styles';
 
+import { registration } from '~/routes/paths';
+
 export default function Dashboard() {
   return (
     <Container>
       <Item>
-        <Link to="/register/company">
+        <Link to={registration.register.company}>
           <div>
             <MdPeople size={28} />
 
@@ -21,7 +23,7 @@ export default function Dashboard() {
       </Item>
 
       <Item>
-        <Link to="/register/company">
+        <Link to={registration.register.company}>
           <div>
             <MdPerson size={32} />
 
@@ -32,7 +34,7 @@ export default function Dashboard() {
       </Item>
 
       <Item>
-        <Link to="/register/government">
+        <Link to={registration.register.government}>
           <div>
             <IoMdAnalytics size={32} />
 
