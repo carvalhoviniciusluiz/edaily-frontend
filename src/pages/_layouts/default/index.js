@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-import { MdMenu } from 'react-icons/md';
 import Header from '~/components/Header';
+import AsideContent from '~/components/AsideContent';
 
-import { Wrapper, Container } from './styles';
+import { Wrapper } from './styles';
 
 export default function DefaultLayout({ children }) {
   const [checked, setChecked] = useState(true);
@@ -24,12 +24,9 @@ export default function DefaultLayout({ children }) {
 
   return (
     <Wrapper>
-      <Container>
+      <AsideContent handleInputChange={handleInputChange} checked={checked}>
         <Header />
-        <input type="checkbox" checked={checked} onChange={handleInputChange} />
-        <span className="hamburger">
-          <MdMenu size={33} color="#fff" />
-        </span>
+
         <ul>
           <li>
             <Link
@@ -70,7 +67,7 @@ export default function DefaultLayout({ children }) {
           </li>
         </ul>
         {children}
-      </Container>
+      </AsideContent>
     </Wrapper>
   );
 }
