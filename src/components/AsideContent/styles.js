@@ -26,7 +26,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    z-index: 100001;
+    z-index: 9999999;
     background: #222;
     pointer-events: none;
   }
@@ -35,14 +35,14 @@ export const Container = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    margin: 0;
+    margin: 0 !important;
     padding: 50px 20px;
     box-sizing: border-box;
     width: 300px;
     height: 100vh;
-    background: #000;
+    background: ${props => props.background || '#000'};
     transition: 0.5s;
-    z-index: 100000;
+    z-index: ${props => props.zIndex || 999999};
     overflow-y: auto;
 
     li {
@@ -91,7 +91,7 @@ export const Container = styled.div`
     }
 
     & > input[type='checkbox'] {
-      z-index: 100001;
+      z-index: 9999999;
       outline: none;
     }
   }

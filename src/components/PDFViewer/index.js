@@ -6,17 +6,27 @@ import { FaSpinner, FaCheck, FaInfo } from 'react-icons/fa';
 
 import {
   Lockscreen,
-  DocumentHistory,
   Loading,
   NotFound,
   TryAgain,
+  DocumentHistory,
   TextBox,
 } from './styles';
+
+import AsideContent from './AsideContent';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function PDFViewer({ url, toggleRender }) {
   const [numPages, setNumPages] = useState(null);
+  const [checked, setChecked] = useState(true);
+
+  const handleInputChange = e => {
+    const { target } = e;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+
+    setChecked(value);
+  };
 
   const handleClose = () => {
     toggleRender(null);
@@ -37,7 +47,7 @@ export default function PDFViewer({ url, toggleRender }) {
   );
 
   return (
-    <Lockscreen>
+    <AsideContent checked={checked} handleInputChange={handleInputChange}>
       <DocumentHistory>
         <h4> Histórico </h4>
         <ul>
@@ -141,34 +151,36 @@ export default function PDFViewer({ url, toggleRender }) {
         </ul>
       </DocumentHistory>
 
-      <Document
-        file={url}
-        onLoadSuccess={onDocumentLoadSuccess}
-        loading={
-          <Loading>
-            <FaSpinner color="#FFF" size={44} />
-          </Loading>
-        }
-        noData={<NotFound>Nenhum arquivo PDF encontrado.</NotFound>}
-        error={
-          <TryAgain onClick={handleClose}>
-            <TextBox>
-              <strong>Por favor, tente novamente.</strong>
-              <span>Falha ao carregar o arquivo PDF.</span>
-            </TextBox>
-          </TryAgain>
-        }
-      >
-        {Array.from(new Array(numPages), (_, i) => (
-          <Page
-            key={`page_${i + 1}`}
-            pageNumber={i + 1}
-            scale={1.2}
-            loading="carregando.."
-          />
-        ))}
-      </Document>
-    </Lockscreen>
+      <Lockscreen>
+        <Document
+          file={url}
+          onLoadSuccess={onDocumentLoadSuccess}
+          loading={
+            <Loading>
+              <FaSpinner color="#FFF" size={44} />
+            </Loading>
+          }
+          noData={<NotFound>Nenhum arquivo PDF encontrado.</NotFound>}
+          error={
+            <TryAgain onClick={handleClose}>
+              <TextBox>
+                <strong>Por favor, tente novamente.</strong>
+                <span>Falha ao carregar o arquivo PDF.</span>
+              </TextBox>
+            </TryAgain>
+          }
+        >
+          {Array.from(new Array(numPages), (_, i) => (
+            <Page
+              key={`page_${i + 1}`}
+              pageNumber={i + 1}
+              scale={1.2}
+              loading="carregando.."
+            />
+          ))}
+        </Document>
+      </Lockscreen>
+    </AsideContent>
   );
 }
 

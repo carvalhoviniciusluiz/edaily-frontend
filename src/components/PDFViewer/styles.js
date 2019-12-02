@@ -70,24 +70,14 @@ export const TryAgain = styled.div`
   height: 80vh;
 `;
 
-export const DocumentHistory = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  width: 300px;
-  height: 100vh;
-  background: #fff;
-  padding: 15px;
-  border-right: 1px solid rgba(34, 34, 48, 0.1);
-  z-index: 999999999;
-
+export const DocumentHistory = styled.div.attrs({
+  className: 'aside-content',
+})`
   h4 {
     font-size: 16px;
   }
 
   ul {
-    margin-top: 20px !important;
     margin-left: 20px;
 
     li {
@@ -99,7 +89,7 @@ export const DocumentHistory = styled.div`
           content: '';
           position: absolute;
           height: 80px;
-          left: 44px;
+          left: 50px;
           border-left: 2px solid rgba(34, 34, 48, 0.1);
           border-left-style: dashed;
         }
@@ -178,7 +168,7 @@ export const Lockscreen = styled.div`
     }
     .react-pdf__Document {
       overflow-y: auto;
-      padding-bottom: 100px !important;
+      padding-bottom: 200px !important;
     }
     .react-pdf__Document .react-pdf__Page {
       margin: 0 auto 3em auto !important;
@@ -204,7 +194,7 @@ export const Lockscreen = styled.div`
 
     .react-pdf__Page {
       position: relative;
-      margin: 0 122px 3em auto;
+      margin: 0 auto 3em auto;
       padding: 0;
       overflow: visible;
       background-clip: content-box;
