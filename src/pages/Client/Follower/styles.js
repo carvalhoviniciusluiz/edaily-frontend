@@ -120,6 +120,18 @@ export const Panel = styled.li`
           text-decoration: underline;
         }
       }
+
+      @media (max-width: 446px) {
+        span,
+        strong {
+          font-size: 12px;
+        }
+
+        strong {
+          font-weight: bold;
+          margin-right: 15px;
+        }
+      }
     }
 
     & > span {
