@@ -12,7 +12,7 @@ export default function Dashboard() {
   return (
     <Container>
       <Item>
-        <Link to={registration.register.company}>
+        <Link to={registration.company}>
           <div>
             <MdPeople size={28} />
 
@@ -23,7 +23,7 @@ export default function Dashboard() {
       </Item>
 
       <Item>
-        <Link to={registration.register.company}>
+        <Link to={registration.personal}>
           <div>
             <MdPerson size={32} />
 
@@ -34,7 +34,7 @@ export default function Dashboard() {
       </Item>
 
       <Item>
-        <Link to={registration.register.government}>
+        <Link to={registration.government}>
           <div>
             <IoMdAnalytics size={32} />
 
