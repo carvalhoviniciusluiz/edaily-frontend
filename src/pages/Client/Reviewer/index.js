@@ -11,7 +11,7 @@ import {
   MdPermIdentity,
 } from 'react-icons/md';
 
-import ToolbarMenu from '~/components/ToolbarMenu';
+import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import PDFViewer from '~/components/PDFViewer';
 
 import { Container, Panel, Button } from './styles';

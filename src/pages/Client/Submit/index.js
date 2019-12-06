@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { uniqueId } from 'lodash';
 import filesize from 'filesize';
 
-import ToolbarMenu from '~/components/ToolbarMenu';
+import ToolbarMenu from '~/components/ToolbarMenu/Client';
 
 import DropRegion from './DropRegion';
 import FileList from './FileList';

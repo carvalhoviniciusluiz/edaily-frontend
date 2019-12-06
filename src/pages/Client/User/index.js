@@ -7,7 +7,7 @@ import {
 } from 'react-icons/md';
 import Identicon from 'react-identicons';
 
-import ToolbarMenu from '~/components/ToolbarMenu';
+import ToolbarMenu from '~/components/ToolbarMenu/Client';
 
 import Modal from './Modal';
 import NewUser from './NewUser';

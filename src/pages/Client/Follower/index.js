@@ -10,7 +10,7 @@ import {
   MdGames,
 } from 'react-icons/md';
 
-import ToolbarMenu from '~/components/ToolbarMenu';
+import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import PDFViewer from '~/components/PDFViewer';
 
 import Modal from './Modal';
