@@ -22,3 +22,5 @@ export const client = {
 export const reviewer = {
   review: '/revisao',
 };
+
+export const search = '/consulta';

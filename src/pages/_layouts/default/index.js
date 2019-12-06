@@ -31,6 +31,14 @@ export default function DefaultLayout({ children }) {
 
         <ul>
           <li>
+            <Link to="/consulta" className={applyActiveIf('/consulta')}>
+              Consulta
+            </Link>
+          </li>
+          <li>
+            <hr />
+          </li>
+          <li>
             <Link
               to={client.submit}
               className={applyActiveIf(

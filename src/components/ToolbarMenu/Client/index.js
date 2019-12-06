@@ -6,6 +6,7 @@ import {
   MdSend,
   MdInsertDriveFile,
   MdSupervisorAccount,
+  MdSearch,
 } from 'react-icons/md';
 
 import { Container } from './styles';
@@ -42,6 +43,13 @@ export default function ToolbarMenu() {
         >
           <MdSupervisorAccount color="#fff" size={20} />
           <span>Usuários</span>
+        </Link>
+        <Link
+          to="/consulta"
+          className={window.location.pathname === '/consulta' ? 'active' : ''}
+        >
+          <MdSearch color="#fff" size={20} />
+          <span>Consulta</span>
         </Link>
       </div>
     </Container>

@@ -19,6 +19,7 @@ import SubmitClient from '~/pages/Client/Submit';
 import UserClient from '~/pages/Client/User';
 
 import Reviewer from '~/pages/Reviewer';
+import Search from '~/pages/Search';
 
 import * as paths from './paths';
 
@@ -56,6 +57,8 @@ export default function Routes() {
         component={Reviewer}
         isPrivate
       />
+
+      <RouteCustom path={paths.search} component={Search} isPrivate />
 
       <RouteCustom
         path={paths.client.follow}
