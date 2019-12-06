@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Header from '~/components/Header';
-import { client } from '~/routes/paths';
+import { client, reviewer } from '~/routes/paths';
 
 import AsideContent from './AsideContent';
 
@@ -44,7 +44,12 @@ export default function DefaultLayout({ children }) {
             </Link>
           </li>
           <li>
-            <a href="#/#">Revisão</a>
+            <Link
+              to={reviewer.review}
+              className={applyActiveIf(reviewer.review)}
+            >
+              Revisão
+            </Link>
           </li>
           <li>
             <a href="#/#">Financeiro</a>

@@ -18,3 +18,7 @@ export const client = {
   users: '/cliente/colaboradores',
   profile: '/cliente/perfil',
 };
+
+export const reviewer = {
+  review: '/revisao',
+};

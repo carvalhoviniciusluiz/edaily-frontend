@@ -18,6 +18,8 @@ import ReviewerClient from '~/pages/Client/Reviewer';
 import SubmitClient from '~/pages/Client/Submit';
 import UserClient from '~/pages/Client/User';
 
+import Reviewer from '~/pages/Reviewer';
+
 import * as paths from './paths';
 
 export default function Routes() {
@@ -47,6 +49,12 @@ export default function Routes() {
         path={paths.registration.government}
         exact
         component={GovernmentEntity}
+      />
+
+      <RouteCustom
+        path={paths.reviewer.review}
+        component={Reviewer}
+        isPrivate
       />
 
       <RouteCustom
