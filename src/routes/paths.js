@@ -16,7 +16,6 @@ export const client = {
   review: '/cliente/analise',
   submit: '/cliente/encaminhamento',
   users: '/cliente/colaboradores',
-  profile: '/cliente/perfil',
 };
 
 export const reviewer = {
@@ -24,3 +23,4 @@ export const reviewer = {
 };
 
 export const search = '/consulta';
+export const profile = '/perfil';

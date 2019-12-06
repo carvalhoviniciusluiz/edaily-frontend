@@ -76,7 +76,7 @@ export default function Routes() {
         isPrivate
       />
       <RouteCustom path={paths.client.users} component={UserClient} isPrivate />
-      <RouteCustom path={paths.client.profile} component={Profile} isPrivate />
+      <RouteCustom path={paths.profile} component={Profile} isPrivate />
 
       <RouteCustom path="*" component={SignInAuth} />
     </Switch>

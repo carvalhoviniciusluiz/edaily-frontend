@@ -36,6 +36,11 @@ export default function DefaultLayout({ children }) {
             </Link>
           </li>
           <li>
+            <Link to="/perfil" className={applyActiveIf('/perfil')}>
+              Perfil
+            </Link>
+          </li>
+          <li>
             <hr />
           </li>
           <li>
