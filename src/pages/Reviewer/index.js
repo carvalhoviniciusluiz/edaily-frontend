@@ -2,7 +2,14 @@ import React from 'react';
 
 // import ToolbarMenu from '~/components/ToolbarMenu/Reviewer';
 
-import { Container, Content, BoxMenu, BoxContent } from './styles';
+import {
+  Container,
+  Content,
+  BoxMenu,
+  BoxContent,
+  InputItem,
+  Documentthumbnail,
+} from './styles';
 
 export default function Reviwer() {
   return (
@@ -128,7 +135,126 @@ export default function Reviwer() {
         </BoxMenu>
 
         <BoxContent>
-          <h1>Content</h1>
+          <header>
+            <strong>Secretaria de Educação do Estado - </strong>
+            <span>SEED</span>
+          </header>
+
+          <InputItem className="custom-field">
+            <input type="text" />
+
+            <div className="actions">
+              <button type="button">Avançado</button>
+            </div>
+          </InputItem>
+
+          <ul>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail>
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:00</span>
+              </div>
+            </Documentthumbnail>
+          </ul>
+
+          <div className="footer">
+            <div>1 – 10 de 513 Documentos</div>
+            <div>Página 1 de 52 →</div>
+          </div>
         </BoxContent>
       </Content>
     </Container>
