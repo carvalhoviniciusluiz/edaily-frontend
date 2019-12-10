@@ -7,8 +7,6 @@ import PageFullscreen from '~/components/PageFullscreen';
 
 import { Header } from './styles';
 
-import 'react-tabs/style/react-tabs.css';
-
 export default function DocumentReview({ ...res }) {
   const { open, setOpen } = res;
 
