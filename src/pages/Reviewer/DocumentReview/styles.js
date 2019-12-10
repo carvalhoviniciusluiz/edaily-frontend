@@ -83,4 +83,132 @@ export const Header = styled.header`
   }
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Content = styled.div`
+  width: 100%;
+`;
+
+export const Aside = styled.aside`
+  position: absolute;
+  top: 64px;
+  right: 0;
+  width: 265px;
+  height: 90%;
+  border-left: 1px solid #afafaf;
+  border-top: 1px solid #afafaf;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: white;
+
+  header {
+    display: flex;
+    flex-direction: column;
+
+    & > div.pagination:not(.title) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin: 0 10px;
+      margin-top: 90px;
+      border-top: 1px solid #afafaf;
+      border-bottom: 1px solid #afafaf;
+
+      button {
+        border: 0;
+      }
+
+      input {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.1);
+        border: 0;
+        border-radius: 5px;
+        padding: 10px 21px;
+        font-size: 14px;
+        margin-right: 8px;
+        margin-left: 8px;
+        margin-top: 8px;
+        margin-bottom: 6px;
+        color: #333;
+      }
+
+      & > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input[type='text'] {
+          width: 50px;
+        }
+      }
+    }
+
+    div.header {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 10px;
+
+      & > div {
+        display: flex;
+        justify-content: space-between;
+
+        &.spread {
+          margin-top: 20px;
+        }
+
+        h2 {
+          width: 150px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 14px;
+          cursor: help;
+        }
+
+        span {
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-right: 4px;
+          }
+
+          &.time {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    div.actions {
+      ul {
+        margin: 0 10px;
+        border-top: 1px solid #afafaf;
+
+        li {
+          display: flex;
+          padding: 12px 0;
+          color: #004276;
+          cursor: pointer;
+
+          &.bold {
+            font-weight: bold;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          &:first-child {
+            margin-top: 30px;
+          }
+        }
+      }
+    }
+  }
+`;

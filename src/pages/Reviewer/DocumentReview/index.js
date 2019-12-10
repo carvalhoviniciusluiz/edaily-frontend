@@ -1,11 +1,16 @@
 import React from 'react';
 
-import { MdClose } from 'react-icons/md';
+import {
+  MdClose,
+  MdChevronLeft,
+  MdChevronRight,
+  MdAccessTime,
+} from 'react-icons/md';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import PageFullscreen from '~/components/PageFullscreen';
 
-import { Header } from './styles';
+import { Header, Container, Content, Aside } from './styles';
 
 export default function DocumentReview({ ...res }) {
   const { open, setOpen } = res;
@@ -24,7 +29,7 @@ export default function DocumentReview({ ...res }) {
       <Tabs>
         <Header>
           <TabList>
-            <Tab>Documento</Tab>
+            <Tab>Documentos</Tab>
             <Tab>Páginas</Tab>
             <Tab>Texto</Tab>
           </TabList>
@@ -34,17 +39,66 @@ export default function DocumentReview({ ...res }) {
           </button>
         </Header>
 
-        <TabPanel>
-          <h2>Documento</h2>
-        </TabPanel>
+        <Container>
+          <Aside>
+            <header>
+              <div className="pagination">
+                <button type="button">
+                  <MdChevronLeft size={32} />
+                </button>
 
-        <TabPanel>
-          <h2>Páginas</h2>
-        </TabPanel>
+                <div>
+                  Página <input type="text" /> de 2
+                </div>
 
-        <TabPanel>
-          <h2>Texto</h2>
-        </TabPanel>
+                <button type="button">
+                  <MdChevronRight size={32} />
+                </button>
+              </div>
+
+              <div className="header">
+                <div>
+                  <span>Entrada:</span>
+                  <span>
+                    <MdAccessTime />
+                    <span className="time">17:17</span>
+                  </span>
+                </div>
+
+                <div className="spread">
+                  <span>Arquivo:</span>
+                  <h2 title="U.S. Secret Service Record - UIC Anti-Trump Rally...">
+                    U.S. Secret Service Record - UIC Anti-Trump Rally...
+                  </h2>
+                </div>
+              </div>
+
+              <div className="actions">
+                <ul>
+                  <li>Baixar Documento Original (PDF) »</li>
+                  <li>Imprimir Documento Original (PDF) »</li>
+                  <li>Visualizar Histórico de Envio »</li>
+                  <li className="bold">Sustar Documento »</li>
+                  <li className="bold">Definir Documento como Revisado »</li>
+                </ul>
+              </div>
+            </header>
+          </Aside>
+
+          <Content>
+            <TabPanel>
+              <h2>Documento</h2>
+            </TabPanel>
+
+            <TabPanel>
+              <h2>Páginas</h2>
+            </TabPanel>
+
+            <TabPanel>
+              <h2>Texto</h2>
+            </TabPanel>
+          </Content>
+        </Container>
       </Tabs>
     </PageFullscreen>
   );
