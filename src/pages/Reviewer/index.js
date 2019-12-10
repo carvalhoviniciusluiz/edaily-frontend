@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // import ToolbarMenu from '~/components/ToolbarMenu/Reviewer';
 
@@ -11,10 +11,16 @@ import {
   Documentthumbnail,
 } from './styles';
 
+import DocumentReview from './DocumentReview';
+
 export default function Reviwer() {
+  const [open, setOpen] = useState(true);
+
   return (
     <Container>
       {/* <ToolbarMenu /> */}
+
+      <DocumentReview open={open} setOpen={setOpen} />
 
       <Content>
         <BoxMenu>
@@ -149,7 +155,23 @@ export default function Reviwer() {
           </InputItem>
 
           <ul>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
+              <img
+                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
+                alt=""
+              />
+              <div>
+                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
+                <span>17:17</span>
+              </div>
+            </Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
@@ -159,7 +181,10 @@ export default function Reviwer() {
                 <span>17:00</span>
               </div>
             </Documentthumbnail>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
@@ -169,7 +194,10 @@ export default function Reviwer() {
                 <span>17:00</span>
               </div>
             </Documentthumbnail>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
@@ -179,7 +207,10 @@ export default function Reviwer() {
                 <span>17:00</span>
               </div>
             </Documentthumbnail>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
@@ -189,7 +220,10 @@ export default function Reviwer() {
                 <span>17:00</span>
               </div>
             </Documentthumbnail>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
@@ -199,7 +233,10 @@ export default function Reviwer() {
                 <span>17:00</span>
               </div>
             </Documentthumbnail>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
@@ -209,7 +246,10 @@ export default function Reviwer() {
                 <span>17:00</span>
               </div>
             </Documentthumbnail>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
@@ -219,7 +259,10 @@ export default function Reviwer() {
                 <span>17:00</span>
               </div>
             </Documentthumbnail>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
@@ -229,17 +272,10 @@ export default function Reviwer() {
                 <span>17:00</span>
               </div>
             </Documentthumbnail>
-            <Documentthumbnail>
-              <img
-                src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
-                alt=""
-              />
-              <div>
-                <h2>U.S. Secret Service Record - UIC Anti-Trump Rally...</h2>
-                <span>17:00</span>
-              </div>
-            </Documentthumbnail>
-            <Documentthumbnail>
+            <Documentthumbnail
+              onClick={() => setOpen(true)}
+              role="presentation"
+            >
               <img
                 src="https://assets.documentcloud.org/documents/6426979/pages/U-S-Secret-Service-Record-UIC-Anti-Trump-Rally-p1-thumbnail.gif"
                 alt=""
