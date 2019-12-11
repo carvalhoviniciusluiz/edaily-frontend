@@ -246,6 +246,7 @@ export const InputItem = styled.div`
     border: 2px solid #e5e5e5;
     border-right: 0;
     background: #fafafa;
+    height: 44px;
   }
 
   .actions {
