@@ -56,6 +56,13 @@ export const Header = styled.header`
         background: transparent;
       }
     }
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   }
 
   .react-tabs__tab:not(.react-tabs__tab--selected) {
@@ -121,20 +128,22 @@ export const Aside = styled.aside`
 
       button {
         border: 0;
+        background: transparent;
       }
 
       input {
         width: 100%;
-        background: rgba(0, 0, 0, 0.1);
-        border: 0;
+        background: rgba(0, 0, 0, 0);
+        border: 1px solid #eee;
         border-radius: 5px;
-        padding: 10px 21px;
+        padding: 5px 10px;
         font-size: 14px;
         margin-right: 8px;
         margin-left: 8px;
         margin-top: 8px;
         margin-bottom: 6px;
         color: #333;
+        text-align: center;
       }
 
       & > div {
@@ -162,7 +171,6 @@ export const Aside = styled.aside`
         }
 
         h2 {
-          width: 150px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -178,8 +186,13 @@ export const Aside = styled.aside`
             margin-right: 4px;
           }
 
-          &.time {
-            font-weight: bold;
+          &.link {
+            color: #004276;
+            cursor: pointer;
+
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }

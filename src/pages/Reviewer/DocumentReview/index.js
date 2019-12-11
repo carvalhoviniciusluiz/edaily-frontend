@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  MdClose,
-  MdChevronLeft,
-  MdChevronRight,
-  MdAccessTime,
-} from 'react-icons/md';
+import { MdClose, MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import PageFullscreen from '~/components/PageFullscreen';
@@ -58,18 +53,24 @@ export default function DocumentReview({ ...res }) {
 
               <div className="header">
                 <div>
-                  <span>Entrada:</span>
-                  <span>
-                    <MdAccessTime />
-                    <span className="time">17:17</span>
-                  </span>
-                </div>
-
-                <div className="spread">
-                  <span>Arquivo:</span>
                   <h2 title="U.S. Secret Service Record - UIC Anti-Trump Rally...">
                     U.S. Secret Service Record - UIC Anti-Trump Rally...
                   </h2>
+                </div>
+
+                <div className="spread">
+                  <span>Responsável:</span>
+                  <span className="link">Vinicius Carvalho</span>
+                </div>
+
+                <div className="spread">
+                  <span>Emissor:</span>
+                  <span>NIO</span>
+                </div>
+
+                <div className="spread">
+                  <span>Entrada:</span>
+                  <span>17:17</span>
                 </div>
               </div>
 
@@ -78,8 +79,9 @@ export default function DocumentReview({ ...res }) {
                   <li>Baixar Documento Original (PDF) »</li>
                   <li>Imprimir Documento Original (PDF) »</li>
                   <li>Visualizar Histórico de Envio »</li>
+                  <li className="bold">Devolver Documento »</li>
                   <li className="bold">Sustar Documento »</li>
-                  <li className="bold">Definir Documento como Revisado »</li>
+                  <li className="bold">Documento Revisado »</li>
                 </ul>
               </div>
             </header>
