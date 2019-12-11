@@ -100,59 +100,44 @@ export const Content = styled.div`
   width: 100%;
 `;
 
-export const Aside = styled.aside`
-  position: absolute;
-  top: 64px;
-  right: 0;
-  width: 265px;
-  height: 90%;
-  border-left: 1px solid #afafaf;
-  border-top: 1px solid #afafaf;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background: white;
-
+export const AsideContent = styled.aside.attrs({
+  className: 'aside-content',
+})`
   header {
-    display: flex;
-    flex-direction: column;
+    margin: 20px;
 
-    & > div.pagination:not(.title) {
+    div.pagination {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      margin: 0 10px;
+      @media (max-width: 882px) {
+        margin-top: 20px;
+      }
+
       margin-top: 90px;
-      border-top: 1px solid #afafaf;
-      border-bottom: 1px solid #afafaf;
+      border-top: 1px solid rgba(34, 34, 48, 0.1);
+      border-bottom: 1px solid rgba(34, 34, 48, 0.1);
 
       button {
         border: 0;
         background: transparent;
       }
 
-      input {
-        width: 100%;
-        background: rgba(0, 0, 0, 0);
-        border: 1px solid #eee;
-        border-radius: 5px;
-        padding: 5px 10px;
-        font-size: 14px;
-        margin-right: 8px;
-        margin-left: 8px;
-        margin-top: 8px;
-        margin-bottom: 6px;
-        color: #333;
-        text-align: center;
-      }
-
-      & > div {
+      div {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         input[type='text'] {
-          width: 50px;
+          width: 52px;
+          color: #333;
+          border: 1px solid #eee;
+          border-radius: 5px;
+          padding: 5px 10px;
+          margin: 8px;
+          font-size: 14px;
+          text-align: center;
         }
       }
     }
@@ -160,9 +145,18 @@ export const Aside = styled.aside`
     div.header {
       display: flex;
       flex-direction: column;
-      margin: 20px 10px;
 
-      & > div {
+      margin-top: 20px;
+
+      h2 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        cursor: help;
+      }
+
+      div {
         display: flex;
         justify-content: space-between;
 
@@ -170,29 +164,12 @@ export const Aside = styled.aside`
           margin-top: 20px;
         }
 
-        h2 {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          font-size: 14px;
-          cursor: help;
-        }
+        span.link {
+          color: #004276;
+          cursor: pointer;
 
-        span {
-          display: flex;
-          align-items: center;
-
-          svg {
-            margin-right: 4px;
-          }
-
-          &.link {
-            color: #004276;
-            cursor: pointer;
-
-            &:hover {
-              text-decoration: underline;
-            }
+          &:hover {
+            text-decoration: underline;
           }
         }
       }
@@ -200,11 +177,10 @@ export const Aside = styled.aside`
 
     div.actions {
       ul {
-        margin: 0 10px;
-        border-top: 1px solid #afafaf;
+        margin-top: 20px;
+        border-top: 1px solid rgba(34, 34, 48, 0.1);
 
         li {
-          display: flex;
           padding: 12px 0;
           color: #004276;
           cursor: pointer;
@@ -215,10 +191,6 @@ export const Aside = styled.aside`
 
           &:hover {
             text-decoration: underline;
-          }
-
-          &:first-child {
-            margin-top: 30px;
           }
         }
       }

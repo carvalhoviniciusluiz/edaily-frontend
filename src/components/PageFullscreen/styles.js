@@ -10,7 +10,7 @@ export const PaperFullScreen = styled.div`
   padding-bottom: 150px;
   background: ${props => (props.background ? props.background : '#fff')};
   overflow-x: hidden;
-  z-index: 99999;
+  z-index: 9999;
 `;
 
 export const PaperActions = styled.div`
