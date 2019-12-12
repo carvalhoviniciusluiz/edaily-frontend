@@ -6,6 +6,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import PageFullscreen from '~/components/PageFullscreen';
 
 import AsideNavegation from './AsideNavegation';
+import TextPage from './TextPage';
+
 import { Header, Container, Content, AsideContent } from './styles';
 
 export default function DocumentReview({ ...res }) {
@@ -46,7 +48,7 @@ export default function DocumentReview({ ...res }) {
 
               <div className="spread">
                 <span>Responsável:</span>
-                <span className="link">Vinicius Carvalho</span>
+                <span>Vinicius Carvalho</span>
               </div>
 
               <div className="spread">
@@ -64,10 +66,8 @@ export default function DocumentReview({ ...res }) {
               <ul>
                 <li>Baixar Documento Original (PDF) »</li>
                 <li>Imprimir Documento Original (PDF) »</li>
-                <li>Visualizar Histórico de Envio »</li>
-                <li className="bold">Devolver Documento »</li>
-                <li className="bold">Sustar Documento »</li>
-                <li className="bold">Documento Revisado »</li>
+                <li className="bold">Aceitar Documento »</li>
+                <li className="bold">Recusar Documento »</li>
               </ul>
             </div>
           </header>
@@ -79,12 +79,12 @@ export default function DocumentReview({ ...res }) {
         setOpen={setOpen}
         background="#f8f8f8"
         showActions={false}
+        subtract="300px"
       >
-        <Tabs>
+        <Tabs defaultIndex={2}>
           <Header>
             <TabList>
               <Tab>Documentos</Tab>
-              <Tab>Páginas</Tab>
               <Tab>Texto</Tab>
             </TabList>
 
@@ -96,15 +96,11 @@ export default function DocumentReview({ ...res }) {
           <Container>
             <Content>
               <TabPanel>
-                <h2>Documento</h2>
+                <h2>Documentos</h2>
               </TabPanel>
 
               <TabPanel>
-                <h2>Páginas</h2>
-              </TabPanel>
-
-              <TabPanel>
-                <h2>Texto</h2>
+                <TextPage />
               </TabPanel>
             </Content>
           </Container>

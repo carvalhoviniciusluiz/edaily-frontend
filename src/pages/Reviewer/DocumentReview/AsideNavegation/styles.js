@@ -39,8 +39,8 @@ export const Container = styled.div`
     width: 300px;
     height: 100vh;
     background: #fff;
-    box-sizing: border-box;
     border-left: 1px solid rgba(34, 34, 48, 0.1);
+    box-sizing: border-box;
     z-index: 999999;
   }
 

@@ -5,12 +5,18 @@ export const PaperFullScreen = styled.div`
   top: 0;
   right: 0;
   left: 0;
-  width: 100vw;
   height: 100vh;
   padding-bottom: 150px;
   background: ${props => (props.background ? props.background : '#fff')};
   overflow-x: hidden;
   z-index: 9999;
+
+  ${props =>
+    props.subtract ? `width: calc(100% - ${props.subtract});` : 'width: 100vw;'}
+
+  @media (max-width: 882px) {
+    width: 100vw;
+  }
 `;
 
 export const PaperActions = styled.div`

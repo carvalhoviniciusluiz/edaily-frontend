@@ -5,6 +5,8 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
+  position: fixed;
+  width: 100%;
   height: 64px;
   color: #fff;
   background: #4a93dc;
@@ -162,15 +164,6 @@ export const AsideContent = styled.aside.attrs({
 
         &.spread {
           margin-top: 20px;
-        }
-
-        span.link {
-          color: #004276;
-          cursor: pointer;
-
-          &:hover {
-            text-decoration: underline;
-          }
         }
       }
     }
