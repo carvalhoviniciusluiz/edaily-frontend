@@ -24,6 +24,10 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
 
+    @media (max-width: 882px) {
+      margin: 0 10px;
+    }
+
     input {
       background: rgba(0, 0, 0, 0.1);
       border: 0;
