@@ -18,7 +18,7 @@ export function* createOrganization({ payload }) {
       company: { definition: 'company', ...company },
       responsible,
       substitute,
-      authorized_and_accepted_policy_terms: !!termsAccepted,
+      terms_accepted: !!termsAccepted,
     });
 
     toast.success('Dados foram processados com sucesso.');
