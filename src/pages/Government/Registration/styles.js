@@ -27,17 +27,6 @@ export const Content = styled.div`
     flex-direction: column;
     margin-top: 30px;
 
-    select {
-      background: rgba(0, 0, 0, 0.1);
-      border: 0;
-      border-radius: 4px;
-      height: 44px;
-      padding: 0 15px;
-      color: #fff;
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-
     input {
       background: rgba(0, 0, 0, 0.1);
       border: 0;
@@ -61,26 +50,22 @@ export const Content = styled.div`
           font-size: 12px;
         }
       }
-      select,
       button[type='submit'] {
         margin: 0 10px;
       }
     }
 
-    div {
-      text-align: right;
-
-      > span {
-        color: #fb6f91;
-        font-weight: bold;
-        vertical-align: top;
-      }
+    strong:not(.none) {
+      margin-top: 10px;
+      margin-bottom: 50px;
     }
 
-    strong span {
-      color: #fff;
-      text-decoration: underline;
-      cursor: pointer;
+    strong {
+      span {
+        color: #fff;
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
 
     label {
@@ -182,7 +167,14 @@ export const Address = styled.div`
   }
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h1`
+  color: #fff;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  text-align: center;
+`;
+
+export const Legend = styled.h3`
   color: #fff;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -192,6 +184,7 @@ export const Title = styled.h3`
 export const SubstituteCard = styled.div`
   background: #666;
   padding: 0 15px;
+  margin-bottom: 50px;
   border-radius: 4px;
   opacity: 0.8;
 

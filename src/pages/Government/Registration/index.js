@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input, Scope } from '@rocketseat/unform';
 
@@ -7,7 +7,15 @@ import { createOrganizationRequest } from '~/store/modules/organization/actions'
 
 import logo from '~/assets/logo.svg';
 import history from '~/services/history';
-import { Wrapper, Content, Address, Title, SubstituteCard } from './styles';
+import { registration } from '~/routes/paths';
+import {
+  Wrapper,
+  Content,
+  Address,
+  Legend,
+  Title,
+  SubstituteCard,
+} from './styles';
 
 import * as fetch from '~/services/fetch';
 
@@ -15,6 +23,14 @@ import schema from './validation';
 // import initialFormData from './data';
 
 export default function PrivateCompany() {
+  const organizationType = useSelector(
+    state => state.organization.organization_type
+  );
+
+  if (!organizationType) {
+    history.push(registration.register);
+  }
+
   const [substitute, setSubstitute] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [unautorized, setUnautorized] = useState(false);
@@ -28,7 +44,7 @@ export default function PrivateCompany() {
 
   function handleSubmit(formData) {
     if (unautorized) {
-      history.push('/register');
+      history.push(registration.register);
       return;
     }
 
@@ -74,7 +90,39 @@ export default function PrivateCompany() {
           onSubmit={handleSubmit}
           // initialData={data}
         >
-          <Title>Representante Legal</Title>
+          <Title>{organizationType}</Title>
+
+          <Legend>Entidade Governamental</Legend>
+          <Address>
+            <div>
+              <h3>Informações</h3>
+              <Scope path="company">
+                <Input name="name" label="Razão social" />
+                <Input name="initials" label="Nome fantasia" />
+                <Input name="billing_email" label="E-mail de cobrança" />
+                <Input name="cnpj" label="CNPJ" />
+                <Input name="phone1" label="Telefone comercial - 1" />
+                <Input name="phone2" label="Telefone comercial - 2" />
+              </Scope>
+            </div>
+            <div>
+              <h3>Endereço</h3>
+              <Scope path="company">
+                <Input
+                  name="zipcode"
+                  label="CEP"
+                  onBlur={handleCompanyAddress}
+                />
+                <Input name="street" label="Logradouro" />
+                <Input name="street_number" label="Número" />
+                <Input name="neighborhood" label="Bairro" />
+                <Input name="city" label="Cidade" />
+                <Input name="state" label="Estado" />
+              </Scope>
+            </div>
+          </Address>
+
+          <Legend>Representante Legal</Legend>
           <Address>
             <div>
               <h3>Dados pessoais</h3>
@@ -106,7 +154,7 @@ export default function PrivateCompany() {
 
           {substitute ? (
             <SubstituteCard>
-              <Title>Dados do usuário suplente</Title>
+              <Legend>Dados do usuário suplente</Legend>
               <Address>
                 <div>
                   <h3>Informações pessoais</h3>
@@ -136,7 +184,7 @@ export default function PrivateCompany() {
                 </div>
               </Address>
 
-              <strong>
+              <strong className="none">
                 <span onClick={handleClosePanel} role="presentation">
                   Fechar
                 </span>
@@ -149,36 +197,6 @@ export default function PrivateCompany() {
               </span>
             </strong>
           )}
-
-          <Title>Entidade Governamental</Title>
-          <Address>
-            <div>
-              <h3>Informações</h3>
-              <Scope path="company">
-                <Input name="name" label="Razão social" />
-                <Input name="initials" label="Nome fantasia" />
-                <Input name="billing_email" label="E-mail de cobrança" />
-                <Input name="cnpj" label="CNPJ" />
-                <Input name="phone1" label="Telefone comercial - 1" />
-                <Input name="phone2" label="Telefone comercial - 2" />
-              </Scope>
-            </div>
-            <div>
-              <h3>Endereço</h3>
-              <Scope path="company">
-                <Input
-                  name="zipcode"
-                  label="CEP"
-                  onBlur={handleCompanyAddress}
-                />
-                <Input name="street" label="Logradouro" />
-                <Input name="street_number" label="Número" />
-                <Input name="neighborhood" label="Bairro" />
-                <Input name="city" label="Cidade" />
-                <Input name="state" label="Estado" />
-              </Scope>
-            </div>
-          </Address>
 
           <label htmlFor="terms-authorized">
             <input
