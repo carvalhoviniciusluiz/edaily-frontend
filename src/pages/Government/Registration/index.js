@@ -11,8 +11,8 @@ import { Wrapper, Content, Address, Title, SubstituteCard } from './styles';
 
 import * as fetch from '~/services/fetch';
 
-import schema from '~/pages/Registration/validation';
-// import initialFormData from '~/pages/Registration/data';
+import schema from './validation';
+// import initialFormData from './data';
 
 export default function PrivateCompany() {
   const [substitute, setSubstitute] = useState(false);
@@ -32,7 +32,12 @@ export default function PrivateCompany() {
       return;
     }
 
-    dispatch(createOrganizationRequest({ ...formData, termsAccepted }));
+    dispatch(
+      createOrganizationRequest({
+        ...formData,
+        termsAccepted,
+      })
+    );
   }
 
   useEffect(() => {
@@ -69,10 +74,10 @@ export default function PrivateCompany() {
           onSubmit={handleSubmit}
           // initialData={data}
         >
-          <Title>Dados do responsável</Title>
+          <Title>Representante Legal</Title>
           <Address>
             <div>
-              <h3>Informações pessoais</h3>
+              <h3>Dados pessoais</h3>
               <Scope path="responsible">
                 <Input name="firstname" label="Nome" />
                 <Input name="lastname" label="Ultimo nome" />
@@ -145,7 +150,7 @@ export default function PrivateCompany() {
             </strong>
           )}
 
-          <Title>Dados da empresa</Title>
+          <Title>Entidade Governamental</Title>
           <Address>
             <div>
               <h3>Informações</h3>

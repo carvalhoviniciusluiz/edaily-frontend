@@ -1,3 +1,10 @@
+export function setOrganizationType(data) {
+  return {
+    type: '@organization/SET_ORGANIZATION_TYPE',
+    payload: { data },
+  };
+}
+
 export function createOrganizationRequest(data) {
   return {
     type: '@organization/CREATE_ORGANIZATION_REQUEST',

@@ -39,8 +39,14 @@ export default function SignIn() {
         />
 
         <button type="submit">{loading ? 'Carregando..' : 'Acessar'}</button>
-        <Link to={registration.register}>Criar conta gratuita</Link>
         <Link to={auth.recover}>Quero recuperar minha senha</Link>
+        <Link to={registration.register}>Criar conta do governo</Link>
+
+        <hr />
+
+        <Link to={registration.register}>
+          <strong>Fazer envio avulso</strong>
+        </Link>
       </Form>
     </>
   );

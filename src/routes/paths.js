@@ -6,8 +6,6 @@ export const auth = {
 
 export const registration = {
   register: '/registro',
-  personal: '/registro/cidadao',
-  company: '/registro/compania',
   government: '/registro/governo',
 };
 

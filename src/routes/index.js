@@ -7,9 +7,8 @@ import SignUpAuth from '~/pages/Auth/SignUp';
 import ForgotPasswordAuth from '~/pages/Auth/ForgotPassword';
 import ResetPasswordAuth from '~/pages/Auth/ResetPassword';
 
-import DashboardRegistration from '~/pages/Registration/Dashboard';
-import PrivateCompany from '~/pages/Registration/PrivateCompany';
-import GovernmentEntity from '~/pages/Registration/GovernmentEntity';
+import Category from '~/pages/Government/Category';
+import Registration from '~/pages/Government/Registration';
 
 import Profile from '~/pages/Profile';
 
@@ -34,22 +33,12 @@ export default function Routes() {
       <RouteCustom
         path={paths.registration.register}
         exact
-        component={DashboardRegistration}
-      />
-      <RouteCustom
-        path={paths.registration.personal}
-        exact
-        component={SignUpAuth}
-      />
-      <Route
-        path={paths.registration.company}
-        exact
-        component={PrivateCompany}
+        component={Category}
       />
       <Route
         path={paths.registration.government}
         exact
-        component={GovernmentEntity}
+        component={Registration}
       />
 
       <RouteCustom
