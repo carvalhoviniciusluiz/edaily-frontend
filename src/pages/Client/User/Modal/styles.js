@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-
 import { darken } from 'polished';
+import styled from 'styled-components';
 
 export const Header = styled.div`
   min-height: 14px;

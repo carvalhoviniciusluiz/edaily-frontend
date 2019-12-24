@@ -1,15 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import logo from '~/assets/logo.svg';
+import history from '~/services/history';
 import { resetPasswordRequest } from '~/store/modules/auth/actions';
 
-import logo from '~/assets/logo.svg';
-
 import { Form } from './styles';
-
-import history from '~/services/history';
 
 const schema = Yup.object().shape({
   password: Yup.string()

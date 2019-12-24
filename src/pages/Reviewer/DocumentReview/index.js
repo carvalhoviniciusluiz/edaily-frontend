@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-
 import { MdClose, MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import PageFullscreen from '~/components/PageFullscreen';
 
 import AsideNavegation from './AsideNavegation';
-import TextPage from './TextPage';
-
 import { Header, Container, Content, AsideContent } from './styles';
+import TextPage from './TextPage';
 
 export default function DocumentReview({ ...res }) {
   const [checked, setChecked] = useState(true);

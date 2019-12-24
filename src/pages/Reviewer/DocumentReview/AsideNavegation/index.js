@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { MdDragHandle } from 'react-icons/md';
 
 import { Container } from './styles';

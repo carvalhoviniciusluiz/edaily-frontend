@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
+
+import PropTypes from 'prop-types';
 
 import Header from '~/components/Header';
 import { client, reviewer } from '~/routes/paths';
 
 import AsideContent from './AsideContent';
-
 import { Wrapper } from './styles';
 
 export default function DefaultLayout({ children }) {

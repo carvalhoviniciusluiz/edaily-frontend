@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   MdChevronLeft,
   MdChevronRight,
   MdAddCircleOutline,
 } from 'react-icons/md';
 import Identicon from 'react-identicons';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ToolbarMenu from '~/components/ToolbarMenu/Client';
+import { request, fetch, clean } from '~/store/modules/client/user/actions';
 
 import Modal from './Modal';
 import NewUser from './NewUser';
-
 import { Container, ArrowButton, UserPanel } from './styles';
-
-import { request, fetch, clean } from '~/store/modules/client/user/actions';
 
 export default function User() {
   const dispatch = useDispatch();

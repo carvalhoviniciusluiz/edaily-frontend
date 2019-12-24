@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 // import ToolbarMenu from '~/components/ToolbarMenu/Reviewer';
 
+import DocumentReview from './DocumentReview';
 import {
   Container,
   Content,
@@ -10,8 +11,6 @@ import {
   InputItem,
   Documentthumbnail,
 } from './styles';
-
-import DocumentReview from './DocumentReview';
 
 export default function Reviwer() {
   const [open, setOpen] = useState(true);

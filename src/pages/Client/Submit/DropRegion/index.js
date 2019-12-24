@@ -1,7 +1,8 @@
 import React from 'react';
+import Dropzone from 'react-dropzone';
+
 import PropTypes from 'prop-types';
 
-import Dropzone from 'react-dropzone';
 import { DropContainer, UploadMessage } from './styles';
 
 export default function DropRegion({ onUpload }) {

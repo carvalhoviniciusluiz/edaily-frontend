@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
+
 import PropTypes from 'prop-types';
 
-import { CircularProgressbar } from 'react-circular-progressbar';
-
-import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
-import { Container, FileInfo, FileActions } from './styles';
-
 import PDFViewer from '~/components/PDFViewer';
+
+import { Container, FileInfo, FileActions } from './styles';
 
 export default function FileList({ files, onDelete }) {
   const [url, setUrl] = useState(null);

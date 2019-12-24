@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { FaSpinner, FaCheck, FaInfo } from 'react-icons/fa';
+import { Document, Page, pdfjs } from 'react-pdf';
+
 import PropTypes from 'prop-types';
 
-import { Document, Page, pdfjs } from 'react-pdf';
-import { FaSpinner, FaCheck, FaInfo } from 'react-icons/fa';
-
+import AsideContent from './AsideContent';
 import {
   Lockscreen,
   Loading,
@@ -12,8 +13,6 @@ import {
   DocumentHistory,
   TextBox,
 } from './styles';
-
-import AsideContent from './AsideContent';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 

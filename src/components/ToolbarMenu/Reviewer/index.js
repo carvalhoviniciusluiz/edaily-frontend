@@ -1,10 +1,10 @@
 import React from 'react';
+import { MdSubject, MdSearch } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-import { MdSubject, MdSearch } from 'react-icons/md';
+import { reviewer } from '~/routes/paths';
 
 import { Container } from './styles';
-import { reviewer } from '~/routes/paths';
 
 export default function ToolbarMenu() {
   return (

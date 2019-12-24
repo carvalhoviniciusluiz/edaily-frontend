@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { MdArrowBack } from 'react-icons/md';
+import Identicon from 'react-identicons';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Identicon from 'react-identicons';
-
-import { MdArrowBack } from 'react-icons/md';
-
-import Notifications from '~/components/Notifications';
-import * as paths from '~/routes/paths';
 
 import logo from '~/assets/logo2.svg';
+import Notifications from '~/components/Notifications';
+import * as paths from '~/routes/paths';
 
 import { Container, Content, Profile } from './styles';
 

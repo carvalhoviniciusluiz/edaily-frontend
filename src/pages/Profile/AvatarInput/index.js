@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useField } from '@rocketseat/unform';
-import Identicon from 'react-identicons';
-
 import { FaCamera } from 'react-icons/fa';
+import Identicon from 'react-identicons';
+import { useSelector } from 'react-redux';
+
+import { useField } from '@rocketseat/unform';
+
 import api from '~/services/api';
 
 import { Container } from './styles';

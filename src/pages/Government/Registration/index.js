@@ -2,15 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { Form, Input, Scope } from '@rocketseat/unform';
 
+import logo from '~/assets/logo.svg';
+import InputGroup from '~/components/Fields/InputGroup';
+import { registration } from '~/routes/paths';
+import * as fetch from '~/services/fetch';
+import history from '~/services/history';
 import { createOrganizationRequest } from '~/store/modules/organization/actions';
 
-import InputGroup from '~/components/Fields/InputGroup';
-
-import logo from '~/assets/logo.svg';
-import history from '~/services/history';
-import { registration } from '~/routes/paths';
 import {
   Wrapper,
   Content,
@@ -19,9 +20,6 @@ import {
   Title,
   SubstituteCard,
 } from './styles';
-
-import * as fetch from '~/services/fetch';
-
 import schema from './validation';
 // import initialFormData from './data';
 

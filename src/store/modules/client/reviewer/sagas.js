@@ -1,9 +1,9 @@
-import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
 import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
+import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import api from '~/services/api';
 

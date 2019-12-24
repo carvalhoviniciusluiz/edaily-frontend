@@ -1,16 +1,14 @@
 import React, { PureComponent } from 'react';
 
-import { uniqueId } from 'lodash';
 import filesize from 'filesize';
+import { uniqueId } from 'lodash';
 
 import ToolbarMenu from '~/components/ToolbarMenu/Client';
+import api from '~/services/api';
 
 import DropRegion from './DropRegion';
 import FileList from './FileList';
-
 import { Container, Form } from './styles';
-
-import api from '~/services/api';
 
 export default class FileUpload extends PureComponent {
   state = {

@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 import {
   MdInbox,
   MdSend,
@@ -8,9 +6,11 @@ import {
   MdSupervisorAccount,
   MdSearch,
 } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+
+import { client } from '~/routes/paths';
 
 import { Container } from './styles';
-import { client } from '~/routes/paths';
 
 export default function ToolbarMenu() {
   return (

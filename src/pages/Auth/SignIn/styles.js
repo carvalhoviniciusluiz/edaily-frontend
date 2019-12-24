@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-
 import { Form as _Form } from '@rocketseat/unform';
+import styled from 'styled-components';
 
 export const Form = styled(_Form)`
   max-width: 360px;

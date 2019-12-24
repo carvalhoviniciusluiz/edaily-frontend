@@ -1,8 +1,6 @@
-import styled from 'styled-components';
-
-import { darken } from 'polished';
-
 import { Form as form, Input as input } from '@rocketseat/unform';
+import { darken } from 'polished';
+import styled from 'styled-components';
 
 export const Header = styled.header`
   display: flex;

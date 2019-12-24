@@ -1,16 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Identicon from 'react-identicons';
-
-import PropTypes from 'prop-types';
-import { Form, Input, Check } from '@rocketseat/unform';
-
 import { MdMailOutline, MdInfoOutline } from 'react-icons/md';
+import Identicon from 'react-identicons';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Form, Input, Check } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
 
 import ModalComponent from '~/components/Modal';
-import DocumentHistory from '../DocumentHistory';
+import {
+  sendForgotPassword,
+  sendConfirmation,
+} from '~/store/modules/client/user/actions';
 
+import DocumentHistory from '../DocumentHistory';
 import {
   Header,
   Body,
@@ -20,11 +23,6 @@ import {
   InputGroup,
   InputItem,
 } from './styles';
-
-import {
-  sendForgotPassword,
-  sendConfirmation,
-} from '~/store/modules/client/user/actions';
 
 export default function Modal({ setShow, show }) {
   const user = useSelector(state => state.clientUser.user);

@@ -1,10 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-
-import Identicon from 'react-identicons';
-
 import {
   MdChevronLeft,
   MdChevronRight,
@@ -14,13 +9,16 @@ import {
   MdPersonOutline,
   MdMenu,
 } from 'react-icons/md';
+import Identicon from 'react-identicons';
+import { useDispatch, useSelector } from 'react-redux';
+
+import PropTypes from 'prop-types';
 
 import PageFullscreen from '~/components/PageFullscreen';
 import PDFViewer from '~/components/PDFViewer';
+import { request, clean } from '~/store/modules/client/document/actions';
 
 import { Avatar, Navigation, Button, PanelList, Panel } from './styles';
-
-import { request, clean } from '~/store/modules/client/document/actions';
 
 export default function PanelComponent({ ...res }) {
   const { open, setOpen } = res;

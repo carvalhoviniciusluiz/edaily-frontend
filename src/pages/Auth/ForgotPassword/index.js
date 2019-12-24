@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import { forgotPasswordRequest } from '~/store/modules/auth/actions';
-
 import logo from '~/assets/logo.svg';
+import { forgotPasswordRequest } from '~/store/modules/auth/actions';
 
 import { Form } from './styles';
 

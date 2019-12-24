@@ -1,18 +1,16 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
+import { MdClose } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
-
 import * as Yup from 'yup';
-import { MdClose } from 'react-icons/md';
-
-import * as fetch from '~/services/fetch';
 
 import PageFullscreen from '~/components/PageFullscreen';
-import { Header, Body, Form, Input } from './styles';
-
+import * as fetch from '~/services/fetch';
 import { save, request } from '~/store/modules/client/user/actions';
+
+import { Header, Body, Form, Input } from './styles';
 
 export default function NewUser({ ...res }) {
   const { open, setOpen } = res;

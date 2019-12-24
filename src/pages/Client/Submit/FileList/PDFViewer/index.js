@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Document, Page, pdfjs } from 'react-pdf';
+
+import PropTypes from 'prop-types';
 
 import { Lockscreen } from './styles';
 

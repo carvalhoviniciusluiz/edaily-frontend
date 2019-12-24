@@ -1,10 +1,12 @@
 import React from 'react';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import { setOrganizationType } from '~/store/modules/organization/actions';
-import { Container, Title, SectionList, SectionItem } from './styles';
+
 import { registration } from '~/routes/paths';
+import { setOrganizationType } from '~/store/modules/organization/actions';
+
+import { Container, Title, SectionList, SectionItem } from './styles';
 
 export default function Category() {
   const dispatch = useDispatch();

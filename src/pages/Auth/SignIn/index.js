@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import { signInRequest } from '~/store/modules/auth/actions';
+import logo from '~/assets/logo.svg';
 import { auth, registration } from '~/routes/paths';
+import { signInRequest } from '~/store/modules/auth/actions';
 
 import { Form } from './styles';
-
-import logo from '~/assets/logo.svg';
 
 const schema = Yup.object().shape({
   credential: Yup.string().required('A credencial é obrigatória'),
