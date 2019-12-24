@@ -10,6 +10,12 @@ export const Container = styled.div`
   }
 `;
 
+export const Title = styled.h1`
+  color: #fff;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+`;
+
 export const SectionList = styled.ul`
   width: 500px;
   padding: 20px;
@@ -17,6 +23,12 @@ export const SectionList = styled.ul`
   background: #fff;
   text-align: left;
   margin-bottom: 20px;
+
+  @media (max-width: 662px) {
+    width: 90%;
+    font-size: 12px;
+    padding: 10px;
+  }
 `;
 
 export const SectionItem = styled.li`

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { setOrganizationType } from '~/store/modules/organization/actions';
-import { Container, SectionList, SectionItem } from './styles';
+import { Container, Title, SectionList, SectionItem } from './styles';
 import { registration } from '~/routes/paths';
 
 export default function Category() {
@@ -31,6 +31,8 @@ export default function Category() {
 
   return (
     <Container>
+      <Title>Qual seu perfil de governo</Title>
+
       <SectionList>
         {sections.map(section =>
           section.map(item => (
