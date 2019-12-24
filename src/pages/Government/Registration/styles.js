@@ -35,6 +35,7 @@ export const Content = styled.div`
       padding: 0 15px;
       color: #fff;
       margin: 0 0 10px;
+      width: 290px;
 
       &::placeholder {
         color: rgba(255, 255, 255, 0.7);
@@ -89,7 +90,7 @@ export const Content = styled.div`
       }
     }
 
-    button {
+    & > button {
       margin: 30px 0 0;
       height: 44px;
       background: #3b9eff;
@@ -128,6 +129,7 @@ export const Address = styled.div`
   grid-column-gap: 20px;
   justify-self: center;
   margin-bottom: 40px;
+  text-align: right;
 
   @media (max-width: 662px) {
     display: flex;
@@ -187,6 +189,17 @@ export const SubstituteCard = styled.div`
   margin-bottom: 50px;
   border-radius: 4px;
   opacity: 0.8;
+
+  div {
+    text-align: left;
+    div {
+      text-align: right;
+      div,
+      input {
+        width: 274px !important;
+      }
+    }
+  }
 
   @media (max-width: 600px) {
     border-radius: 0;

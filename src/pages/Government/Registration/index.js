@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input, Scope } from '@rocketseat/unform';
 
 import { createOrganizationRequest } from '~/store/modules/organization/actions';
+
+import InputGroup from '~/components/Fields/InputGroup';
 
 import logo from '~/assets/logo.svg';
 import history from '~/services/history';
@@ -114,7 +117,7 @@ export default function PrivateCompany() {
                   onBlur={handleCompanyAddress}
                 />
                 <Input name="street" label="Logradouro" />
-                <Input name="street_number" label="Número" />
+                <Input type="number" name="street_number" label="Número" />
                 <Input name="neighborhood" label="Bairro" />
                 <Input name="city" label="Cidade" />
                 <Input name="state" label="Estado" />
@@ -130,21 +133,27 @@ export default function PrivateCompany() {
                 <Input name="firstname" label="Nome" />
                 <Input name="lastname" label="Ultimo nome" />
                 <Input name="email" label="E-mail" />
-                <Input name="cpf" label="CPF" />
-                <Input name="rg" label="RG" />
+                <InputGroup name="cpf" label="CPF" button-label="Anexar">
+                  <button type="button">Anexar</button>
+                </InputGroup>
+                <InputGroup name="rg" label="RG" button-label="Anexar">
+                  <button type="button">Anexar</button>
+                </InputGroup>
                 <Input name="phone" label="Celular" />
               </Scope>
             </div>
             <div>
               <h3>Endereço</h3>
               <Scope path="responsible">
-                <Input
+                <InputGroup
                   name="zipcode"
                   label="CEP"
                   onBlur={handleResponsibleAddress}
-                />
+                >
+                  <button type="button">Anexar</button>
+                </InputGroup>
                 <Input name="street" label="Logradouro" />
-                <Input name="street_number" label="Número" />
+                <Input type="number" name="street_number" label="Número" />
                 <Input name="neighborhood" label="Bairro" />
                 <Input name="city" label="Cidade" />
                 <Input name="state" label="Estado" />
@@ -162,19 +171,25 @@ export default function PrivateCompany() {
                     <Input name="firstname" label="Nome" />
                     <Input name="lastname" label="Ultimo nome" />
                     <Input name="email" label="E-mail" />
-                    <Input name="cpf" label="CPF" />
-                    <Input name="rg" label="RG" />
+                    <InputGroup name="cpf" label="CPF" button-label="Anexar">
+                      <button type="button">Anexar</button>
+                    </InputGroup>
+                    <InputGroup name="rg" label="RG" button-label="Anexar">
+                      <button type="button">Anexar</button>
+                    </InputGroup>
                     <Input name="phone" label="Celular" />
                   </Scope>
                 </div>
                 <div>
                   <h3>Endereço</h3>
                   <Scope path="substitute">
-                    <Input
+                    <InputGroup
                       name="zipcode"
                       label="CEP"
                       onBlur={handleSubstituteAddress}
-                    />
+                    >
+                      <button type="button">Anexar</button>
+                    </InputGroup>
                     <Input name="street" label="Logradouro" />
                     <Input name="street_number" label="Número" />
                     <Input name="neighborhood" label="Bairro" />
