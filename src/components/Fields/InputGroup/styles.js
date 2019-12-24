@@ -6,6 +6,7 @@ export const Conteiner = styled.div`
 
 export const InputGroupAddon = styled.div`
   display: flex;
+  flex-direction: row !important;
 
   input {
     border-bottom-right-radius: 0px !important;

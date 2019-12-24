@@ -133,7 +133,13 @@ export const Address = styled.div`
   @media (max-width: 662px) {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 0 10px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   h3 {
