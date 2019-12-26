@@ -1,3 +1,8 @@
+export const administration = {
+  dashboard: '/admin',
+  sections: '/admin/secoes',
+};
+
 export const auth = {
   signup: '/login',
   recover: '/recuperar',

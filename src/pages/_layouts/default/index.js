@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Header from '~/components/Header';
-import { client, reviewer } from '~/routes/paths';
+import { administration, client, reviewer } from '~/routes/paths';
 
 import AsideContent from './AsideContent';
 import { Wrapper } from './styles';
@@ -82,7 +82,15 @@ export default function DefaultLayout({ children }) {
             <hr />
           </li>
           <li>
-            <a href="#/#">Configurações</a>
+            <Link
+              to={administration.dashboard}
+              className={applyActiveIf(
+                administration.dashboard,
+                administration.sections
+              )}
+            >
+              Administração
+            </Link>
           </li>
         </ul>
         {children}
