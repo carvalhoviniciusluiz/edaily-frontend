@@ -188,6 +188,34 @@ export const Legend = styled.h3`
   text-align: center;
 `;
 
+export const Message = styled.div`
+  @media (max-width: 882px) {
+    margin: 0 10px;
+  }
+`;
+
+export const MessageBox = styled.ul`
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  border-left: 7px solid rgba(0, 0, 0, 0.4);
+  padding: 16px;
+  color: #fff;
+
+  li {
+    display: flex;
+    align-items: center;
+    text-align: left;
+
+    & + li {
+      margin-top: 12px;
+    }
+
+    svg {
+      margin-right: 6px;
+    }
+  }
+`;
+
 export const SubstituteCard = styled.div`
   background: #666;
   padding: 0 15px;

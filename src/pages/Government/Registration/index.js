@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
+import { MdInfo } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -19,6 +20,8 @@ import {
   Legend,
   Title,
   SubstituteCard,
+  Message,
+  MessageBox,
 } from './styles';
 import schema from './validation';
 // import initialFormData from './data';
@@ -124,6 +127,20 @@ export default function PrivateCompany() {
           </Address>
 
           <Legend>Representante Legal</Legend>
+
+          <Message>
+            <MessageBox>
+              <li>
+                <MdInfo size={14} />
+                Todos os campos são obrigatórios
+              </li>
+              <li>
+                <MdInfo size={14} />
+                Clique na opção anexar para informar a imagem do documento
+              </li>
+            </MessageBox>
+          </Message>
+
           <Address>
             <div>
               <h3>Dados pessoais</h3>
