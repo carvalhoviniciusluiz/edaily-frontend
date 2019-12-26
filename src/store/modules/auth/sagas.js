@@ -33,7 +33,7 @@ export function* signIn({ payload }) {
   } catch (error) {
     const message =
       error.response.status === 401
-        ? 'Esta conta encontra-se inativa.'
+        ? 'Credenciais não confirmada.'
         : 'Falha na autenticação, verifique os seus dados.';
 
     toast.error(message);
