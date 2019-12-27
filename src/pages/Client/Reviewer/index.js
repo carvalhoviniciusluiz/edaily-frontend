@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import Swal from 'sweetalert2';
-
 import {
   MdChevronLeft,
   MdChevronRight,
@@ -10,18 +6,20 @@ import {
   MdSupervisorAccount,
   MdPermIdentity,
 } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
 
-import ToolbarMenu from '~/components/ToolbarMenu/Client';
+import Swal from 'sweetalert2';
+
 import PDFViewer from '~/components/PDFViewer';
-
-import { Container, Panel, Button } from './styles';
-
+import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import {
   documentRequest,
   documentDestroy,
   documentForward,
   documentClean,
 } from '~/store/modules/client/reviewer/actions';
+
+import { Container, Panel, Button } from './styles';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
