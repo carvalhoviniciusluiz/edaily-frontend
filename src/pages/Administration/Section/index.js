@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import {
   MdChevronLeft,
@@ -10,8 +10,11 @@ import {
   MdPermIdentity,
 } from 'react-icons/md';
 
+import Swal from 'sweetalert2';
+
 import ToolbarMenu from '~/components/ToolbarMenu/Administration';
 
+import Modal from './Modal';
 import {
   Container,
   Navegation,
@@ -19,6 +22,7 @@ import {
   BtnAdd,
   BtnActive,
   BtnInactive,
+  BtnEdit,
   BtnNavegation,
   PanelList,
   Panel,
@@ -27,9 +31,45 @@ import {
 } from './styles';
 
 export default function Section() {
+  const [show, setShow] = useState(false);
+
+  const handleActive = async () => {
+    const { value } = await Swal.fire({
+      type: 'question',
+      title: 'Você tem certeza',
+      text: 'Essa sessão será ativada',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      confirmButtonText: 'Sim',
+      heightAuto: false,
+    });
+
+    if (value) {
+      console.tron.log('active..');
+    }
+  };
+
+  const handleInactive = async () => {
+    const { value } = await Swal.fire({
+      type: 'question',
+      title: 'Você tem certeza',
+      text: 'Essa sessão está prestes a ser inativada',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      confirmButtonText: 'Sim',
+      heightAuto: false,
+    });
+
+    if (value) {
+      console.tron.log('inactive..');
+    }
+  };
+
   return (
     <>
       <ToolbarMenu />
+
+      <Modal show={show} setShow={setShow} />
 
       <Container>
         <Navegation>
@@ -82,13 +122,14 @@ export default function Section() {
                 </strong>
               </p>
 
-              <BtnActive onClick={() => {}}>Ativar</BtnActive>
-              <BtnInactive onClick={() => {}}>Inativar</BtnInactive>
+              <BtnActive onClick={handleActive}>Ativar</BtnActive>
+              <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
+              <BtnEdit onClick={() => setShow(true)}>Editar</BtnEdit>
             </PanelBody>
           </Panel>
         </PanelList>
 
-        <BtnAdd>
+        <BtnAdd onClick={() => setShow(true)}>
           <FaPlus size={32} />
         </BtnAdd>
       </Container>

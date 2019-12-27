@@ -174,6 +174,18 @@ export const BtnActive = styled.button.attrs(() => ({
   }
 `;
 
+export const BtnEdit = styled.button.attrs(() => ({
+  className: 'btn-edit',
+}))`
+  background-color: #fff;
+  color: #333;
+  border: 2px solid #eee !important;
+
+  &:hover {
+    background: ${darken(0.03, '#fff')};
+  }
+`;
+
 export const BtnAdd = styled.button.attrs(() => ({
   className: 'btn-active',
 }))`
@@ -182,7 +194,6 @@ export const BtnAdd = styled.button.attrs(() => ({
   right: 5%;
   padding: 10px;
   border-radius: 100%;
-  z-index: 500;
   display: flex;
   justify-content: center;
 
