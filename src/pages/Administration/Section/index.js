@@ -7,23 +7,25 @@ import {
   MdAccessTime,
   MdBookmark,
   MdBookmarkBorder,
-  MdPermIdentity,
+  MdPerson,
+  MdPersonOutline,
 } from 'react-icons/md';
 
 import Swal from 'sweetalert2';
 
 import ToolbarMenu from '~/components/ToolbarMenu/Administration';
 
+import GovernmentProfile from './GovernmentProfile';
 import Modal from './Modal';
 import {
   Container,
-  Navegation,
-  NavegationContent,
+  Navigation,
+  NavigationContent,
   BtnAdd,
   BtnActive,
   BtnInactive,
   BtnEdit,
-  BtnNavegation,
+  BtnNavigation,
   PanelList,
   Panel,
   PanelHeader,
@@ -31,7 +33,8 @@ import {
 } from './styles';
 
 export default function Section() {
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showPage, setShowPage] = useState(true);
 
   const handleActive = async () => {
     const { value } = await Swal.fire({
@@ -69,24 +72,25 @@ export default function Section() {
     <>
       <ToolbarMenu />
 
-      <Modal show={show} setShow={setShow} />
+      <Modal show={showModal} setShow={setShowModal} />
+      <GovernmentProfile open={showPage} setOpen={setShowPage} />
 
       <Container>
-        <Navegation>
-          <BtnNavegation desable>
+        <Navigation>
+          <BtnNavigation desable>
             <MdChevronLeft size={36} color="#fff" />
-          </BtnNavegation>
+          </BtnNavigation>
 
-          <NavegationContent>
+          <NavigationContent>
             <input type="text" />
             <strong>/</strong>
             <strong>3</strong>
-          </NavegationContent>
+          </NavigationContent>
 
-          <BtnNavegation desable>
+          <BtnNavigation desable>
             <MdChevronRight size={36} color="#fff" />
-          </BtnNavegation>
-        </Navegation>
+          </BtnNavigation>
+        </Navigation>
 
         <PanelList>
           <Panel>
@@ -99,11 +103,18 @@ export default function Section() {
                 <MdBookmarkBorder size={22} />
                 <span>Inativo</span>
               </strong>
-              <strong>
-                <MdPermIdentity size={22} />
-                <span className="firstname">
+              <strong className="creator">
+                <MdPerson size={22} />
+                <span>
                   Vinicius
-                  <span className="lastname">Carvalho</span>
+                  <span>Carvalho</span>
+                </span>
+              </strong>
+              <strong className="revisor">
+                <MdPersonOutline size={22} />
+                <span>
+                  Vinicius
+                  <span>Carvalho</span>
                 </span>
               </strong>
               <strong className="date">
@@ -117,19 +128,19 @@ export default function Section() {
             </PanelHeader>
             <PanelBody>
               <p>
-                <strong role="presentation" onClick={() => {}}>
+                <strong role="presentation" onClick={() => setShowPage(true)}>
                   Sessão 01
                 </strong>
               </p>
 
               <BtnActive onClick={handleActive}>Ativar</BtnActive>
               <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
-              <BtnEdit onClick={() => setShow(true)}>Editar</BtnEdit>
+              <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
             </PanelBody>
           </Panel>
         </PanelList>
 
-        <BtnAdd onClick={() => setShow(true)}>
+        <BtnAdd onClick={() => setShowModal(true)}>
           <FaPlus size={32} />
         </BtnAdd>
       </Container>

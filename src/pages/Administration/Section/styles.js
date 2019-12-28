@@ -9,13 +9,13 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Navegation = styled.header`
+export const Navigation = styled.header`
   display: flex;
   align-self: center;
   align-items: center;
 `;
 
-export const NavegationContent = styled.div`
+export const NavigationContent = styled.div`
   input[type='text'] {
     border: 0;
     border-radius: 4px;
@@ -32,7 +32,7 @@ export const NavegationContent = styled.div`
   }
 `;
 
-export const BtnNavegation = styled.button.attrs(props => ({
+export const BtnNavigation = styled.button.attrs(props => ({
   disabled: props.desable,
 }))`
   border: 0;
