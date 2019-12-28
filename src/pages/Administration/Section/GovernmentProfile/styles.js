@@ -77,14 +77,37 @@ export const PanelInfo = styled.strong`
   svg {
     margin-right: 5px;
   }
+
+  @media (max-width: 767px) {
+    &.date,
+    &.time {
+      display: none;
+    }
+  }
+
+  @media (max-width: 633px) {
+    &.creator,
+    &.revisor {
+      display: none;
+    }
+  }
 `;
 
 export const PanelHeader = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 633px) {
+    justify-content: flex-start;
+  }
 `;
 
-export const Panel = styled.li`
+export const Panel = styled.li.attrs(() => ({
+  className: 'with-shading',
+}))`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
   margin: 20px;
   border-radius: 4px;
@@ -99,6 +122,37 @@ export const Panel = styled.li`
 
 export const PanelAction = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-right: 10px;
+
+  svg {
+    &:hover {
+      background: #fcffe2;
+      cursor: pointer;
+    }
+  }
+`;
+
+export const PanelBody = styled.div`
+  width: 800px;
+
+  @media (max-width: 784px) {
+    width: 600px;
+  }
+
+  @media (max-width: 722px) {
+    width: 550px;
+  }
+
+  @media (max-width: 633px) {
+    width: 400px;
+  }
+`;
+
+export const PanelEvent = styled.div`
+  display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 15px;
@@ -107,6 +161,22 @@ export const PanelAction = styled.div`
     font-size: 18px;
     margin-right: 28px;
     font-weight: normal;
+    width: 370px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  @media (max-width: 633px) {
+    strong {
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 412px) {
+    strong {
+      width: 200px;
+    }
   }
 
   button {
@@ -127,8 +197,18 @@ export const PanelAction = styled.div`
   }
 `;
 
-export const BtnActions = styled.div`
+export const PanelEventActions = styled.div`
   display: flex;
+
+  @media (max-width: 668px) {
+    span {
+      display: none;
+    }
+  }
+
+  @media (max-width: 633px) {
+    display: none;
+  }
 `;
 
 export const BtnActive = styled.button.attrs(() => ({

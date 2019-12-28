@@ -9,6 +9,9 @@ import {
   MdAccessTime,
   MdPerson,
   MdPersonOutline,
+  MdKeyboardArrowUp,
+  MdKeyboardArrowDown,
+  MdEdit,
 } from 'react-icons/md';
 
 import PropTypes from 'prop-types';
@@ -24,10 +27,12 @@ import {
   BtnNavigation,
   PanelList,
   Panel,
+  PanelBody,
+  PanelAction,
   PanelHeader,
   PanelInfo,
-  PanelAction,
-  BtnActions,
+  PanelEvent,
+  PanelEventActions,
   BtnActive,
   BtnInactive,
   BtnEdit,
@@ -75,54 +80,202 @@ export default function GovernmentProfile({ ...res }) {
       </Navigation>
 
       <PanelList>
-        <Panel className="with-shading">
-          <PanelHeader>
-            <PanelInfo className="active">
-              <MdBookmark size={22} />
-              <span>Ativo</span>
-            </PanelInfo>
-
-            <PanelInfo className="inactive">
-              <MdBookmarkBorder size={22} />
-              <span>Inativo</span>
-            </PanelInfo>
-
-            <PanelInfo className="creator">
-              <MdPerson size={22} />
-              <span>
-                Vinicius
-                <span>Carvalho</span>
-              </span>
-            </PanelInfo>
-
-            <PanelInfo className="revisor">
-              <MdPersonOutline size={22} />
-              <span>
-                Vinicius
-                <span>Carvalho</span>
-              </span>
-            </PanelInfo>
-
-            <PanelInfo className="date">
-              <MdDateRange />
-              <span>27/12/2019</span>
-            </PanelInfo>
-
-            <PanelInfo className="time">
-              <MdAccessTime />
-              <span>09:29</span>
-            </PanelInfo>
-          </PanelHeader>
-
+        <Panel>
           <PanelAction>
-            <strong>AUTARQUIAS ESTADUAIS E ÓRGÃOS VINCULADOS</strong>
-
-            <BtnActions>
-              <BtnActive onClick={() => {}}>Ativar</BtnActive>
-              <BtnInactive onClick={() => {}}>Inativar</BtnInactive>
-              <BtnEdit onClick={() => {}}>Editar</BtnEdit>
-            </BtnActions>
+            <MdKeyboardArrowUp size={44} />
+            <MdKeyboardArrowDown size={44} />
           </PanelAction>
+
+          <PanelBody>
+            <PanelHeader>
+              <PanelInfo className="inactive">
+                <MdBookmarkBorder size={22} />
+                <span>Inativo</span>
+              </PanelInfo>
+
+              <PanelInfo className="active">
+                <MdBookmark size={22} />
+                <span>Ativo</span>
+              </PanelInfo>
+
+              <PanelInfo className="creator">
+                <MdPerson size={22} />
+                <span>
+                  Vinicius
+                  <span>Carvalho</span>
+                </span>
+              </PanelInfo>
+
+              <PanelInfo className="revisor">
+                <MdPersonOutline size={22} />
+                <span>
+                  Vinicius
+                  <span>Carvalho</span>
+                </span>
+              </PanelInfo>
+
+              <PanelInfo className="date">
+                <MdDateRange />
+                <span>27/12/2019</span>
+              </PanelInfo>
+
+              <PanelInfo className="time">
+                <MdAccessTime />
+                <span>09:29</span>
+              </PanelInfo>
+            </PanelHeader>
+
+            <PanelEvent>
+              <strong>AUTARQUIAS ESTADUAIS E ÓRGÃOS VINCULADOS</strong>
+
+              <PanelEventActions>
+                <BtnInactive onClick={() => {}}>
+                  <span>Inativar</span>
+                  <MdBookmarkBorder />
+                </BtnInactive>
+                <BtnActive onClick={() => {}}>
+                  <span>Ativar</span>
+                  <MdBookmark />
+                </BtnActive>
+                <BtnEdit onClick={() => {}}>
+                  <span>Editar</span>
+                  <MdEdit />
+                </BtnEdit>
+              </PanelEventActions>
+            </PanelEvent>
+          </PanelBody>
+        </Panel>
+
+        <Panel>
+          <PanelAction>
+            <MdKeyboardArrowUp size={44} />
+            <MdKeyboardArrowDown size={44} />
+          </PanelAction>
+
+          <PanelBody>
+            <PanelHeader>
+              <PanelInfo className="inactive">
+                <MdBookmarkBorder size={22} />
+                <span>Inativo</span>
+              </PanelInfo>
+
+              <PanelInfo className="active">
+                <MdBookmark size={22} />
+                <span>Ativo</span>
+              </PanelInfo>
+
+              <PanelInfo className="creator">
+                <MdPerson size={22} />
+                <span>
+                  Vinicius
+                  <span>Carvalho</span>
+                </span>
+              </PanelInfo>
+
+              <PanelInfo className="revisor">
+                <MdPersonOutline size={22} />
+                <span>
+                  Vinicius
+                  <span>Carvalho</span>
+                </span>
+              </PanelInfo>
+
+              <PanelInfo className="date">
+                <MdDateRange />
+                <span>27/12/2019</span>
+              </PanelInfo>
+
+              <PanelInfo className="time">
+                <MdAccessTime />
+                <span>09:29</span>
+              </PanelInfo>
+            </PanelHeader>
+
+            <PanelEvent>
+              <strong>SUPERINTENDÊNCIA DE VIGILÂNCIA EM SAÚDE</strong>
+
+              <PanelEventActions>
+                <BtnInactive onClick={() => {}}>
+                  <span>Inativar</span>
+                  <MdBookmarkBorder />
+                </BtnInactive>
+                <BtnActive onClick={() => {}}>
+                  <span>Ativar</span>
+                  <MdBookmark />
+                </BtnActive>
+                <BtnEdit onClick={() => {}}>
+                  <span>Editar</span>
+                  <MdEdit />
+                </BtnEdit>
+              </PanelEventActions>
+            </PanelEvent>
+          </PanelBody>
+        </Panel>
+
+        <Panel>
+          <PanelAction>
+            <MdKeyboardArrowUp size={44} />
+            <MdKeyboardArrowDown size={44} />
+          </PanelAction>
+
+          <PanelBody>
+            <PanelHeader>
+              <PanelInfo className="inactive">
+                <MdBookmarkBorder size={22} />
+                <span>Inativo</span>
+              </PanelInfo>
+
+              <PanelInfo className="active">
+                <MdBookmark size={22} />
+                <span>Ativo</span>
+              </PanelInfo>
+
+              <PanelInfo className="creator">
+                <MdPerson size={22} />
+                <span>
+                  Vinicius
+                  <span>Carvalho</span>
+                </span>
+              </PanelInfo>
+
+              <PanelInfo className="revisor">
+                <MdPersonOutline size={22} />
+                <span>
+                  Vinicius
+                  <span>Carvalho</span>
+                </span>
+              </PanelInfo>
+
+              <PanelInfo className="date">
+                <MdDateRange />
+                <span>27/12/2019</span>
+              </PanelInfo>
+
+              <PanelInfo className="time">
+                <MdAccessTime />
+                <span>09:29</span>
+              </PanelInfo>
+            </PanelHeader>
+
+            <PanelEvent>
+              <strong>ORGÃOS ESTRATÉGICOS DE EXECUÇÃO</strong>
+
+              <PanelEventActions>
+                <BtnInactive onClick={() => {}}>
+                  <span>Inativar</span>
+                  <MdBookmarkBorder />
+                </BtnInactive>
+                <BtnActive onClick={() => {}}>
+                  <span>Ativar</span>
+                  <MdBookmark />
+                </BtnActive>
+                <BtnEdit onClick={() => {}}>
+                  <span>Editar</span>
+                  <MdEdit />
+                </BtnEdit>
+              </PanelEventActions>
+            </PanelEvent>
+          </PanelBody>
         </Panel>
       </PanelList>
     </PageFullscreen>
