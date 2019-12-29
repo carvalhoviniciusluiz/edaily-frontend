@@ -237,3 +237,34 @@ export const BtnEdit = styled.button.attrs(() => ({
     background: ${darken(0.03, '#fff')};
   }
 `;
+
+export const BtnAdd = styled.button.attrs(() => ({
+  className: 'btn-active',
+}))`
+  position: fixed;
+  right: 30px;
+  top: 155px;
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  font-size: 30px;
+  font-weight: 555;
+  background: transparent;
+  color: #999;
+
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    background: ${darken(0.03, '#f3f3f3')};
+  }
+
+  @media (max-width: 882px) {
+    background: #fff;
+    border-radius: 0;
+    width: 100%;
+    top: 82%;
+    right: 0;
+    height: 66px;
+  }
+`;

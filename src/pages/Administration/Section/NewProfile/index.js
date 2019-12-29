@@ -20,9 +20,9 @@ import {
   BtnAdd,
 } from './styles';
 
-export default function Modal({ setShow, show }) {
+export default function NewProfile({ setShow, show }) {
   return (
-    <ModalComponent show={show} width={600} height={350}>
+    <ModalComponent show={show} width={600} height="none">
       <Header>
         <Title>Incluir nova sessão</Title>
         <BtnClose onClick={() => setShow(false)}>
@@ -57,7 +57,7 @@ export default function Modal({ setShow, show }) {
   );
 }
 
-Modal.propTypes = {
+NewProfile.propTypes = {
   show: PropTypes.bool.isRequired,
   setShow: PropTypes.func.isRequired,
 };

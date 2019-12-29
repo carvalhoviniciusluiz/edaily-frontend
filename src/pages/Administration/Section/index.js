@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 import ToolbarMenu from '~/components/ToolbarMenu/Administration';
 
 import GovernmentProfile from './GovernmentProfile';
-import Modal from './Modal';
+import NewSection from './NewSection';
 import {
   Container,
   Navigation,
@@ -74,7 +74,7 @@ export default function Section() {
     <>
       <ToolbarMenu />
 
-      <Modal show={showModal} setShow={setShowModal} />
+      <NewSection show={showModal} setShow={setShowModal} />
       <GovernmentProfile open={showPage} setOpen={setShowPage} />
 
       <Container>

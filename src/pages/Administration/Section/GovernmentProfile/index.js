@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   MdChevronLeft,
   MdChevronRight,
@@ -15,9 +15,11 @@ import {
 } from 'react-icons/md';
 
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
 
 import PageFullscreen from '~/components/PageFullscreen';
 
+import NewProfile from '../NewProfile';
 import {
   Header,
   Title,
@@ -36,17 +38,54 @@ import {
   BtnActive,
   BtnInactive,
   BtnEdit,
+  BtnAdd,
 } from './styles';
 
 export default function GovernmentProfile({ ...res }) {
+  const [showModal, setShowModal] = useState(false);
+
   const { open, setOpen } = res;
 
   if (!open) {
     return null;
   }
 
+  const handleActive = async () => {
+    const { value } = await Swal.fire({
+      type: 'question',
+      title: 'Você tem certeza',
+      text: 'Essa sessão será ativada',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      confirmButtonText: 'Sim',
+      heightAuto: false,
+    });
+
+    if (value) {
+      console.tron.log('active..');
+    }
+  };
+
+  const handleInactive = async () => {
+    const { value } = await Swal.fire({
+      type: 'question',
+      title: 'Você tem certeza',
+      text: 'Essa sessão está prestes a ser inativada',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      confirmButtonText: 'Sim',
+      heightAuto: false,
+    });
+
+    if (value) {
+      console.tron.log('inactive..');
+    }
+  };
+
   return (
     <PageFullscreen open={open} setOpen={setOpen} background="#f8f8f8">
+      <NewProfile show={showModal} setShow={setShowModal} />
+
       <Header>
         <Title>Sessão 01</Title>
 
@@ -129,15 +168,15 @@ export default function GovernmentProfile({ ...res }) {
               <strong>AUTARQUIAS ESTADUAIS E ÓRGÃOS VINCULADOS</strong>
 
               <PanelEventActions>
-                <BtnInactive onClick={() => {}}>
+                <BtnInactive onClick={handleInactive}>
                   <span>Inativar</span>
                   <MdBookmarkBorder />
                 </BtnInactive>
-                <BtnActive onClick={() => {}}>
+                <BtnActive onClick={handleActive}>
                   <span>Ativar</span>
                   <MdBookmark />
                 </BtnActive>
-                <BtnEdit onClick={() => {}}>
+                <BtnEdit onClick={() => setShowModal(true)}>
                   <span>Editar</span>
                   <MdEdit />
                 </BtnEdit>
@@ -195,15 +234,15 @@ export default function GovernmentProfile({ ...res }) {
               <strong>SUPERINTENDÊNCIA DE VIGILÂNCIA EM SAÚDE</strong>
 
               <PanelEventActions>
-                <BtnInactive onClick={() => {}}>
+                <BtnInactive onClick={handleInactive}>
                   <span>Inativar</span>
                   <MdBookmarkBorder />
                 </BtnInactive>
-                <BtnActive onClick={() => {}}>
+                <BtnActive onClick={handleActive}>
                   <span>Ativar</span>
                   <MdBookmark />
                 </BtnActive>
-                <BtnEdit onClick={() => {}}>
+                <BtnEdit onClick={() => setShowModal(true)}>
                   <span>Editar</span>
                   <MdEdit />
                 </BtnEdit>
@@ -261,15 +300,15 @@ export default function GovernmentProfile({ ...res }) {
               <strong>ORGÃOS ESTRATÉGICOS DE EXECUÇÃO</strong>
 
               <PanelEventActions>
-                <BtnInactive onClick={() => {}}>
+                <BtnInactive onClick={handleInactive}>
                   <span>Inativar</span>
                   <MdBookmarkBorder />
                 </BtnInactive>
-                <BtnActive onClick={() => {}}>
+                <BtnActive onClick={handleActive}>
                   <span>Ativar</span>
                   <MdBookmark />
                 </BtnActive>
-                <BtnEdit onClick={() => {}}>
+                <BtnEdit onClick={() => setShowModal(true)}>
                   <span>Editar</span>
                   <MdEdit />
                 </BtnEdit>
@@ -278,6 +317,8 @@ export default function GovernmentProfile({ ...res }) {
           </PanelBody>
         </Panel>
       </PanelList>
+
+      <BtnAdd onClick={() => setShowModal(true)}>+</BtnAdd>
     </PageFullscreen>
   );
 }
