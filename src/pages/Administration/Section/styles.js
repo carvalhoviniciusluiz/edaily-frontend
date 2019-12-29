@@ -64,18 +64,48 @@ export const Panel = styled.li.attrs(() => ({
 
   @media (max-width: 662px) {
     margin: 0 10px;
+  }
+`;
 
-    div {
-      strong {
-        span {
-          span.lastname {
-            display: none;
-          }
-        }
-      }
-      strong.time {
+export const PanelInfo = styled.strong`
+  display: flex;
+  align-items: center;
+  color: #666;
+
+  font-weight: normal;
+
+  span {
+    span {
+      margin-left: 5px;
+    }
+  }
+
+  svg {
+    margin-right: 5px;
+  }
+
+  @media (max-width: 593px) {
+    &.time {
+      display: none;
+    }
+
+    span {
+      span.lastname {
         display: none;
       }
+    }
+  }
+
+  @media (max-width: 415px) {
+    &.date {
+      display: none;
+    }
+  }
+
+  @media (max-width: 322px) {
+    &.creator,
+    &.revisor {
+      display: none;
     }
   }
 `;
@@ -84,22 +114,8 @@ export const PanelHeader = styled.div`
   display: flex;
   justify-content: space-between;
 
-  strong {
-    display: flex;
-    align-items: center;
-    color: #666;
-
-    font-weight: normal;
-
-    span {
-      span {
-        margin-left: 5px;
-      }
-    }
-
-    svg {
-      margin-right: 5px;
-    }
+  @media (max-width: 322px) {
+    justify-content: flex-start;
   }
 `;
 
@@ -107,6 +123,13 @@ export const PanelBody = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
+
+  @media (max-width: 466px) {
+    flex-direction: column;
+    p {
+      margin-bottom: 10px;
+    }
+  }
 
   @media (max-width: 662px) {
     p {
@@ -150,6 +173,10 @@ export const PanelBody = styled.div`
       box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(50, 100, 150, 0.4);
     }
   }
+`;
+
+export const PanelEventActions = styled.div`
+  display: flex;
 `;
 
 export const BtnInactive = styled.button.attrs(() => ({

@@ -28,8 +28,10 @@ import {
   BtnNavigation,
   PanelList,
   Panel,
+  PanelInfo,
   PanelHeader,
   PanelBody,
+  PanelEventActions,
 } from './styles';
 
 export default function Section() {
@@ -95,37 +97,43 @@ export default function Section() {
         <PanelList>
           <Panel>
             <PanelHeader>
-              <strong className="active">
+              <PanelInfo className="active">
                 <MdBookmark size={22} />
                 <span>Ativo</span>
-              </strong>
-              <strong className="inactive">
+              </PanelInfo>
+
+              <PanelInfo className="inactive">
                 <MdBookmarkBorder size={22} />
                 <span>Inativo</span>
-              </strong>
-              <strong className="creator">
+              </PanelInfo>
+
+              <PanelInfo className="creator">
                 <MdPerson size={22} />
                 <span>
                   Vinicius
-                  <span>Carvalho</span>
+                  <span className="lastname">Carvalho</span>
                 </span>
-              </strong>
-              <strong className="revisor">
+              </PanelInfo>
+
+              <PanelInfo className="revisor">
                 <MdPersonOutline size={22} />
                 <span>
                   Vinicius
-                  <span>Carvalho</span>
+                  <span className="lastname">Carvalho</span>
                 </span>
-              </strong>
-              <strong className="date">
+              </PanelInfo>
+
+              <PanelInfo className="date">
                 <MdDateRange />
                 <span>27/12/2019</span>
-              </strong>
-              <strong className="time">
+              </PanelInfo>
+
+              <PanelInfo className="time">
                 <MdAccessTime />
                 <span>09:29</span>
-              </strong>
+              </PanelInfo>
             </PanelHeader>
+
             <PanelBody>
               <p>
                 <strong role="presentation" onClick={() => setShowPage(true)}>
@@ -133,9 +141,11 @@ export default function Section() {
                 </strong>
               </p>
 
-              <BtnActive onClick={handleActive}>Ativar</BtnActive>
-              <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
-              <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
+              <PanelEventActions>
+                <BtnActive onClick={handleActive}>Ativar</BtnActive>
+                <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
+                <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
+              </PanelEventActions>
             </PanelBody>
           </Panel>
         </PanelList>
