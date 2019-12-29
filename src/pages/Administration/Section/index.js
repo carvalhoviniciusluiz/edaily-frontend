@@ -9,6 +9,8 @@ import {
   MdBookmarkBorder,
   MdPerson,
   MdPersonOutline,
+  MdKeyboardArrowUp,
+  MdKeyboardArrowDown,
 } from 'react-icons/md';
 
 import Swal from 'sweetalert2';
@@ -28,15 +30,17 @@ import {
   BtnNavigation,
   PanelList,
   Panel,
+  PanelAction,
+  PanelBody,
   PanelInfo,
   PanelHeader,
-  PanelBody,
+  PanelEvent,
   PanelEventActions,
 } from './styles';
 
 export default function Section() {
   const [showModal, setShowModal] = useState(false);
-  const [showPage, setShowPage] = useState(true);
+  const [showPage, setShowPage] = useState(false);
 
   const handleActive = async () => {
     const { value } = await Swal.fire({
@@ -96,56 +100,185 @@ export default function Section() {
 
         <PanelList>
           <Panel>
-            <PanelHeader>
-              <PanelInfo className="active">
-                <MdBookmark size={22} />
-                <span>Ativo</span>
-              </PanelInfo>
-
-              <PanelInfo className="inactive">
-                <MdBookmarkBorder size={22} />
-                <span>Inativo</span>
-              </PanelInfo>
-
-              <PanelInfo className="creator">
-                <MdPerson size={22} />
-                <span>
-                  Vinicius
-                  <span className="lastname">Carvalho</span>
-                </span>
-              </PanelInfo>
-
-              <PanelInfo className="revisor">
-                <MdPersonOutline size={22} />
-                <span>
-                  Vinicius
-                  <span className="lastname">Carvalho</span>
-                </span>
-              </PanelInfo>
-
-              <PanelInfo className="date">
-                <MdDateRange />
-                <span>27/12/2019</span>
-              </PanelInfo>
-
-              <PanelInfo className="time">
-                <MdAccessTime />
-                <span>09:29</span>
-              </PanelInfo>
-            </PanelHeader>
+            <PanelAction>
+              <MdKeyboardArrowUp size={44} />
+              <MdKeyboardArrowDown size={44} />
+            </PanelAction>
 
             <PanelBody>
-              <p>
-                <strong role="presentation" onClick={() => setShowPage(true)}>
-                  Sessão 01
-                </strong>
-              </p>
+              <PanelHeader>
+                <PanelInfo className="inactive">
+                  <MdBookmarkBorder size={22} />
+                  <span>Inativo</span>
+                </PanelInfo>
 
-              <PanelEventActions>
-                <BtnActive onClick={handleActive}>Ativar</BtnActive>
-                <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
-                <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
-              </PanelEventActions>
+                <PanelInfo className="active">
+                  <MdBookmark size={22} />
+                  <span>Ativo</span>
+                </PanelInfo>
+
+                <PanelInfo className="creator">
+                  <MdPerson size={22} />
+                  <span>
+                    Vinicius
+                    <span className="lastname">Carvalho</span>
+                  </span>
+                </PanelInfo>
+
+                <PanelInfo className="revisor">
+                  <MdPersonOutline size={22} />
+                  <span>
+                    Vinicius
+                    <span className="lastname">Carvalho</span>
+                  </span>
+                </PanelInfo>
+
+                <PanelInfo className="date">
+                  <MdDateRange />
+                  <span>27/12/2019</span>
+                </PanelInfo>
+
+                <PanelInfo className="time">
+                  <MdAccessTime />
+                  <span>09:29</span>
+                </PanelInfo>
+              </PanelHeader>
+
+              <PanelEvent>
+                <p>
+                  <strong role="presentation" onClick={() => setShowPage(true)}>
+                    Sessão 01
+                  </strong>
+                </p>
+
+                <PanelEventActions>
+                  <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
+                  <BtnActive onClick={handleActive}>Ativar</BtnActive>
+                  <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
+                </PanelEventActions>
+              </PanelEvent>
+            </PanelBody>
+          </Panel>
+
+          <Panel>
+            <PanelAction>
+              <MdKeyboardArrowUp size={44} />
+              <MdKeyboardArrowDown size={44} />
+            </PanelAction>
+
+            <PanelBody>
+              <PanelHeader>
+                <PanelInfo className="inactive">
+                  <MdBookmarkBorder size={22} />
+                  <span>Inativo</span>
+                </PanelInfo>
+
+                <PanelInfo className="active">
+                  <MdBookmark size={22} />
+                  <span>Ativo</span>
+                </PanelInfo>
+
+                <PanelInfo className="creator">
+                  <MdPerson size={22} />
+                  <span>
+                    Vinicius
+                    <span className="lastname">Carvalho</span>
+                  </span>
+                </PanelInfo>
+
+                <PanelInfo className="revisor">
+                  <MdPersonOutline size={22} />
+                  <span>
+                    Vinicius
+                    <span className="lastname">Carvalho</span>
+                  </span>
+                </PanelInfo>
+
+                <PanelInfo className="date">
+                  <MdDateRange />
+                  <span>27/12/2019</span>
+                </PanelInfo>
+
+                <PanelInfo className="time">
+                  <MdAccessTime />
+                  <span>09:29</span>
+                </PanelInfo>
+              </PanelHeader>
+
+              <PanelEvent>
+                <p>
+                  <strong role="presentation" onClick={() => setShowPage(true)}>
+                    Sessão 02
+                  </strong>
+                </p>
+
+                <PanelEventActions>
+                  <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
+                  <BtnActive onClick={handleActive}>Ativar</BtnActive>
+                  <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
+                </PanelEventActions>
+              </PanelEvent>
+            </PanelBody>
+          </Panel>
+
+          <Panel>
+            <PanelAction>
+              <MdKeyboardArrowUp size={44} />
+              <MdKeyboardArrowDown size={44} />
+            </PanelAction>
+
+            <PanelBody>
+              <PanelHeader>
+                <PanelInfo className="inactive">
+                  <MdBookmarkBorder size={22} />
+                  <span>Inativo</span>
+                </PanelInfo>
+
+                <PanelInfo className="active">
+                  <MdBookmark size={22} />
+                  <span>Ativo</span>
+                </PanelInfo>
+
+                <PanelInfo className="creator">
+                  <MdPerson size={22} />
+                  <span>
+                    Vinicius
+                    <span className="lastname">Carvalho</span>
+                  </span>
+                </PanelInfo>
+
+                <PanelInfo className="revisor">
+                  <MdPersonOutline size={22} />
+                  <span>
+                    Vinicius
+                    <span className="lastname">Carvalho</span>
+                  </span>
+                </PanelInfo>
+
+                <PanelInfo className="date">
+                  <MdDateRange />
+                  <span>27/12/2019</span>
+                </PanelInfo>
+
+                <PanelInfo className="time">
+                  <MdAccessTime />
+                  <span>09:29</span>
+                </PanelInfo>
+              </PanelHeader>
+
+              <PanelEvent>
+                <p>
+                  <strong role="presentation" onClick={() => setShowPage(true)}>
+                    Sessão 03
+                  </strong>
+                </p>
+
+                <PanelEventActions>
+                  <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
+                  <BtnActive onClick={handleActive}>Ativar</BtnActive>
+                  <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
+                </PanelEventActions>
+              </PanelEvent>
             </PanelBody>
           </Panel>
         </PanelList>

@@ -49,9 +49,28 @@ export const PanelList = styled.ul`
   }
 `;
 
+export const PanelAction = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-right: 10px;
+
+  svg {
+    &:hover {
+      background: #fcffe2;
+      cursor: pointer;
+    }
+  }
+`;
+
+export const PanelBody = styled.div``;
+
 export const Panel = styled.li.attrs(() => ({
   className: 'with-shading',
 }))`
+  display: flex;
+  justify-content: space-between;
   padding: 26px 20px;
   border-radius: 4px;
   background: #fff;
@@ -119,9 +138,10 @@ export const PanelHeader = styled.div`
   }
 `;
 
-export const PanelBody = styled.div`
+export const PanelEvent = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 500px;
   margin-top: 15px;
 
   @media (max-width: 466px) {
@@ -140,7 +160,7 @@ export const PanelBody = styled.div`
   }
 
   p {
-    width: 425px;
+    width: 200px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -161,7 +181,7 @@ export const PanelBody = styled.div`
   }
 
   button {
-    width: 100px;
+    width: 80px;
     border: 0;
     padding: 8px;
     border-radius: 4px;
