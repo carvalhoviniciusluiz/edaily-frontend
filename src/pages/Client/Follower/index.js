@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
 import {
   MdChevronLeft,
   MdChevronRight,
@@ -9,19 +7,18 @@ import {
   MdPermIdentity,
   MdGames,
 } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
 
-import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import PDFViewer from '~/components/PDFViewer';
-
-import Modal from './Modal';
-
-import { Container, Panel, Button } from './styles';
-
+import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import {
   documentFollowRequest,
   documentFollowFetch,
   documentFollowClean,
 } from '~/store/modules/client/follower/actions';
+
+import Modal from './Modal';
+import { Container, Panel, Button } from './styles';
 
 export default function Dashboard() {
   const dispatch = useDispatch();

@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
+import { client } from '~/routes/paths';
 import api from '~/services/api';
 import history from '~/services/history';
 
@@ -29,7 +30,7 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(token, user));
 
-    history.push('/follow');
+    history.push(client.follow);
   } catch (error) {
     const message =
       error.response.status === 401
