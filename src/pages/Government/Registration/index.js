@@ -4,7 +4,7 @@ import { MdInfo } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Form, Input, Scope } from '@rocketseat/unform';
+import { Form, Input, Check, Scope } from '@rocketseat/unform';
 
 import logo from '~/assets/logo.svg';
 import InputGroup from '~/components/Fields/InputGroup';
@@ -13,6 +13,7 @@ import * as fetch from '~/services/fetch';
 import history from '~/services/history';
 import { createOrganizationRequest } from '~/store/modules/organization/actions';
 
+// import initialFormData from './data';
 import {
   Wrapper,
   Content,
@@ -24,7 +25,6 @@ import {
   MessageBox,
 } from './styles';
 import schema from './validation';
-// import initialFormData from './data';
 
 export default function PrivateCompany() {
   const organizationType = useSelector(
@@ -64,25 +64,24 @@ export default function PrivateCompany() {
     setUnautorized(!termsAccepted);
   }, [termsAccepted]);
 
-  async function fetchAddress(zipcode, prefix) {
+  async function fetchAddress(e, prefix) {
+    const zipcode = e.target.value;
     if (zipcode) {
-      const { street, neighborhood, city, state } = await fetch.viacep(zipcode);
+      try {
+        const { street, neighborhood, city, state } = await fetch.viacep(
+          zipcode
+        );
 
-      document.getElementById(`${prefix}.street`).value = street;
-      document.getElementById(`${prefix}.neighborhood`).value = neighborhood;
-      document.getElementById(`${prefix}.city`).value = city;
-      document.getElementById(`${prefix}.state`).value = state;
+        document.getElementById(`${prefix}.street`).value = street;
+        document.getElementById(`${prefix}.neighborhood`).value = neighborhood;
+        document.getElementById(`${prefix}.city`).value = city;
+        document.getElementById(`${prefix}.state`).value = state;
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.warn('[VIACEP]:.. T_T');
+      }
     }
   }
-
-  const handleResponsibleAddress = async e =>
-    fetchAddress(e.target.value, 'responsible');
-
-  const handleCompanyAddress = async e =>
-    fetchAddress(e.target.value, 'company');
-
-  const handleSubstituteAddress = async e =>
-    fetchAddress(e.target.value, 'substitute');
 
   return (
     <Wrapper>
@@ -100,7 +99,7 @@ export default function PrivateCompany() {
           <Address>
             <div>
               <h3>Informações</h3>
-              <Scope path="company">
+              <Scope path="organization">
                 <Input name="name" label="Razão social" />
                 <Input name="initials" label="Nome fantasia" />
                 <Input name="billing_email" label="E-mail de cobrança" />
@@ -111,14 +110,14 @@ export default function PrivateCompany() {
             </div>
             <div>
               <h3>Endereço</h3>
-              <Scope path="company">
+              <Scope path="organization">
                 <Input
                   name="zipcode"
                   label="CEP"
-                  onBlur={handleCompanyAddress}
+                  onBlur={e => fetchAddress(e, 'organization')}
                 />
                 <Input name="street" label="Logradouro" />
-                <Input type="number" name="street_number" label="Número" />
+                <Input name="street_number" label="Número" />
                 <Input name="neighborhood" label="Bairro" />
                 <Input name="city" label="Cidade" />
                 <Input name="state" label="Estado" />
@@ -163,12 +162,12 @@ export default function PrivateCompany() {
                 <InputGroup
                   name="zipcode"
                   label="CEP"
-                  onBlur={handleResponsibleAddress}
+                  onBlur={e => fetchAddress(e, 'responsible')}
                 >
                   <button type="button">Anexar</button>
                 </InputGroup>
                 <Input name="street" label="Logradouro" />
-                <Input type="number" name="street_number" label="Número" />
+                <Input name="street_number" label="Número" />
                 <Input name="neighborhood" label="Bairro" />
                 <Input name="city" label="Cidade" />
                 <Input name="state" label="Estado" />
@@ -201,7 +200,7 @@ export default function PrivateCompany() {
                     <InputGroup
                       name="zipcode"
                       label="CEP"
-                      onBlur={handleSubstituteAddress}
+                      onBlur={e => fetchAddress(e, 'substitute')}
                     >
                       <button type="button">Anexar</button>
                     </InputGroup>
@@ -228,13 +227,11 @@ export default function PrivateCompany() {
             </strong>
           )}
 
-          <label htmlFor="terms-authorized">
-            <input
-              id="terms-authorized"
-              name="terms"
-              type="checkbox"
+          <label htmlFor="organization.terms_accepted">
+            <Check
+              id="terms_accepted"
+              name="terms_accepted"
               onChange={() => setTermsAccepted(!termsAccepted)}
-              checked={termsAccepted}
             />
             <span>
               Concordo com os <a href="#terms">termos de uso</a> e as{' '}

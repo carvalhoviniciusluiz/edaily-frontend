@@ -29,7 +29,7 @@ export default {
     city: 'Macapá',
     state: 'AP',
   },
-  company: {
+  organization: {
     name: 'Núcleo de Imprensa Oficial',
     initials: 'NIO',
     billing_email: 'diofe@sead.ap.gov.br',

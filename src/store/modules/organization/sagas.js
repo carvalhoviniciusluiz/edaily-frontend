@@ -12,14 +12,39 @@ import {
 
 export function* createOrganization({ payload }) {
   try {
-    const { company, responsible, substitute, termsAccepted } = payload.data;
-
-    const response = yield call(api.post, 'organizations', {
-      company: { definition: 'company', ...company },
+    const {
+      organization,
       responsible,
       substitute,
-      terms_accepted: !!termsAccepted,
-    });
+      termsAccepted,
+    } = payload.data;
+
+    const data = {
+      query: `
+        mutation (
+          $organization: OrganizationInput!,
+          $responsible: UserInput!,
+          $substitute: UserInput
+        ) {
+          hasOrganization: addOrganizationWithResponsibleAndSubstitute (
+            organization: $organization,
+            responsible: $responsible,
+            substitute: $substitute
+          )
+        }
+      `,
+      variables: {
+        organization: {
+          ...organization,
+          definition: 'government',
+          terms_accepted: termsAccepted,
+        },
+        responsible,
+        substitute,
+      },
+    };
+
+    const response = yield call(api.post, '/', data);
 
     toast.success('Dados foram processados com sucesso.');
 
