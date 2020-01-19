@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { FaCamera } from 'react-icons/fa';
 import Identicon from 'react-identicons';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import { useField } from '@rocketseat/unform';
 
 import api from '~/services/api';
 
-import { Container } from './styles';
+import { Container, FileContainer, LabelIcon, FileInput } from './styles';
 
 export default function AvatarInput() {
   const { defaultValue, registerField } = useField('avatar');
@@ -18,15 +18,13 @@ export default function AvatarInput() {
 
   const ref = useRef();
 
-  useEffect(() => {
-    if (ref.current) {
-      registerField({
-        name: 'avatar_uuid',
-        ref: ref.current,
-        path: 'dataset.file',
-      });
-    }
-  }, [ref.current]); // eslint-disable-line
+  useCallback(() => {
+    registerField({
+      ref: ref.current,
+      name: 'avatar_uuid',
+      path: 'dataset.file',
+    });
+  }, [registerField]);
 
   async function handleChange(e) {
     const data = new FormData();
@@ -43,7 +41,7 @@ export default function AvatarInput() {
 
   return (
     <Container>
-      <label htmlFor="avatar">
+      <FileContainer>
         {preview ? (
           <img src={preview} alt="Avatar" />
         ) : (
@@ -55,19 +53,12 @@ export default function AvatarInput() {
           />
         )}
 
-        <input
-          type="file"
-          id="avatar"
-          accept="image/*"
-          data-file={file}
-          onChange={handleChange}
-          ref={ref}
-        />
-
-        <div className="fieldInput">
+        <LabelIcon>
           <FaCamera color="#fff" size={20} />
-        </div>
-      </label>
+        </LabelIcon>
+
+        <FileInput data-file={file} onChange={handleChange} ref={ref} />
+      </FileContainer>
     </Container>
   );
 }
