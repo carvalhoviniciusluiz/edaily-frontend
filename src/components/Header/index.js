@@ -44,7 +44,7 @@ export default function Header() {
               <span>{profile.email}</span>
             </div>
 
-            {profile.avatar.avatar ? (
+            {profile.avatar && profile.avatar.avatar ? (
               <img src={profile.avatar.avatar} alt="Avatar" />
             ) : (
               <Identicon

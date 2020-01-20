@@ -1,13 +1,19 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Form, Input } from '@rocketseat/unform';
-
 import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
 import AvatarInput from './AvatarInput';
-import { Container, InputGroup, InputItem } from './styles';
+import {
+  Container,
+  Form,
+  Input,
+  BtnSubmit,
+  BtnClose,
+  InputGroup,
+  InputItem,
+} from './styles';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -87,7 +93,7 @@ export default function Profile() {
 
         <Input type="password" name="old_password" label="Senha atual" />
 
-        <Input name="password" type="password" label="Nova senha" />
+        <Input type="password" name="password" label="Nova senha" />
 
         <Input
           type="password"
@@ -95,12 +101,10 @@ export default function Profile() {
           label="Confirmação de senha"
         />
 
-        <button type="submit">Atualizar perfil</button>
+        <BtnSubmit>Atualizar perfil</BtnSubmit>
       </Form>
 
-      <button type="button" onClick={handleSignOut}>
-        Sair da App
-      </button>
+      <BtnClose onClick={handleSignOut}>Sair da App</BtnClose>
     </Container>
   );
 }
