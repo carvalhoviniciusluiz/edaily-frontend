@@ -5,10 +5,10 @@ export function documentFollowRequest({ page = 1, perPage = 10, profile }) {
   };
 }
 
-export function documentFollowFetch({ documentId }) {
+export function documentFollowFetch({ documentUUID, profile }) {
   return {
     type: '@document/DOCUMENT_FOLLOW_FETCH',
-    payload: { documentId },
+    payload: { documentUUID, profile },
   };
 }
 

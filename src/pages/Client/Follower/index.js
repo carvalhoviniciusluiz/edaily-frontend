@@ -52,8 +52,8 @@ export default function Dashboard() {
     setDocuments(data);
   }, [data]);
 
-  const handleDocumentClick = async documentId => {
-    await dispatch(documentFollowFetch({ documentId }));
+  const handleDocumentClick = async documentUUID => {
+    await dispatch(documentFollowFetch({ documentUUID, profile }));
 
     setShow(true);
   };
@@ -108,7 +108,7 @@ export default function Dashboard() {
                 </ActionTitle>
 
                 <BtnAction
-                  onClick={() => handleDocumentClick(document.id)}
+                  onClick={() => handleDocumentClick(document.uuid)}
                   role="presentation"
                 >
                   <MdGames />

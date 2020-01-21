@@ -8,12 +8,16 @@ import ModalComponent from '~/components/Modal';
 
 import {
   Header,
-  Body,
+  Title,
+  BtnClose,
   Footer,
   BtnCancel,
   BtnStop,
   InputItem,
+  ItemBody,
+  ItemAction,
   Form,
+  FormBody,
   Input,
 } from './styles';
 
@@ -25,38 +29,36 @@ export default function Modal({ setShow, show }) {
   };
 
   return (
-    <>
-      <ModalComponent show={show} height={300}>
-        <Header>
-          <h4 className="h4">
-            <strong>{document && document.protocolNumber}</strong>
-            <small>{document && document.file.name}</small>
-          </h4>
-          <button type="button" onClick={() => setShow(false)}>
-            <span>×</span>
-          </button>
-        </Header>
+    <ModalComponent show={show} height={300}>
+      <Header>
+        <Title>
+          <strong>{document && document.protocol}</strong>
+          <small>{document && document.file.name}</small>
+        </Title>
+        <BtnClose onClick={() => setShow(false)}>
+          <span>×</span>
+        </BtnClose>
+      </Header>
 
-        <Form onSubmit={handleSubmit} initialData={document}>
-          <Body>
-            <InputItem className="custom-field">
-              <label>Data de publicação</label>
-              <div>
-                <Input name="forwardedAt" disabled />
-                <div className="actions">
-                  <button type="button">Alterar</button>
-                </div>
-              </div>
-            </InputItem>
-          </Body>
+      <Form onSubmit={handleSubmit} initialData={document}>
+        <FormBody>
+          <InputItem>
+            <label>Data de publicação</label>
+            <ItemBody>
+              <Input name="updatedAt" disabled />
+              <ItemAction>
+                <button type="button">Alterar</button>
+              </ItemAction>
+            </ItemBody>
+          </InputItem>
+        </FormBody>
 
-          <Footer>
-            <BtnStop type="submit">Sustar publicação</BtnStop>
-            <BtnCancel onClick={() => setShow(false)}>cancelar</BtnCancel>
-          </Footer>
-        </Form>
-      </ModalComponent>
-    </>
+        <Footer>
+          <BtnStop type="submit">Sustar publicação</BtnStop>
+          <BtnCancel onClick={() => setShow(false)}>cancelar</BtnCancel>
+        </Footer>
+      </Form>
+    </ModalComponent>
   );
 }
 

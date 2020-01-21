@@ -20,7 +20,7 @@ export function* documentFollowResquest({ payload }) {
     const response = yield call(api.post, '/', {
       query: `
       {
-        documents:documents(
+        documents:getAllDocuments(
           organization:{
             uuid:"${profile.organization.uuid}",
           },
@@ -91,11 +91,68 @@ export function* documentFollowResquest({ payload }) {
 
 export function* documentFollowFetch({ payload }) {
   try {
-    const { documentId } = payload;
+    const { documentUUID, profile } = payload;
 
-    const response = yield call(api.get, `documents/${documentId}`);
+    const response = yield call(api.post, '/', {
+      query: `
+      {
+        document:getDocument(
+          organization:{
+            uuid:"${profile.organization.uuid}",
+          },
+          document:{
+            uuid: "${documentUUID}",
+          }
+        ) {
+          uuid
+          protocol
+          file {
+            uuid
+            file
+            name
+            type
+            subtype
+            avatar
+            url
+          }
+          pages
+          author {
+            uuid
+            firstname
+            lastname
+            email
+            cpf
+          }
+          reviser {
+            uuid
+            firstname
+            lastname
+            email
+          }
+          responsable {
+            uuid
+            firstname
+            lastname
+            email
+          }
+          organization {
+            uuid
+            name
+            initials
+          }
+          canceledAt
+          forwardedAt
+          publishedAt
+          updatedAt
+          createdAt
+        }
+      }
+      `,
+    });
 
-    yield put(documentFollowFetchSuccess(response.data));
+    const { data } = response.data;
+
+    yield put(documentFollowFetchSuccess(data.document));
   } catch (error) {
     toast.error('Falha na recuperação dos dados, verifique sua conexão.');
 
