@@ -1,7 +1,7 @@
-export function documentFollowRequest({ limit = 10, page = 1 }) {
+export function documentFollowRequest({ page = 1, perPage = 10, profile }) {
   return {
     type: '@document/DOCUMENT_FOLLOW_REQUEST',
-    payload: { limit, page },
+    payload: { page, perPage, profile },
   };
 }
 

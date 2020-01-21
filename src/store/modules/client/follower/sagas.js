@@ -15,21 +15,69 @@ import {
 
 export function* documentFollowResquest({ payload }) {
   try {
-    const { limit = 10, page = 1 } = payload;
-    const response = yield call(
-      api.get,
-      `documents/following?limit=${limit}&page=${page}`
-    );
-    const { data: documents, ...meta } = response.data;
+    const { page = 1, perPage = 10, profile } = payload;
+
+    const response = yield call(api.post, '/', {
+      query: `
+      {
+        documents:documents(
+          organization:{
+            uuid:"${profile.organization.uuid}",
+          },
+          user:{
+            uuid:"${profile.uuid}",
+          },
+          page:${page},
+          perPage:${perPage}
+        ) {
+          total
+          perPage
+          page
+          lastPage
+          data {
+            uuid
+            protocol
+            file {
+              uuid
+              name
+              url
+            }
+            author {
+              firstname
+              lastname
+            }
+            responsable{
+              firstname
+              lastname
+            }
+            organization{
+              initials
+            }
+            updatedAt
+          }
+        }
+      }
+      `,
+    });
+
+    const {
+      data: {
+        documents: { data: documents, ...meta },
+      },
+    } = response.data;
 
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const data = documents.map(({ forwardedAt, ...rest }) => {
-      const datetime = utcToZonedTime(forwardedAt, timezone);
+
+    const data = documents.map(({ updatedAt, ...rest }) => {
+      const datetime = utcToZonedTime(new Date(Number(updatedAt)), timezone);
+      const date = format(datetime, 'dd/MM/yyyy', { locale: pt });
+      const time = format(datetime, 'HH:mm', { locale: pt });
+
       return {
         ...rest,
-        date: format(datetime, "dd/MM/yyyy", { locale: pt }), // eslint-disable-line
-        time: format(datetime, "HH:mm", { locale: pt }), // eslint-disable-line
-        forwardedAt: utcToZonedTime(forwardedAt, timezone),
+        date,
+        time,
+        updatedAt: datetime,
       };
     });
 
