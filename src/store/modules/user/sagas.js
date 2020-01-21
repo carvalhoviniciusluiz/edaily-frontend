@@ -127,6 +127,9 @@ function* updateProfile(params) {
 export function* update({ payload }) {
   const { data } = payload;
 
+  // @TODO
+  // refator..
+
   yield updateAvatar(data);
   yield updatePassword(data);
   yield updateProfile(data);
