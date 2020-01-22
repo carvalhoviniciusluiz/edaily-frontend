@@ -77,7 +77,7 @@ export default function Dashboard() {
 
         <ListPanel>
           {documents.map(document => (
-            <Panel key={document.uuid}>
+            <Panel key={document.uuid} canceled={document.canceledAt}>
               <PanelBody>
                 <strong className="time">{document.time}</strong>
                 <strong>
@@ -107,12 +107,14 @@ export default function Dashboard() {
                   </span>
                 </ActionTitle>
 
-                <BtnAction
-                  onClick={() => handleDocumentClick(document.uuid)}
-                  role="presentation"
-                >
-                  <MdGames />
-                </BtnAction>
+                {!document.canceledAt && (
+                  <BtnAction
+                    onClick={() => handleDocumentClick(document.uuid)}
+                    role="presentation"
+                  >
+                    <MdGames />
+                  </BtnAction>
+                )}
               </PanelActions>
             </Panel>
           ))}

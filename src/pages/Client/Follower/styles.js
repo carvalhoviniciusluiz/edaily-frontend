@@ -24,7 +24,8 @@ export const Panel = styled.li.attrs({
   border-radius: 4px;
   background: #fff;
 
-  opacity: ${props => (props.past ? 0.6 : 1)};
+  opacity: ${props => (props.canceled ? 0.6 : 1)};
+  cursor: ${props => (props.canceled ? 'not-allowed' : 'auto')};
 
   & + li {
     margin-top: 15px;

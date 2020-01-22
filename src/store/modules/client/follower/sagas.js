@@ -54,6 +54,7 @@ export function* documentFollowResquest({ payload }) {
               initials
             }
             updatedAt
+            canceledAt
           }
         }
       }

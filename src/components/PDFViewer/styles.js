@@ -161,6 +161,7 @@ export const Lockscreen = styled.div`
 
   display: flex;
   flex-direction: column;
+  z-index: 9;
 
   @media (max-width: 1040px) {
     ${DocumentHistory} {
