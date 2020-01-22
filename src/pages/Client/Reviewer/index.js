@@ -52,7 +52,7 @@ export default function Dashboard() {
     setDocuments(data);
   }, [data]);
 
-  const handleCancel = async id => {
+  const handleCancel = async uuid => {
     const { value } = await Swal.fire({
       type: 'question',
       title: 'Você tem certeza',
@@ -65,10 +65,10 @@ export default function Dashboard() {
     if (value) {
       setDocuments(
         documents.filter(document => {
-          if (document.id === id) {
-            dispatch(documentDestroy(document.file.id));
+          if (document.uuid === uuid) {
+            dispatch(documentDestroy(document.file.uuid));
           }
-          return document.id !== id;
+          return document.uuid !== uuid;
         })
       );
     }
