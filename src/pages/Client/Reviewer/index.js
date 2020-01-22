@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  MdChevronLeft,
-  MdChevronRight,
   MdAccessTime,
   MdSupervisorAccount,
   MdPermIdentity,
@@ -10,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Swal from 'sweetalert2';
 
+import Pagination from '~/components/Pagination';
 import PDFViewer from '~/components/PDFViewer';
 import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import {
@@ -19,7 +18,16 @@ import {
   documentClean,
 } from '~/store/modules/client/reviewer/actions';
 
-import { Container, Panel, Button } from './styles';
+import {
+  Container,
+  Panel,
+  ListPanel,
+  PanelTop,
+  PanelActions,
+  ActionTitle,
+  BtnCancel,
+  BtnSend,
+} from './styles';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -33,9 +41,6 @@ export default function Dashboard() {
   const [url, setUrl] = useState(null);
 
   const [inputValue, setInputValue] = useState(1);
-
-  const [desablePrev, setDesablePrev] = useState(true);
-  const [desableNext, setDesableNext] = useState(false);
 
   useEffect(() => {
     setInputValue(page);
@@ -69,7 +74,7 @@ export default function Dashboard() {
     }
   };
 
-  const handleForward = async id => {
+  const handleForward = async uuid => {
     const { value } = await Swal.fire({
       type: 'question',
       title: 'Você confirma essa ação',
@@ -83,78 +88,34 @@ export default function Dashboard() {
     if (value) {
       setDocuments(
         documents.filter(document => {
-          if (document.id === id) {
-            dispatch(documentForward(document.id));
+          if (document.uuid === uuid) {
+            dispatch(documentForward(document.uuid));
           }
-          return document.id !== id;
+          return document.uuid !== uuid;
         })
       );
     }
   };
-
-  const handleChangeInputValue = e => {
-    setInputValue(e.target.value);
-  };
-
-  const handleFetchPage = e => {
-    if (!e.target.value) {
-      setInputValue(page);
-      return;
-    }
-    setPage(e.target.value);
-  };
-
-  function handlePrevPage() {
-    const newPage = page - 1;
-    if (newPage === meta.pages) return;
-
-    setPage(newPage);
-    setDesablePrev(newPage === 1);
-    setDesableNext(newPage === meta.pages);
-  }
-
-  function handleNextPage() {
-    const newPage = page + 1;
-    if (newPage > meta.pages) {
-      setDesableNext(true);
-      return;
-    }
-
-    setPage(newPage);
-    setDesablePrev(desableNext);
-    setDesableNext(newPage === meta.pages);
-  }
 
   return (
     <>
       <ToolbarMenu />
 
       <Container>
-        <header>
-          <Button onClick={handlePrevPage} desable={desablePrev}>
-            <MdChevronLeft size={36} color="#fff" />
-          </Button>
-          <div>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleChangeInputValue}
-              onBlur={handleFetchPage}
-            />
-            <strong>/</strong>
-            <strong>{meta.pages}</strong>
-          </div>
-          <Button onClick={handleNextPage} desable={desableNext}>
-            <MdChevronRight size={36} color="#fff" />
-          </Button>
-        </header>
+        <Pagination
+          meta={meta}
+          page={page}
+          setPage={setPage}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+        />
 
         {url && <PDFViewer url={url} toggleRender={setUrl} />}
 
-        <ul>
+        <ListPanel>
           {documents.map(document => (
-            <Panel key={document.id} className="with-shading">
-              <div>
+            <Panel key={document.uuid}>
+              <PanelTop>
                 <strong className="time">{document.time}</strong>
                 <strong>
                   <MdSupervisorAccount size={22} />
@@ -171,9 +132,9 @@ export default function Dashboard() {
                   <MdAccessTime />
                   <span>{document.date}</span>
                 </strong>
-              </div>
-              <div>
-                <p>
+              </PanelTop>
+              <PanelActions>
+                <ActionTitle>
                   <a
                     href="#viewer"
                     rel="noopener noreferrer"
@@ -181,26 +142,18 @@ export default function Dashboard() {
                   >
                     {document.file.name}
                   </a>
-                </p>
+                </ActionTitle>
 
-                <button
-                  type="button"
-                  className="cancel"
-                  onClick={() => handleCancel(document.id)}
-                >
+                <BtnCancel onClick={() => handleCancel(document.uuid)}>
                   Sustar
-                </button>
-                <button
-                  type="button"
-                  className="send"
-                  onClick={() => handleForward(document.id)}
-                >
+                </BtnCancel>
+                <BtnSend onClick={() => handleForward(document.uuid)}>
                   Enviar
-                </button>
-              </div>
+                </BtnSend>
+              </PanelActions>
             </Panel>
           ))}
-        </ul>
+        </ListPanel>
       </Container>
     </>
   );
