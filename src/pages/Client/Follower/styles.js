@@ -17,7 +17,9 @@ export const ListPanel = styled.ul`
   }
 `;
 
-export const Panel = styled.li`
+export const Panel = styled.li.attrs({
+  className: 'with-shading',
+})`
   padding: 20px;
   border-radius: 4px;
   background: #fff;

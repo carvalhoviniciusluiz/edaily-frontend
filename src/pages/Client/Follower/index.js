@@ -77,7 +77,7 @@ export default function Dashboard() {
 
         <ListPanel>
           {documents.map(document => (
-            <Panel key={document.uuid} className="with-shading">
+            <Panel key={document.uuid}>
               <PanelBody>
                 <strong className="time">{document.time}</strong>
                 <strong>
