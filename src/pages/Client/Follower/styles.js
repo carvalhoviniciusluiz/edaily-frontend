@@ -59,7 +59,7 @@ export const FlagPanel = styled.div`
 
     &,
     svg {
-      color: #599bc1;
+      color: #f27474;
     }
   }
 

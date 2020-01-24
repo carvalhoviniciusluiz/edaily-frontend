@@ -93,8 +93,21 @@ export function* documentFollowResquest({ payload }) {
       const date = format(datetime, 'dd/MM/yyyy', { locale: pt });
       const time = format(datetime, 'HH:mm', { locale: pt });
 
+      const { cancellation } = rest;
+
+      const hasCancellation = !!cancellation;
+      if (hasCancellation) {
+        const canceledAt = new Date(Number(cancellation.canceledAt));
+        cancellation.canceledAt = format(canceledAt, 'dd/MM/yyyy', {
+          locale: pt,
+        });
+      }
+
       return {
-        ...rest,
+        ...{
+          ...rest,
+          cancellation,
+        },
         date,
         time,
         updatedAt: datetime,

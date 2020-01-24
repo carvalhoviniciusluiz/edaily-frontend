@@ -99,18 +99,26 @@ export default function Dashboard() {
                   </span>
                 </strong>
                 {document.cancellation && (
-                  <strong className="cancellation">
-                    <MdPermIdentity size={22} />
-                    <span>
-                      {document.cancellation.author.firstname}
-                      <span>{document.cancellation.author.lastname}</span>
-                    </span>
+                  <>
+                    <strong className="cancellation">
+                      <MdPermIdentity size={22} />
+                      <span>
+                        {document.cancellation.author.firstname}
+                        <span>{document.cancellation.author.lastname}</span>
+                      </span>
+                    </strong>
+                    <strong className="cancellation">
+                      <MdAccessTime />
+                      <span>{document.cancellation.canceledAt}</span>
+                    </strong>
+                  </>
+                )}
+                {!document.cancellation && (
+                  <strong>
+                    <MdAccessTime />
+                    <span>{document.date}</span>
                   </strong>
                 )}
-                <strong>
-                  <MdAccessTime />
-                  <span>{document.date}</span>
-                </strong>
               </FlagPanel>
               <PanelActions>
                 <ActionTitle>
