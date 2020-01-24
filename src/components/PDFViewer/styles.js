@@ -79,6 +79,7 @@ export const DocumentHistory = styled.div.attrs({
 
   ul {
     margin-left: 20px;
+    margin-bottom: 70px;
 
     li {
       display: flex;
