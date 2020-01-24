@@ -46,12 +46,21 @@ export const Panel = styled.li.attrs({
   }
 `;
 
-export const PanelBody = styled.div`
+export const FlagPanel = styled.div`
   display: flex;
   justify-content: space-between;
 
   strong.time {
     font-size: 24px;
+  }
+
+  strong.cancellation {
+    font-weight: bold;
+
+    &,
+    svg {
+      color: #599bc1;
+    }
   }
 
   strong {

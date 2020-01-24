@@ -22,7 +22,7 @@ import {
   Panel,
   ListPanel,
   PanelActions,
-  PanelBody,
+  FlagPanel,
   ActionTitle,
   BtnAction,
 } from './styles';
@@ -85,7 +85,7 @@ export default function Dashboard() {
                   : undefined
               }
             >
-              <PanelBody>
+              <FlagPanel>
                 <strong className="time">{document.time}</strong>
                 <strong>
                   <MdSupervisorAccount size={22} />
@@ -98,11 +98,20 @@ export default function Dashboard() {
                     <span>{document.author.lastname}</span>
                   </span>
                 </strong>
+                {document.cancellation && (
+                  <strong className="cancellation">
+                    <MdPermIdentity size={22} />
+                    <span>
+                      {document.cancellation.author.firstname}
+                      <span>{document.cancellation.author.lastname}</span>
+                    </span>
+                  </strong>
+                )}
                 <strong>
                   <MdAccessTime />
                   <span>{document.date}</span>
                 </strong>
-              </PanelBody>
+              </FlagPanel>
               <PanelActions>
                 <ActionTitle>
                   <strong>{document.protocolNumber}</strong>
