@@ -46,15 +46,32 @@ export function* documentFollowResquest({ payload }) {
               firstname
               lastname
             }
-            responsable{
+            responsable {
               firstname
               lastname
             }
-            organization{
+            organization {
               initials
             }
+            publication {
+              author {
+                uuid
+                firstname
+                lastname
+                email
+              }
+              publishedAt
+            }
+            cancellation {
+              author {
+                uuid
+                firstname
+                lastname
+                email
+              }
+              canceledAt
+            }
             updatedAt
-            canceledAt
           }
         }
       }
@@ -69,6 +86,8 @@ export function* documentFollowResquest({ payload }) {
 
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+    // @TODO
+    // vvv handle error in array processing.. vvv
     const data = documents.map(({ updatedAt, ...rest }) => {
       const datetime = utcToZonedTime(new Date(Number(updatedAt)), timezone);
       const date = format(datetime, 'dd/MM/yyyy', { locale: pt });
@@ -122,7 +141,6 @@ export function* documentFollowFetch({ payload }) {
             firstname
             lastname
             email
-            cpf
           }
           reviser {
             uuid
@@ -141,9 +159,33 @@ export function* documentFollowFetch({ payload }) {
             name
             initials
           }
-          canceledAt
-          forwardedAt
-          publishedAt
+          forwarding {
+            author {
+              uuid
+              firstname
+              lastname
+              email
+            }
+            forwardedAt
+          }
+          publication {
+            author {
+              uuid
+              firstname
+              lastname
+              email
+            }
+            publishedAt
+          }
+          cancellation {
+            author {
+              uuid
+              firstname
+              lastname
+              email
+            }
+            canceledAt
+          }
           updatedAt
           createdAt
         }

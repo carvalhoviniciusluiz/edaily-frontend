@@ -36,12 +36,21 @@ export function* documentResquest({ payload }) {
               firstname
               lastname
             }
-            responsable{
+            responsable {
               firstname
               lastname
             }
-            organization{
+            organization {
               initials
+            }
+            publication {
+              author {
+                uuid
+                firstname
+                lastname
+                email
+              }
+              publishedAt
             }
             updatedAt
           }
