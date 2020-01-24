@@ -22,7 +22,7 @@ import {
   Container,
   Panel,
   ListPanel,
-  PanelTop,
+  FlagPanel,
   PanelActions,
   ActionTitle,
   BtnCancel,
@@ -32,6 +32,7 @@ import {
 export default function Dashboard() {
   const dispatch = useDispatch();
 
+  const profile = useSelector(state => state.user.profile);
   const data = useSelector(state => state.review.data);
   const meta = useSelector(state => state.review.meta);
 
@@ -89,7 +90,7 @@ export default function Dashboard() {
       setDocuments(
         documents.filter(document => {
           if (document.uuid === uuid) {
-            dispatch(documentForward(document.uuid));
+            dispatch(documentForward(document.uuid, profile));
           }
           return document.uuid !== uuid;
         })
@@ -115,7 +116,7 @@ export default function Dashboard() {
         <ListPanel>
           {documents.map(document => (
             <Panel key={document.uuid}>
-              <PanelTop>
+              <FlagPanel>
                 <strong className="time">{document.time}</strong>
                 <strong>
                   <MdSupervisorAccount size={22} />
@@ -132,7 +133,7 @@ export default function Dashboard() {
                   <MdAccessTime />
                   <span>{document.date}</span>
                 </strong>
-              </PanelTop>
+              </FlagPanel>
               <PanelActions>
                 <ActionTitle>
                   <a

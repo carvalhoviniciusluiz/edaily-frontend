@@ -19,10 +19,10 @@ export function documentDestroy(id) {
   };
 }
 
-export function documentForward(id) {
+export function documentForward(documentUUID, profile) {
   return {
     type: '@document/DOCUMENT_FORWARD',
-    payload: { id },
+    payload: { documentUUID, profile },
   };
 }
 

@@ -41,7 +41,7 @@ export const Panel = styled.li.attrs({
   }
 `;
 
-export const PanelTop = styled.div`
+export const FlagPanel = styled.div`
   display: flex;
   justify-content: space-between;
 

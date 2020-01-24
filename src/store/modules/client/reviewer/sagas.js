@@ -101,8 +101,29 @@ export function* destroy({ payload }) {
 
 export function* forward({ payload }) {
   try {
-    const { id } = payload;
-    yield call(api.put, `documents/${id}/forward`);
+    const { documentUUID, profile } = payload;
+
+    yield call(api.post, '/', {
+      query: `
+      mutation (
+        $organization: OrganizationFieldsInput!,
+        $document: DocumentFieldsInput!
+      ){
+        sendDocument(
+          organization: $organization,
+          document: $document
+        )
+      }
+      `,
+      variables: {
+        organization: {
+          uuid: profile.organization.uuid,
+        },
+        document: {
+          uuid: documentUUID,
+        },
+      },
+    });
   } catch (error) {
     toast.error('Falha na recuperação dos dados, verifique sua conexão.');
 
