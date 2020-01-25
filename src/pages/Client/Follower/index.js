@@ -100,10 +100,7 @@ export default function Dashboard() {
                 <FlagForwarding document={document} />
                 <FlagDate
                   document={document}
-                  show={
-                    document.cancellation === null &&
-                    document.forwarding === null
-                  }
+                  show={!document.cancellation && !document.forwarding}
                 />
               </FlagPanel>
               <PanelActions>
