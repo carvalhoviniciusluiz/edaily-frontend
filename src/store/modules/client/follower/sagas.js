@@ -46,12 +46,17 @@ export function* documentFollowResquest({ payload }) {
               firstname
               lastname
             }
-            responsable {
-              firstname
-              lastname
-            }
             organization {
               initials
+            }
+            forwarding {
+              author {
+                uuid
+                firstname
+                lastname
+                email
+              }
+              forwardedAt
             }
             publication {
               author {
@@ -93,7 +98,7 @@ export function* documentFollowResquest({ payload }) {
       const date = format(datetime, 'dd/MM/yyyy', { locale: pt });
       const time = format(datetime, 'HH:mm', { locale: pt });
 
-      const { cancellation } = rest;
+      const { cancellation, forwarding } = rest;
 
       const hasCancellation = !!cancellation;
       if (hasCancellation) {
@@ -103,11 +108,16 @@ export function* documentFollowResquest({ payload }) {
         });
       }
 
+      const hasForwarding = !!forwarding;
+      if (hasForwarding) {
+        const forwardedAt = new Date(Number(forwarding.forwardedAt));
+        forwarding.forwardedAt = format(forwardedAt, 'dd/MM/yyyy', {
+          locale: pt,
+        });
+      }
+
       return {
-        ...{
-          ...rest,
-          cancellation,
-        },
+        ...rest,
         date,
         time,
         updatedAt: datetime,

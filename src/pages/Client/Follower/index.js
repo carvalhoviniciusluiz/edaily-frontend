@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  MdAccessTime,
-  MdSupervisorAccount,
-  MdPermIdentity,
-  MdGames,
-} from 'react-icons/md';
+import { MdPermIdentity, MdGames } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Pagination from '~/components/Pagination';
@@ -16,6 +11,9 @@ import {
   documentFollowClean,
 } from '~/store/modules/client/follower/actions';
 
+import FlagCancellation from './Components/FlagCancellation';
+import FlagDate from './Components/FlagDate';
+import FlagForwarding from './Components/FlagForwarding';
 import Modal from './Modal';
 import {
   Container,
@@ -87,42 +85,30 @@ export default function Dashboard() {
             >
               <FlagPanel>
                 <strong className="time">{document.time}</strong>
-                <strong>
+                {/* <strong>
                   <MdSupervisorAccount size={22} />
                   <span>{document.organization.initials}</span>
-                </strong>
-                <strong>
+                </strong> */}
+                <strong className="author">
                   <MdPermIdentity size={22} />
                   <span>
                     {document.author.firstname}
                     <span>{document.author.lastname}</span>
                   </span>
                 </strong>
-                {document.cancellation && (
-                  <>
-                    <strong className="cancellation">
-                      <MdPermIdentity size={22} />
-                      <span>
-                        {document.cancellation.author.firstname}
-                        <span>{document.cancellation.author.lastname}</span>
-                      </span>
-                    </strong>
-                    <strong className="cancellation">
-                      <MdAccessTime />
-                      <span>{document.cancellation.canceledAt}</span>
-                    </strong>
-                  </>
-                )}
-                {!document.cancellation && (
-                  <strong>
-                    <MdAccessTime />
-                    <span>{document.date}</span>
-                  </strong>
-                )}
+                <FlagCancellation document={document} />
+                <FlagForwarding document={document} />
+                <FlagDate
+                  document={document}
+                  show={
+                    document.cancellation === null &&
+                    document.forwarding === null
+                  }
+                />
               </FlagPanel>
               <PanelActions>
                 <ActionTitle>
-                  <strong>{document.protocolNumber}</strong>
+                  {document.protocol && <strong>{document.protocol}</strong>}
                   <span
                     onClick={() => setUrl(document.file.url)}
                     role="presentation"
@@ -131,7 +117,7 @@ export default function Dashboard() {
                   </span>
                 </ActionTitle>
 
-                {!document.cancellation && (
+                {!document.cancellation && document.forwarding && (
                   <BtnAction
                     onClick={() => handleDocumentClick(document.uuid)}
                     role="presentation"

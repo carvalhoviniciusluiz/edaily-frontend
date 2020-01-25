@@ -54,15 +54,6 @@ export const FlagPanel = styled.div`
     font-size: 24px;
   }
 
-  strong.cancellation {
-    font-weight: bold;
-
-    &,
-    svg {
-      color: #f27474;
-    }
-  }
-
   strong {
     display: flex;
     align-items: center;
@@ -78,6 +69,27 @@ export const FlagPanel = styled.div`
       margin-right: 5px;
     }
   }
+
+  @media (max-width: 352px) {
+    strong.date {
+      display: none;
+    }
+  }
+  @media (max-width: 276px) {
+    strong.current-date {
+      display: none;
+    }
+  }
+  @media (max-width: 256px) {
+    strong.event-author {
+      display: none;
+    }
+  }
+  @media (max-width: 180px) {
+    strong.author {
+      display: none;
+    }
+  }
 `;
 
 export const PanelActions = styled.div.attrs({
@@ -90,6 +102,9 @@ export const PanelActions = styled.div.attrs({
 
 export const ActionTitle = styled.p`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   width: 500px;
   white-space: nowrap;
   overflow: hidden;
@@ -97,7 +112,8 @@ export const ActionTitle = styled.p`
 
   strong {
     font-size: 18px;
-    font-weight: normal;
+    margin-right: 15px;
+    color: #555;
   }
 
   span {
