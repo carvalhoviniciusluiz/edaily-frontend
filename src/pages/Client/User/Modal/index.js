@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { MdMailOutline, MdInfoOutline } from 'react-icons/md';
-import Identicon from 'react-identicons';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Form, Input, Check } from '@rocketseat/unform';
 import PropTypes from 'prop-types';
 
+import AvatarOrIdenticon from '~/components/AvatarOrIdenticon';
+import InputGroupAddon from '~/components/Fields/InputGroup';
 import ModalComponent from '~/components/Modal';
 import {
   sendForgotPassword,
@@ -16,12 +16,19 @@ import {
 import DocumentHistory from '../DocumentHistory';
 import {
   Header,
+  Title,
+  BtnClose,
   Body,
-  Footer,
-  CancelButton,
-  SaveButton,
+  Form,
   InputGroup,
   InputItem,
+  Input,
+  Check,
+  BtnInfo,
+  AcceptTerms,
+  Footer,
+  BtnCancel,
+  BtnSubmit,
 } from './styles';
 
 export default function Modal({ setShow, show }) {
@@ -30,12 +37,10 @@ export default function Modal({ setShow, show }) {
 
   const dispatch = useDispatch();
 
-  const disable = target => {
-    return target && target.is_responsible;
-  };
-
-  const getAttr = (attr, target) => {
-    return target && target[attr];
+  const isDisabled = target => {
+    return target && target.is_responsible && target.is_active
+      ? 'disabled'
+      : undefined;
   };
 
   const handlePasswordRequest = () => {
@@ -56,30 +61,20 @@ export default function Modal({ setShow, show }) {
 
       <ModalComponent show={show} height={500}>
         <Header>
-          <h4 className="title">
-            {getAttr('firstname', user)}
-            <span>{getAttr('lastname', user)}</span>
-            <small>#{getAttr('uuid', user)}</small>
-          </h4>
-          <button type="button" onClick={() => setShow(false)}>
+          <Title className="title">
+            {user && user.firstname}
+
+            <span>{user && user.lastname}</span>
+            <small>#{user && user.uuid}</small>
+          </Title>
+          <BtnClose onClick={() => setShow(false)}>
             <span>×</span>
-          </button>
+          </BtnClose>
         </Header>
 
         <Body>
           <Form initialData={user}>
-            <div className="avatar">
-              {user && user.avatar ? (
-                <img src={user.avatar.avatar} alt="Avatar" />
-              ) : (
-                <Identicon
-                  string={`${user && user.firstname} ${user && user.lastname}`}
-                  size={120}
-                  bg="#fff"
-                  fg="#333"
-                />
-              )}
-            </div>
+            <AvatarOrIdenticon user={user || {}} size={120} encapsulated />
 
             <InputGroup>
               <InputItem>
@@ -92,7 +87,7 @@ export default function Modal({ setShow, show }) {
             </InputGroup>
 
             <InputGroup>
-              <InputItem className="custom-field">
+              <InputItem className="custom">
                 <label>Email</label>
                 <div>
                   <Input type="email" name="email" disabled />
@@ -108,53 +103,60 @@ export default function Modal({ setShow, show }) {
                   </span>
                 )}
               </InputItem>
+
               <InputItem>
                 <Input name="phone" label="Celular" />
               </InputItem>
             </InputGroup>
 
             <InputGroup>
-              <InputItem className="custom-field">
-                <label>CPF</label>
-                <div>
-                  <Input name="cpf" disabled />
-                  <div className="actions">
-                    <button type="button">Alterar</button>
-                  </div>
-                </div>
-              </InputItem>
-              <InputItem className="custom-field">
-                <label>RG</label>
-                <div>
-                  <Input name="rg" disabled />
-                  <div className="actions">
-                    <button type="button">Alterar</button>
-                  </div>
-                </div>
-              </InputItem>
+              <InputGroupAddon
+                name="cpf"
+                label="CPF"
+                button-label="Alterar"
+                disabled
+              >
+                <button type="button" color="#333">
+                  Alterar
+                </button>
+              </InputGroupAddon>
+
+              <InputGroupAddon
+                name="rg"
+                label="RG"
+                button-label="Alterar"
+                disabled
+              >
+                <button type="button" color="#333">
+                  Alterar
+                </button>
+              </InputGroupAddon>
             </InputGroup>
 
             <hr />
 
             <InputGroup>
-              <InputItem className="custom-field">
-                <label>CEP</label>
-                <div>
-                  <Input name="zipcode" disabled={disable(user)} />
-                  <div className="actions">
-                    <button type="button">Alterar</button>
-                  </div>
-                </div>
-              </InputItem>
-              <InputItem className="custom-field">
-                <label>Número</label>
-                <div>
-                  <Input name="street_number" disabled={disable(user)} />
-                  <div className="actions">
-                    <button type="button">Alterar</button>
-                  </div>
-                </div>
-              </InputItem>
+              <InputGroupAddon
+                name="zipcode"
+                label="CEP"
+                button-label="Alterar"
+                disabled={isDisabled(user)}
+              >
+                <button type="button" color="#333">
+                  Alterar
+                </button>
+              </InputGroupAddon>
+
+              <InputGroupAddon
+                name="street_number"
+                label="Número"
+                button-label="Alterar"
+                disabled={isDisabled(user)}
+              >
+                <button type="button" color="#333">
+                  Alterar
+                </button>
+              </InputGroupAddon>
             </InputGroup>
 
             <InputGroup>
@@ -162,58 +164,58 @@ export default function Modal({ setShow, show }) {
                 <Input
                   name="neighborhood"
                   label="Bairro"
-                  disabled={disable(user)}
+                  disabled={isDisabled(user)}
                 />
               </InputItem>
               <InputItem>
                 <Input
                   name="street"
                   label="Logradouro"
-                  disabled={disable(user)}
+                  disabled={isDisabled(user)}
                 />
               </InputItem>
             </InputGroup>
 
             <InputGroup>
               <InputItem>
-                <Input name="city" label="Cidade" disabled={disable(user)} />
+                <Input name="city" label="Cidade" disabled={isDisabled(user)} />
               </InputItem>
               <InputItem>
-                <Input name="state" label="UF" disabled={disable(user)} />
+                <Input name="state" label="UF" disabled={isDisabled(user)} />
               </InputItem>
             </InputGroup>
 
-            <label htmlFor="terms-authorized">
+            <AcceptTerms>
               <Check name="is_active" />
               <span>Ativar conta de usuário</span>
-            </label>
+            </AcceptTerms>
 
             <hr />
 
             {user && !user.confirmed_at && (
-              <strong onClick={handleConfirmationRequest} role="presentation">
+              <BtnInfo onClick={handleConfirmationRequest}>
                 <MdMailOutline size={22} />
                 <span>Enviar email de confirmação</span>
-              </strong>
+              </BtnInfo>
             )}
 
-            <strong onClick={handlePasswordRequest} role="presentation">
+            <BtnInfo onClick={handlePasswordRequest}>
               <MdMailOutline size={22} />
               <span>Enviar email para alteração de senha</span>
-            </strong>
+            </BtnInfo>
 
             <hr />
 
-            <strong onClick={() => setOpenPage(true)} role="presentation">
+            <BtnInfo onClick={() => setOpenPage(true)}>
               <MdInfoOutline size={22} />
               <span>Consultar histórico de envio de matérias</span>
-            </strong>
+            </BtnInfo>
           </Form>
         </Body>
 
         <Footer>
-          <CancelButton onClick={() => setShow(false)}>cancelar</CancelButton>
-          <SaveButton>Salvar</SaveButton>
+          <BtnCancel onClick={() => setShow(false)}>cancelar</BtnCancel>
+          <BtnSubmit>Salvar</BtnSubmit>
         </Footer>
       </ModalComponent>
     </>

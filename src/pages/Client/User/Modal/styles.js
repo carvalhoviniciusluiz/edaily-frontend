@@ -1,3 +1,8 @@
+import {
+  Form as form,
+  Input as input,
+  Check as check,
+} from '@rocketseat/unform';
 import { darken } from 'polished';
 import styled from 'styled-components';
 
@@ -10,47 +15,49 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
 
-  .title {
-    font-size: 18px;
-    font-weight: 500;
+export const Title = styled.h4`
+  font-size: 18px;
+  font-weight: 500;
 
+  small {
+    font-weight: 400;
+    line-height: 1;
+    color: #777;
+    margin-left: 5px;
+  }
+
+  span {
+    margin-left: 5px;
+  }
+
+  @media (max-width: 497px) {
     small {
-      font-weight: 400;
-      line-height: 1;
-      color: #777;
-      margin-left: 5px;
-    }
-
-    span {
-      margin-left: 5px;
-    }
-
-    @media (max-width: 497px) {
-      small {
-        display: none;
-      }
-    }
-
-    @media (max-width: 199px) {
-      span {
-        display: none;
-      }
+      display: none;
     }
   }
 
-  button {
-    border: 0;
-    padding: 0;
-    background: 0;
-    font-weight: 700;
-    opacity: 0.2;
-    font-size: 21px;
-    color: #000;
-
-    &:hover {
-      opacity: 0.5;
+  @media (max-width: 199px) {
+    span {
+      display: none;
     }
+  }
+`;
+
+export const BtnClose = styled.button.attrs({
+  type: 'button',
+})`
+  border: 0;
+  padding: 0;
+  background: 0;
+  font-weight: 700;
+  opacity: 0.2;
+  font-size: 21px;
+  color: #000;
+
+  &:hover {
+    opacity: 0.5;
   }
 `;
 
@@ -61,90 +68,81 @@ export const Body = styled.div`
   position: relative;
   padding: 16px 24px;
   height: 400px;
+`;
 
-  form {
-    display: flex;
-    flex-direction: column;
+export const Form = styled(form)`
+  display: flex;
+  flex-direction: column;
+  margin-top: 22px;
+  margin-bottom: 15px;
+
+  input {
+    background: rgba(0, 0, 0, 0.1);
+    border: 0;
+    border-radius: 4px;
+    height: 44px;
+    padding: 0 15px;
+    color: #333;
+    margin: 0 0 10px;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  input:disabled {
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+  }
+
+  hr {
+    background: rgba(0, 0, 0, 0.2);
+    margin: 20px 0 20px;
+  }
+`;
+
+export const BtnInfo = styled.strong.attrs({
+  role: 'presentation',
+})`
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+
+  border: 0;
+  margin: 10px 0;
+  color: #333;
+  cursor: pointer;
+
+  span {
+    margin-left: 5px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const Input = styled(input)``;
+export const Check = styled(check)``;
+
+export const AcceptTerms = styled.label.attrs({
+  htmlFor: 'terms',
+})`
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+
+  ${Check} {
+    height: 0.95em;
+    width: 0.95em;
+
     margin-top: 22px;
-    margin-bottom: 15px;
+  }
 
-    div.avatar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 40px;
-
-      canvas,
-      img {
-        height: 120px;
-        width: 120px;
-        border-radius: 4px;
-        border: 1px solid #eee;
-        background: #eee;
-      }
-    }
-
-    label {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 8px;
-      color: #333;
-
-      input[type='checkbox'] {
-        height: 0.95em;
-        width: 0.95em;
-
-        margin-top: 22px;
-      }
-
-      span {
-        margin-left: 5px;
-      }
-    }
-
-    input {
-      background: rgba(0, 0, 0, 0.1);
-      border: 0;
-      border-radius: 4px;
-      height: 44px;
-      padding: 0 15px;
-      color: #333;
-      margin: 0 0 10px;
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-    }
-
-    input:disabled {
-      cursor: not-allowed;
-      color: rgba(0, 0, 0, 0.2);
-      font-weight: bold;
-    }
-
-    hr {
-      background: rgba(0, 0, 0, 0.2);
-      margin: 20px 0 20px;
-    }
-
-    strong {
-      display: flex;
-      align-items: center;
-      font-weight: normal;
-
-      border: 0;
-      margin: 10px 0;
-      color: #333;
-      cursor: pointer;
-
-      span {
-        margin-left: 5px;
-      }
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+  span {
+    margin-left: 5px;
   }
 `;
 
@@ -159,37 +157,6 @@ export const Footer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-`;
-
-export const CancelButton = styled.button`
-  border: 0;
-  color: #333;
-  background: transparent;
-  margin-right: 15px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-export const SaveButton = styled.button`
-  margin: 0;
-  padding: 10px;
-  border: 0;
-  border-radius: 4px;
-  background: transparent;
-
-  background: #3b9eff;
-  color: #fff;
-
-  transition: background 0.2s;
-
-  &:hover {
-    background: ${darken(0.03, '#3b9eff')};
-
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  }
 `;
 
 export const InputGroup = styled.div`
@@ -217,7 +184,7 @@ export const InputItem = styled.div`
     width: 100%;
   }
 
-  &.custom-field {
+  &.custom {
     span {
       display: flex;
       align-items: center;
@@ -273,5 +240,38 @@ export const InputItem = styled.div`
         }
       }
     }
+  }
+`;
+
+export const BtnCancel = styled.button`
+  border: 0;
+  color: #333;
+  background: transparent;
+  margin-right: 15px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const BtnSubmit = styled.button.attrs({
+  type: 'submit',
+})`
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+
+  background: #3b9eff;
+  color: #fff;
+
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${darken(0.03, '#3b9eff')};
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 `;
