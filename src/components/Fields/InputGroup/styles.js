@@ -34,7 +34,7 @@ export const InputGroupAction = styled.div`
 
   button {
     background: transparent;
-    color: #fff;
+    color: ${props => props.children.props.color || '#fff'};
     border: 0;
     margin-left: 10px;
 
