@@ -24,7 +24,7 @@ export const Panel = styled.li.attrs({
   border-radius: 4px;
   background: #fff;
 
-  opacity: ${props => (props.canceled ? 0.5 : 1)};
+  opacity: ${props => (props.canceled ? 0.6 : 1)};
   cursor: ${props => (props.canceled ? 'not-allowed' : 'auto')};
 
   & + li {
@@ -46,18 +46,20 @@ export const Panel = styled.li.attrs({
   }
 `;
 
+const defineColor = props => {
+  if (props.canceled) return '#f27474';
+  if (props.forwarded) return '#006dd5';
+  return '#666';
+};
+
 export const FlagPanel = styled.div`
   display: flex;
   justify-content: space-between;
 
-  strong.time {
-    font-size: 24px;
-  }
-
   strong {
     display: flex;
     align-items: center;
-    color: #666;
+    color: ${props => defineColor(props)};
 
     font-weight: normal;
 
@@ -111,16 +113,17 @@ export const ActionTitle = styled.p`
   text-overflow: ellipsis;
 
   strong {
+    font-weight: normal;
     font-size: 18px;
     margin-right: 15px;
-    color: #555;
+    color: ${props => defineColor(props)};
   }
 
   span {
     display: flex;
     align-items: center;
-    color: #333;
     font-size: 18px;
+    color: ${props => defineColor(props)};
     cursor: pointer;
 
     &:hover {
@@ -145,17 +148,16 @@ export const BtnAction = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
-  font-size: 18px;
-  border: 0;
   padding: 5px 10px;
+  border: 0;
   border-radius: 4px;
+  font-size: 18px;
+  color: ${props => defineColor(props)};
   cursor: pointer;
 
   &:hover {
-    background: ${darken(0.03, '#3b9eff')};
     color: #fff;
-
+    background: ${darken(0.03, '#006dd5')};
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }

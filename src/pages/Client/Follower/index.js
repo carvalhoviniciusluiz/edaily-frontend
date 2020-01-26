@@ -14,6 +14,7 @@ import {
 import FlagCancellation from './Components/FlagCancellation';
 import FlagDate from './Components/FlagDate';
 import FlagForwarding from './Components/FlagForwarding';
+import FlagTime from './Components/FlagTime';
 import Modal from './Modal';
 import {
   Container,
@@ -83,12 +84,11 @@ export default function Dashboard() {
                   : undefined
               }
             >
-              <FlagPanel>
-                <strong className="time">{document.time}</strong>
-                {/* <strong>
-                  <MdSupervisorAccount size={22} />
-                  <span>{document.organization.initials}</span>
-                </strong> */}
+              <FlagPanel
+                canceled={!!document.cancellation}
+                forwarded={!!document.forwarding}
+              >
+                <FlagTime document={document} />
                 <strong className="author">
                   <MdPermIdentity size={22} />
                   <span>
@@ -104,7 +104,10 @@ export default function Dashboard() {
                 />
               </FlagPanel>
               <PanelActions>
-                <ActionTitle>
+                <ActionTitle
+                  canceled={!!document.cancellation}
+                  forwarded={!!document.forwarding}
+                >
                   {document.protocol && <strong>{document.protocol}</strong>}
                   <span
                     onClick={() => setUrl(document.file.url)}
@@ -116,6 +119,8 @@ export default function Dashboard() {
 
                 {!document.cancellation && document.forwarding && (
                   <BtnAction
+                    canceled={!!document.cancellation}
+                    forwarded={!!document.forwarding}
                     onClick={() => handleDocumentClick(document.uuid)}
                     role="presentation"
                   >

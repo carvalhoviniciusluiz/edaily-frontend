@@ -46,9 +46,6 @@ export function* documentFollowResquest({ payload }) {
               firstname
               lastname
             }
-            organization {
-              initials
-            }
             forwarding {
               author {
                 uuid
@@ -106,6 +103,7 @@ export function* documentFollowResquest({ payload }) {
         cancellation.canceledAt = format(canceledAt, 'dd/MM/yyyy', {
           locale: pt,
         });
+        cancellation.time = format(canceledAt, 'HH:mm', { locale: pt });
       }
 
       const hasForwarding = !!forwarding;
@@ -114,6 +112,7 @@ export function* documentFollowResquest({ payload }) {
         forwarding.forwardedAt = format(forwardedAt, 'dd/MM/yyyy', {
           locale: pt,
         });
+        forwarding.time = format(forwardedAt, 'HH:mm', { locale: pt });
       }
 
       return {
