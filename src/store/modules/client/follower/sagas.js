@@ -86,6 +86,17 @@ export function* documentFollowResquest({ payload }) {
       },
     } = response.data;
 
+    const formatDatetime = ({ data, attribute }) => {
+      const hasData = !!data;
+      if (hasData) {
+        const date = new Date(Number(data[attribute]));
+        data[attribute] = format(date, 'dd/MM/yyyy', {
+          locale: pt,
+        });
+        data.time = format(date, 'HH:mm', { locale: pt });
+      }
+    };
+
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     // @TODO
@@ -97,23 +108,15 @@ export function* documentFollowResquest({ payload }) {
 
       const { cancellation, forwarding } = rest;
 
-      const hasCancellation = !!cancellation;
-      if (hasCancellation) {
-        const canceledAt = new Date(Number(cancellation.canceledAt));
-        cancellation.canceledAt = format(canceledAt, 'dd/MM/yyyy', {
-          locale: pt,
-        });
-        cancellation.time = format(canceledAt, 'HH:mm', { locale: pt });
-      }
+      formatDatetime({
+        data: cancellation,
+        attribute: 'canceledAt',
+      });
 
-      const hasForwarding = !!forwarding;
-      if (hasForwarding) {
-        const forwardedAt = new Date(Number(forwarding.forwardedAt));
-        forwarding.forwardedAt = format(forwardedAt, 'dd/MM/yyyy', {
-          locale: pt,
-        });
-        forwarding.time = format(forwardedAt, 'HH:mm', { locale: pt });
-      }
+      formatDatetime({
+        data: forwarding,
+        attribute: 'forwardedAt',
+      });
 
       return {
         ...rest,
