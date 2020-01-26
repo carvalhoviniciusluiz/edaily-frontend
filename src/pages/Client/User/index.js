@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import {
-  MdChevronLeft,
-  MdChevronRight,
-  MdAddCircleOutline,
-} from 'react-icons/md';
+import { FaPlus } from 'react-icons/fa';
 import Identicon from 'react-identicons';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Pagination from '~/components/Pagination';
 import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import { request, fetch, clean } from '~/store/modules/client/user/actions';
 
 import Modal from './Modal';
 import NewUser from './NewUser';
-import { Container, ArrowButton, UserPanel } from './styles';
+import { Container, UserList, UserPanel, PanelAction, BtnAdd } from './styles';
 
 export default function User() {
   const dispatch = useDispatch();
-  const organization = useSelector(state => state.user.profile.organization);
+  const profile = useSelector(state => state.user.profile);
 
   const data = useSelector(state => state.clientUser.data);
   const meta = useSelector(state => state.clientUser.meta);
@@ -29,14 +26,9 @@ export default function User() {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const [desablePrev, setDesablePrev] = useState(true);
-  const [desableNext, setDesableNext] = useState(false);
-
   useEffect(() => {
-    const { uuid: organizationId } = organization;
-
     setInputValue(page);
-    dispatch(request({ page, organizationId }));
+    dispatch(request({ page, profile }));
     return () => dispatch(clean());
   }, [page]); // eslint-disable-line
 
@@ -50,43 +42,8 @@ export default function User() {
     }
   }, [openModal]);
 
-  const handleChangeInputValue = e => {
-    setInputValue(e.target.value);
-  };
-
-  const handleFetchPage = e => {
-    if (!e.target.value) {
-      setInputValue(page);
-      return;
-    }
-    setPage(e.target.value);
-  };
-
-  function handlePrevPage() {
-    const newPage = page - 1;
-    if (newPage === meta.pages) return;
-
-    setPage(newPage);
-    setDesablePrev(newPage === 1);
-    setDesableNext(newPage === meta.pages);
-  }
-
-  function handleNextPage() {
-    const newPage = page + 1;
-    if (newPage > meta.pages) {
-      setDesableNext(true);
-      return;
-    }
-
-    setPage(newPage);
-    setDesablePrev(desableNext);
-    setDesableNext(newPage === meta.pages);
-  }
-
-  const handleUserClick = async userId => {
-    const { uuid: organizationId } = organization;
-
-    await dispatch(fetch({ organizationId, userId }));
+  const handleUserClick = async uuid => {
+    await dispatch(fetch({ profile, uuid }));
   };
 
   return (
@@ -96,31 +53,20 @@ export default function User() {
       <Modal show={show} setShow={setShow} />
       <NewUser open={open} setOpen={setOpen} />
 
-      <Container length={users.length}>
-        <header>
-          <ArrowButton onClick={handlePrevPage} desable={desablePrev}>
-            <MdChevronLeft size={36} color="#fff" />
-          </ArrowButton>
-          <div>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleChangeInputValue}
-              onBlur={handleFetchPage}
-            />
-            <strong>/</strong>
-            <strong>{meta.pages}</strong>
-          </div>
-          <ArrowButton onClick={handleNextPage} desable={desableNext}>
-            <MdChevronRight size={36} color="#fff" />
-          </ArrowButton>
-        </header>
+      <Container>
+        <Pagination
+          meta={meta}
+          page={page}
+          setPage={setPage}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+        />
 
-        <ul>
+        <UserList length={users.length}>
           {users.map(user => (
             <UserPanel
               key={String(user.uuid)}
-              inative={!user.is_active}
+              inactive={user.is_active && !user.confirmed_at}
               className="with-shading"
             >
               {user.avatar ? (
@@ -134,22 +80,22 @@ export default function User() {
                 />
               )}
 
-              <div
-                role="presentation"
+              <PanelAction
+                inactive={user.is_active && !user.confirmed_at}
                 onClick={() => handleUserClick(user.uuid)}
               >
                 <strong>
                   {user.firstname} {user.lastname}
                 </strong>
                 <span>{user.cpf}</span>
-              </div>
+              </PanelAction>
             </UserPanel>
           ))}
-        </ul>
+        </UserList>
 
-        <button type="submit" onClick={() => setOpen(true)}>
-          <MdAddCircleOutline size={33} />
-        </button>
+        <BtnAdd onClick={() => setOpen(true)}>
+          <FaPlus size={32} />
+        </BtnAdd>
       </Container>
     </>
   );

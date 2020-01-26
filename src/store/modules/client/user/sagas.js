@@ -8,24 +8,69 @@ import { fetchSuccess, success, failure } from './actions';
 
 export function* request({ payload }) {
   try {
-    const { limit, page, organizationId } = payload;
+    const { perPage, page, profile } = payload;
 
-    const response = yield call(
-      api.get,
-      `organizations/${organizationId}/users?page=${page}&limit=${limit}`
-    );
-
-    yield put(
-      success({
-        data: response.data.data,
-        meta: {
-          pages: response.data.lastPage,
-          page: response.data.page,
-          limit: response.data.perPage,
-          total: parseInt(response.data.total, 10),
+    const response = yield call(api.post, '/', {
+      query: `
+        query (
+          $organization: OrganizationFieldsInput!,
+          $page: Int,
+          $perPage: Int
+        ) {
+          users:getAllUsers (
+            organization: $organization,
+            page: $page,
+            perPage: $perPage
+          ) {
+            total
+            perPage
+            page
+            lastPage
+            data {
+              uuid
+              firstname
+              lastname
+              email
+              cpf
+              rg
+              phone
+              zipcode
+              street
+              street_number
+              neighborhood
+              city
+              state
+              is_responsible
+              is_active
+              confirmed_at
+              sign_in_count
+              last_sign_in_at
+              current_sign_in_at
+              last_sign_in_ip_address
+              current_sign_in_ip_address
+              avatar {
+                avatar
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        organization: {
+          uuid: profile.organization.uuid,
         },
-      })
-    );
+        perPage,
+        page,
+      },
+    });
+
+    const {
+      data: {
+        users: { data, ...meta },
+      },
+    } = response.data;
+
+    yield put(success({ data, meta }));
   } catch (error) {
     toast.error('Falha na recuperação dos dados, verifique sua conexão.');
 
@@ -35,14 +80,58 @@ export function* request({ payload }) {
 
 export function* fetch({ payload }) {
   try {
-    const { organizationId, userId } = payload;
+    const { profile, uuid } = payload;
 
-    const response = yield call(
-      api.get,
-      `organizations/${organizationId}/users/${userId}?organization=false`
-    );
+    const response = yield call(api.post, '/', {
+      query: `
+        query (
+          $organization: OrganizationFieldsInput!,
+          $user: UserFieldsInput!
+        ) {
+          user:getUser (
+            organization: $organization,
+            user: $user
+          ) {
+            uuid
+            firstname
+            lastname
+            email
+            cpf
+            rg
+            phone
+            zipcode
+            street
+            street_number
+            neighborhood
+            city
+            state
+            is_responsible
+            is_active
+            confirmed_at
+            sign_in_count
+            last_sign_in_at
+            current_sign_in_at
+            last_sign_in_ip_address
+            current_sign_in_ip_address
+            avatar {
+              avatar
+            }
+          }
+        }
+      `,
+      variables: {
+        organization: {
+          uuid: profile.organization.uuid,
+        },
+        user: {
+          uuid,
+        },
+      },
+    });
 
-    yield put(fetchSuccess(response.data));
+    const { data } = response.data;
+
+    yield put(fetchSuccess(data.user));
   } catch (error) {
     toast.error('Falha na recuperação dos dados, verifique sua conexão.');
 

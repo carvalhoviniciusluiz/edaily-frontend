@@ -19,17 +19,17 @@ export function sendConfirmation({ email }) {
   };
 }
 
-export function request({ limit = 10, page = 1, organizationId }) {
+export function request({ perPage = 10, page = 1, profile }) {
   return {
     type: '@user/REQUEST',
-    payload: { limit, page, organizationId },
+    payload: { perPage, page, profile },
   };
 }
 
-export function fetch({ organizationId, userId }) {
+export function fetch({ profile, uuid }) {
   return {
     type: '@user/FETCH',
-    payload: { organizationId, userId },
+    payload: { profile, uuid },
   };
 }
 
