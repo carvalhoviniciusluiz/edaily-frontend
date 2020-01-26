@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import Identicon from 'react-identicons';
 import { useDispatch, useSelector } from 'react-redux';
 
+import AvatarOrIdenticon from '~/components/AvatarOrIdenticon';
 import Pagination from '~/components/Pagination';
 import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import { request, fetch, clean } from '~/store/modules/client/user/actions';
@@ -69,16 +69,11 @@ export default function User() {
               inactive={user.is_active && !user.confirmed_at}
               className="with-shading"
             >
-              {user.avatar ? (
-                <img src={user.avatar.avatar} alt="Avatar" />
-              ) : (
-                <Identicon
-                  string={`${user.firstname} ${user.lastname}`}
-                  size={45}
-                  bg="#fff"
-                  fg="#333"
-                />
-              )}
+              <AvatarOrIdenticon
+                user={user || {}}
+                size={45}
+                encapsulated={false}
+              />
 
               <PanelAction
                 inactive={user.is_active && !user.confirmed_at}
