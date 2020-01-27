@@ -4,7 +4,15 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Navigation, NavigationContent, BtnNavigation } from './styles';
 
 export default function Pagination(params) {
-  const { page, setPage, meta, inputValue, setInputValue } = params;
+  const {
+    page,
+    setPage,
+    meta,
+    inputValue,
+    setInputValue,
+    color,
+    inputColor,
+  } = params;
 
   const [desablePrev, setDesablePrev] = useState(true);
   const [desableNext, setDesableNext] = useState(false);
@@ -45,12 +53,13 @@ export default function Pagination(params) {
   return (
     <Navigation>
       <BtnNavigation onClick={handlePrevPage} desable={desablePrev}>
-        <MdChevronLeft size={36} color="#fff" />
+        <MdChevronLeft size={36} color={color || '#fff'} />
       </BtnNavigation>
 
-      <NavigationContent>
+      <NavigationContent color={color}>
         <input
           type="text"
+          color={inputColor}
           value={inputValue}
           onChange={handleChangeInputValue}
           onBlur={handleFetchPage}
@@ -60,7 +69,7 @@ export default function Pagination(params) {
       </NavigationContent>
 
       <BtnNavigation onClick={handleNextPage} desable={desableNext}>
-        <MdChevronRight size={36} color="#fff" />
+        <MdChevronRight size={36} color={color || '#fff'} />
       </BtnNavigation>
     </Navigation>
   );

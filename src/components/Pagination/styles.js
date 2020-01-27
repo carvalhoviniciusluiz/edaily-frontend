@@ -9,14 +9,15 @@ export const NavigationContent = styled.div`
   input[type='text'] {
     border: 0;
     border-radius: 4px;
-    background: rgba(0, 0, 0, 0.2);
+    background: ${props =>
+      props.children[0].props.color || 'rgba(0, 0, 0, 0.2)'};
     max-width: 60px;
     text-align: center;
   }
 
   strong,
   input {
-    color: #fff;
+    color: ${props => props.color || '#fff'};
     font-size: 24px;
     margin: 10px;
   }
