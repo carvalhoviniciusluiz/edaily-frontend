@@ -192,8 +192,17 @@ export function* save({ payload }) {
 
     toast.success('Cadastro finalizado com sucesso.');
   } catch (error) {
-    toast.error('Falha na recuperação dos dados, verifique sua conexão.');
-
+    if (error.response.status === 422) {
+      toast.warn(
+        'Verifique os seus dados pôs percebemos que algumas informações já ' +
+          'estão cadastradas.',
+        {
+          autoClose: false,
+        }
+      );
+    } else {
+      toast.error('Falha na recuperação dos dados, verifique sua conexão.');
+    }
     yield put(failure());
   }
 }
