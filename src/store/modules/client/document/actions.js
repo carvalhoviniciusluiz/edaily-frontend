@@ -1,7 +1,7 @@
-export function request({ limit = 10, page = 1, organizationId, userId }) {
+export function request({ perPage = 10, page = 1, profile, user }) {
   return {
     type: '@document/REQUEST',
-    payload: { limit, page, organizationId, userId },
+    payload: { perPage, page, profile, user },
   };
 }
 

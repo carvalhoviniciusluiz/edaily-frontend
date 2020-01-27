@@ -11,23 +11,89 @@ import { success, failure } from './actions';
 
 export function* request({ payload }) {
   try {
-    const { limit, page, organizationId, userId } = payload;
+    const { page = 1, perPage = 10, profile, user } = payload;
 
-    const response = yield call(
-      api.get,
-      `organizations/${organizationId}/users/${userId}/documents?page=${page}&limit=${limit}`
-    );
-    const { data: documents, ...meta } = response.data;
+    const response = yield call(api.post, '/', {
+      query: `
+        query (
+          $organization: OrganizationFieldsInput
+          $user: UserFieldsInput
+          $page: Int
+          $perPage: Int
+        ) {
+          documents:getAllDocuments(
+            organization: $organization
+            user: $user
+            page: $page
+            perPage: $perPage
+          ) {
+            total
+            perPage
+            page
+            lastPage
+            data {
+              uuid
+              protocol
+              file {
+                uuid
+                name
+                url
+              }
+              author {
+                firstname
+                lastname
+              }
+              responsable {
+                firstname
+                lastname
+              }
+              organization {
+                initials
+              }
+              publication {
+                author {
+                  uuid
+                  firstname
+                  lastname
+                  email
+                }
+                publishedAt
+              }
+              updatedAt
+            }
+          }
+        }
+      `,
+      variables: {
+        organization: {
+          uuid: profile.organization.uuid,
+        },
+        user: {
+          uuid: user.uuid,
+        },
+        perPage,
+        page,
+      },
+    });
+
+    const {
+      data: {
+        documents: { data: documents, ...meta },
+      },
+    } = response.data;
 
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     const data = documents.map(({ updatedAt, ...rest }) => {
-      const datetime = utcToZonedTime(updatedAt, timezone);
+      const datetime = utcToZonedTime(new Date(Number(updatedAt)), timezone);
+      const date = format(datetime, 'dd/MM/yyyy', { locale: pt });
+      const time = format(datetime, 'HH:mm', { locale: pt });
+
       return {
         ...rest,
-        date: format(datetime, "dd/MM/yyyy", { locale: pt }), // eslint-disable-line
-        time: format(datetime, "HH:mm", { locale: pt }), // eslint-disable-line
-        updatedAt: utcToZonedTime(updatedAt, timezone),
+        date,
+        time,
+        updatedAt: datetime,
       };
     });
 
