@@ -66,6 +66,7 @@ export const UserPanel = styled.li`
 export const PanelAction = styled.div.attrs({
   role: 'presentation',
 })`
+  text-transform: lowercase;
   margin: 0 10px;
   cursor: pointer;
 
