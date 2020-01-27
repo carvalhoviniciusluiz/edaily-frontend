@@ -27,7 +27,7 @@ export default function AvatarOrIdenticon({ children, ...rest }) {
     </Avatar>
   ) : (
     <>
-      verifyUser()
+      {verifyUser()}
       {children}
     </>
   );
