@@ -19,65 +19,76 @@ export function* documentFollowResquest({ payload }) {
 
     const response = yield call(api.post, '/', {
       query: `
-      {
-        documents:getAllDocuments(
-          organization:{
-            uuid:"${profile.organization.uuid}",
-          },
-          user:{
-            uuid:"${profile.uuid}",
-          },
-          page:${page},
-          perPage:${perPage}
+        query (
+          $organization: OrganizationFieldsInput!,
+          $user: UserFieldsInput!,
+          $page: Int,
+          $perPage: Int
         ) {
-          total
-          perPage
-          page
-          lastPage
-          data {
-            uuid
-            protocol
-            file {
+          documents:getAllDocuments(
+            organization: $organization,
+            user: $user,
+            page: $page,
+            perPage: $perPage
+          ) {
+            total
+            perPage
+            page
+            lastPage
+            data {
               uuid
-              name
-              url
-            }
-            author {
-              firstname
-              lastname
-            }
-            forwarding {
-              author {
+              protocol
+              file {
                 uuid
+                name
+                url
+              }
+              author {
                 firstname
                 lastname
-                email
               }
-              forwardedAt
-            }
-            publication {
-              author {
-                uuid
-                firstname
-                lastname
-                email
+              forwarding {
+                author {
+                  uuid
+                  firstname
+                  lastname
+                  email
+                }
+                forwardedAt
               }
-              publishedAt
-            }
-            cancellation {
-              author {
-                uuid
-                firstname
-                lastname
-                email
+              publication {
+                author {
+                  uuid
+                  firstname
+                  lastname
+                  email
+                }
+                publishedAt
               }
-              canceledAt
+              cancellation {
+                author {
+                  uuid
+                  firstname
+                  lastname
+                  email
+                }
+                canceledAt
+              }
+              updatedAt
             }
-            updatedAt
           }
         }
-      }
       `,
+      variables: {
+        organization: {
+          uuid: profile.organization.uuid,
+        },
+        user: {
+          uuid: profile.uuid,
+        },
+        perPage,
+        page,
+      },
     });
 
     const {
@@ -140,82 +151,89 @@ export function* documentFollowFetch({ payload }) {
 
     const response = yield call(api.post, '/', {
       query: `
-      {
-        document:getDocument(
-          organization:{
-            uuid:"${profile.organization.uuid}",
-          },
-          document:{
-            uuid: "${documentUUID}",
-          }
+        query (
+          $organization: OrganizationFieldsInput!,
+          $document: DocumentFieldsInput!
         ) {
-          uuid
-          protocol
-          file {
+          document:getDocument(
+            organization: $organization,
+            document: $document
+          ) {
             uuid
-            file
-            name
-            type
-            subtype
-            avatar
-            url
-          }
-          pages
-          author {
-            uuid
-            firstname
-            lastname
-            email
-          }
-          reviser {
-            uuid
-            firstname
-            lastname
-            email
-          }
-          responsable {
-            uuid
-            firstname
-            lastname
-            email
-          }
-          organization {
-            uuid
-            name
-            initials
-          }
-          forwarding {
+            protocol
+            file {
+              uuid
+              file
+              name
+              type
+              subtype
+              avatar
+              url
+            }
+            pages
             author {
               uuid
               firstname
               lastname
               email
             }
-            forwardedAt
-          }
-          publication {
-            author {
+            reviser {
               uuid
               firstname
               lastname
               email
             }
-            publishedAt
-          }
-          cancellation {
-            author {
+            responsable {
               uuid
               firstname
               lastname
               email
             }
-            canceledAt
+            organization {
+              uuid
+              name
+              initials
+            }
+            forwarding {
+              author {
+                uuid
+                firstname
+                lastname
+                email
+              }
+              forwardedAt
+            }
+            publication {
+              author {
+                uuid
+                firstname
+                lastname
+                email
+              }
+              publishedAt
+            }
+            cancellation {
+              author {
+                uuid
+                firstname
+                lastname
+                email
+              }
+              canceledAt
+            }
+            updatedAt
+            createdAt
           }
-          updatedAt
-          createdAt
         }
-      }
       `,
+      variables: {
+        organization: {
+          uuid: profile.organization.uuid,
+        },
+        document: {
+          uuid: documentUUID,
+        },
+      },
     });
 
     const { data } = response.data;

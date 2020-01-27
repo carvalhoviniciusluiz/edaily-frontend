@@ -15,48 +15,55 @@ export function* documentResquest({ payload }) {
 
     const response = yield call(api.post, '/', {
       query: `
-      {
-        documents:documentsForAnalysis(
-          page:${page},
-          perPage:${perPage}
+        query (
+          $page: Int,
+          $perPage: Int
         ) {
-          total
-          perPage
-          page
-          lastPage
-          data {
-            uuid
-            protocol
-            file {
+          documents:documentsForAnalysis(
+            page: $page,
+            perPage: $perPage
+          ) {
+            total
+            perPage
+            page
+            lastPage
+            data {
               uuid
-              name
-              url
-            }
-            author {
-              firstname
-              lastname
-            }
-            responsable {
-              firstname
-              lastname
-            }
-            organization {
-              initials
-            }
-            publication {
-              author {
+              protocol
+              file {
                 uuid
+                name
+                url
+              }
+              author {
                 firstname
                 lastname
-                email
               }
-              publishedAt
+              responsable {
+                firstname
+                lastname
+              }
+              organization {
+                initials
+              }
+              publication {
+                author {
+                  uuid
+                  firstname
+                  lastname
+                  email
+                }
+                publishedAt
+              }
+              updatedAt
             }
-            updatedAt
           }
         }
-      }
       `,
+      variables: {
+        perPage,
+        page,
+      },
     });
 
     const {
@@ -105,15 +112,15 @@ export function* forward({ payload }) {
 
     yield call(api.post, '/', {
       query: `
-      mutation (
-        $organization: OrganizationFieldsInput!,
-        $document: DocumentFieldsInput!
-      ){
-        sendDocument(
-          organization: $organization,
-          document: $document
-        )
-      }
+        mutation (
+          $organization: OrganizationFieldsInput!,
+          $document: DocumentFieldsInput!
+        ) {
+          sendDocument (
+            organization: $organization,
+            document: $document
+          )
+        }
       `,
       variables: {
         organization: {
