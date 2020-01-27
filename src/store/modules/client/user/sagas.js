@@ -168,9 +168,27 @@ export function* sendForgotPassword({ payload }) {
 
 export function* save({ payload }) {
   try {
-    const { user, organizationId } = payload;
+    const { user, profile } = payload;
 
-    yield call(api.post, `organizations/${organizationId}/users`, user);
+    yield call(api.post, '/', {
+      query: `
+        mutation (
+          $organization: OrganizationFieldsInput!,
+          $user: UserInput!
+        ) {
+          user:addUser (
+            organization: $organization,
+            user: $user
+          )
+        }
+      `,
+      variables: {
+        organization: {
+          uuid: profile.organization.uuid,
+        },
+        user,
+      },
+    });
 
     toast.success('Cadastro finalizado com sucesso.');
   } catch (error) {

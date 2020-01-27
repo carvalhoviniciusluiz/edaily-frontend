@@ -1,7 +1,7 @@
-export function save({ user, organizationId }) {
+export function save({ user, profile }) {
   return {
     type: '@user/SAVE',
-    payload: { user, organizationId },
+    payload: { user, profile },
   };
 }
 

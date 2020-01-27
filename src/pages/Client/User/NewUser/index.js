@@ -10,7 +10,17 @@ import PageFullscreen from '~/components/PageFullscreen';
 import * as fetch from '~/services/fetch';
 import { save, request } from '~/store/modules/client/user/actions';
 
-import { Header, Body, Form, Input } from './styles';
+import {
+  Header,
+  Title,
+  BtnClose,
+  Form,
+  FormBody,
+  FormGroup,
+  FormAddon,
+  Input,
+  BtnSubmit,
+} from './styles';
 
 export default function NewUser({ ...res }) {
   const { open, setOpen } = res;
@@ -20,7 +30,7 @@ export default function NewUser({ ...res }) {
   }
 
   const dispatch = useDispatch();
-  const organization = useSelector(state => state.user.profile.organization);
+  const profile = useSelector(state => state.user.profile);
 
   const schema = Yup.object().shape({
     firstname: Yup.string().required('O nome é obrigatório'),
@@ -43,7 +53,9 @@ export default function NewUser({ ...res }) {
     const val = e.target.value;
 
     if (val) {
-      const { street, neighborhood, city, state } = await fetch.viacep(val);
+      const { street, neighborhood, city, state } = await fetch.viacep(
+        val.replace('.', '')
+      );
 
       document.getElementById('street').value = street;
       document.getElementById('neighborhood').value = neighborhood;
@@ -53,10 +65,11 @@ export default function NewUser({ ...res }) {
   };
 
   const handleSubmit = async user => {
-    const { uuid: organizationId } = organization;
+    await dispatch(save({ user, profile }));
 
-    await dispatch(save({ user, organizationId }));
-    await dispatch(request({ page: 1, organizationId }));
+    setTimeout(async () => {
+      await dispatch(request({ page: 1, profile }));
+    }, 1000);
 
     setOpen(false);
   };
@@ -69,59 +82,60 @@ export default function NewUser({ ...res }) {
       showActions={false}
     >
       <Header>
-        <h2>Cadastro de usuário</h2>
-        <button type="button" onClick={() => setOpen(false)}>
+        <Title>Cadastro de usuário</Title>
+        <BtnClose onClick={() => setOpen(false)}>
           <MdClose size={22} />
-        </button>
+        </BtnClose>
       </Header>
 
       <Form schema={schema} onSubmit={handleSubmit}>
-        <Body>
-          <div>
+        <FormBody>
+          <FormGroup>
             <h3>Dados pessoais</h3>
-            <div className="fields">
+            <FormAddon>
               <Input name="firstname" label="Nome" />
-            </div>
-            <div className="fields">
+            </FormAddon>
+            <FormAddon>
               <Input name="lastname" label="Sobrenome" />
-            </div>
-            <div className="fields">
+            </FormAddon>
+            <FormAddon>
               <Input name="email" label="E-mail" />
-            </div>
-            <div className="fields">
+            </FormAddon>
+            <FormAddon>
               <Input name="cpf" label="CPF" />
-            </div>
-            <div className="fields">
+            </FormAddon>
+            <FormAddon>
               <Input name="rg" label="RG" />
-            </div>
-            <div className="fields">
+            </FormAddon>
+            <FormAddon>
               <Input name="phone" label="Celular" />
-            </div>
-          </div>
-          <div>
-            <h3>Endereço</h3>
-            <div className="fields">
-              <Input name="zipcode" label="CEP" onBlur={fetchAddress} />
-            </div>
-            <div className="fields">
-              <Input name="street" label="Logradouro" />
-            </div>
-            <div className="fields">
-              <Input name="street_number" label="Número" />
-            </div>
-            <div className="fields">
-              <Input name="neighborhood" label="Bairro" />
-            </div>
-            <div className="fields">
-              <Input name="city" label="Cidade" />
-            </div>
-            <div className="fields">
-              <Input name="state" label="Estado" />
-            </div>
-          </div>
-        </Body>
+            </FormAddon>
+          </FormGroup>
 
-        <button type="submit">Criar conta</button>
+          <FormGroup>
+            <h3>Endereço</h3>
+            <FormAddon>
+              <Input name="zipcode" label="CEP" onBlur={fetchAddress} />
+            </FormAddon>
+            <FormAddon>
+              <Input name="street" label="Logradouro" />
+            </FormAddon>
+            <FormAddon>
+              <Input name="street_number" label="Número" />
+            </FormAddon>
+            <FormAddon>
+              <Input name="neighborhood" label="Bairro" />
+            </FormAddon>
+            <FormAddon>
+              <Input name="city" label="Cidade" />
+            </FormAddon>
+            <FormAddon>
+              <Input name="state" label="Estado" />
+            </FormAddon>
+          </FormGroup>
+        </FormBody>
+
+        <BtnSubmit>Criar conta</BtnSubmit>
       </Form>
     </PageFullscreen>
   );
