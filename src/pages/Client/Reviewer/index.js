@@ -12,11 +12,11 @@ import Pagination from '~/components/Pagination';
 import PDFViewer from '~/components/PDFViewer';
 import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import {
-  documentRequest,
-  documentDestroy,
-  documentForward,
-  documentClean,
-} from '~/store/modules/client/reviewer/actions';
+  reviewerRequest,
+  reviewerDestroy,
+  reviewerForward,
+  reviewerClean,
+} from '~/store/modules/client/document/actions';
 
 import {
   Container,
@@ -33,8 +33,8 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   const profile = useSelector(state => state.user.profile);
-  const data = useSelector(state => state.review.data);
-  const meta = useSelector(state => state.review.meta);
+  const data = useSelector(state => state.document.reviewer.data);
+  const meta = useSelector(state => state.document.reviewer.meta);
 
   const [documents, setDocuments] = useState([]);
 
@@ -45,8 +45,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     setInputValue(page);
-    dispatch(documentRequest({ page }));
-    return () => dispatch(documentClean());
+    dispatch(reviewerRequest({ page }));
+    return () => dispatch(reviewerClean());
   }, [page]); // eslint-disable-line
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function Dashboard() {
       setDocuments(
         documents.filter(document => {
           if (document.uuid === uuid) {
-            dispatch(documentDestroy(document.file.uuid));
+            dispatch(reviewerDestroy(document.file.uuid));
           }
           return document.uuid !== uuid;
         })
@@ -90,7 +90,7 @@ export default function Dashboard() {
       setDocuments(
         documents.filter(document => {
           if (document.uuid === uuid) {
-            dispatch(documentForward(document.uuid, profile));
+            dispatch(reviewerForward(document.uuid, profile));
           }
           return document.uuid !== uuid;
         })

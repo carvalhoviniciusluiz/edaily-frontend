@@ -6,10 +6,10 @@ import Pagination from '~/components/Pagination';
 import PDFViewer from '~/components/PDFViewer';
 import ToolbarMenu from '~/components/ToolbarMenu/Client';
 import {
-  documentFollowRequest,
-  documentFollowFetch,
-  documentFollowClean,
-} from '~/store/modules/client/follower/actions';
+  followerRequest,
+  followerFetch,
+  followerClean,
+} from '~/store/modules/client/document/actions';
 
 import FlagCancellation from './Components/FlagCancellation';
 import FlagDate from './Components/FlagDate';
@@ -30,8 +30,8 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   const profile = useSelector(state => state.user.profile);
-  const data = useSelector(state => state.follow.data);
-  const meta = useSelector(state => state.follow.meta);
+  const data = useSelector(state => state.document.follower.data);
+  const meta = useSelector(state => state.document.follower.meta);
 
   const [documents, setDocuments] = useState([]);
 
@@ -43,8 +43,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     setInputValue(page);
-    dispatch(documentFollowRequest({ page, profile }));
-    return () => dispatch(documentFollowClean());
+    dispatch(followerRequest({ page, profile }));
+    return () => dispatch(followerClean());
   }, [page]); // eslint-disable-line
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Dashboard() {
   }, [data]);
 
   const handleDocumentClick = async documentUUID => {
-    await dispatch(documentFollowFetch({ documentUUID, profile }));
+    await dispatch(followerFetch({ documentUUID, profile }));
 
     setShow(true);
   };

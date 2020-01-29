@@ -22,7 +22,7 @@ import {
 } from './styles';
 
 export default function Modal({ setShow, show }) {
-  const document = useSelector(state => state.follow.document);
+  const document = useSelector(state => state.document.follower.document);
 
   const handleSubmit = data => {
     console.tron.log(data);
