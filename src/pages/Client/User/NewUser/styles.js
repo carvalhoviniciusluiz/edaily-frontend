@@ -7,6 +7,9 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
+  position: fixed;
+  width: 100%;
+
   height: 64px;
   color: #fff;
   background: #4a93dc;
@@ -87,7 +90,7 @@ export const Form = styled(form)`
   width: 100%;
   max-width: 600px;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 122px !important;
   margin: 0 auto;
 `;
 
