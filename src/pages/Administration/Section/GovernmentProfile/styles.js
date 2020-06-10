@@ -232,6 +232,7 @@ export const BtnInactive = styled.button.attrs(() => ({
 export const BtnEdit = styled.button.attrs(() => ({
   className: 'btn-edit',
 }))`
+  margin-left: 6px;
   &:hover {
     color: #333;
     background: ${darken(0.03, '#fff')};
@@ -254,6 +255,7 @@ export const BtnAdd = styled.button.attrs(() => ({
 
   display: flex;
   justify-content: center;
+  align-items: center;
 
   &:hover {
     background: ${darken(0.03, '#f3f3f3')};
