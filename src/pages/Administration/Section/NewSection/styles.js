@@ -6,64 +6,95 @@ import {
 import { darken } from 'polished';
 import styled from 'styled-components';
 
-export const Header = styled.div`
-  min-height: 14px;
-  padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
-  background: #fafafa;
-
+export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  position: fixed;
+  width: 100%;
+
+  height: 64px;
+  color: #fff;
+  background: #4a93dc;
+
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
 
-export const Title = styled.h4`
-  font-size: 18px;
-  font-weight: 500;
+export const Title = styled.h2`
+  font-weight: 444;
+  font-weight: 555;
+  margin-left: 30px;
 `;
 
-export const BtnClose = styled.button`
+export const BtnClose = styled.button.attrs({
+  type: 'button',
+})`
   border: 0;
-  padding: 0;
-  background: 0;
-  font-weight: 700;
-  opacity: 0.2;
-  font-size: 21px;
-  color: #000;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 555;
+  padding: 10px;
+  margin-right: 34px;
+  color: #fff;
 
   &:hover {
-    opacity: 0.5;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
   }
-`;
 
-export const Body = styled.div`
-  flex: 1 1 auto;
-  overflow-y: auto;
-
-  position: relative;
-  padding: 0 25px;
-  height: 295px;
+  @media (max-width: 882px) {
+    font-size: 16px;
+    margin-right: 15px;
+  }
 `;
 
 export const Form = styled(form)`
-  display: flex;
-  flex-direction: column;
-  margin-top: 22px;
-  margin-bottom: 15px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin-top: 122px !important;
+  margin: 0 auto;
+
+  > span {
+    text-align: left;
+    color: red;
+  }
+`;
+
+export const BtnSubmit = styled.button.attrs({
+  type: 'submit',
+})`
+  margin: 30px 0 0;
+  width: 100%;
+  height: 44px;
+  background: #3b9eff;
+  font-weight: bold;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${darken(0.03, '#3b9eff')};
+  }
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 `;
 
 export const Input = styled(input)`
+  width: 100%;
   background: rgba(0, 0, 0, 0.1);
-  color: #333;
   border: 0;
-  border-radius: 4px;
-  padding: 0 15px;
-  margin: 6px 0 10px;
-  height: 44px;
-
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-  }
+  border-radius: 5px;
+  padding: 15px 21px;
+  margin-top: 8px;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
 `;
 
 export const Label = styled.label`
@@ -83,48 +114,4 @@ export const Check = styled(check)`
 export const Divider = styled.hr`
   background: rgba(0, 0, 0, 0.2);
   margin: 20px 0 20px;
-`;
-
-export const Footer = styled.div`
-  padding: 15px;
-  text-align: right;
-  border-top: 1px solid #e5e5e5;
-  width: 100%;
-  top: 91%;
-  background: #fafafa;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-export const BtnCancel = styled.button`
-  border: 0;
-  color: #333;
-  background: transparent;
-  margin-right: 15px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-export const BtnAdd = styled.button`
-  margin: 0;
-  padding: 10px;
-  border: 0;
-  border-radius: 4px;
-  background: transparent;
-
-  background: #3b9eff;
-  color: #fff;
-
-  transition: background 0.2s;
-
-  &:hover {
-    background: ${darken(0.03, '#3b9eff')};
-
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  }
 `;

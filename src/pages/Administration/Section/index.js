@@ -39,8 +39,9 @@ import {
 } from './styles';
 
 export default function Section() {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [showPage, setShowPage] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleActive = async () => {
     const { value } = await Swal.fire({
@@ -78,7 +79,8 @@ export default function Section() {
     <>
       <ToolbarMenu />
 
-      <NewSection show={showModal} setShow={setShowModal} />
+      {/* <NewSection show={showModal} setShow={setShowModal} /> */}
+      <NewSection open={open} setOpen={setOpen} />
       <GovernmentProfile open={showPage} setOpen={setShowPage} />
 
       <Container>
@@ -154,7 +156,7 @@ export default function Section() {
                 <PanelEventActions>
                   <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
                   <BtnActive onClick={handleActive}>Ativar</BtnActive>
-                  <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
+                  <BtnEdit onClick={() => setOpen(true)}>Editar</BtnEdit>
                 </PanelEventActions>
               </PanelEvent>
             </PanelBody>
@@ -215,7 +217,7 @@ export default function Section() {
                 <PanelEventActions>
                   <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
                   <BtnActive onClick={handleActive}>Ativar</BtnActive>
-                  <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
+                  <BtnEdit onClick={() => setOpen(true)}>Editar</BtnEdit>
                 </PanelEventActions>
               </PanelEvent>
             </PanelBody>
@@ -276,14 +278,14 @@ export default function Section() {
                 <PanelEventActions>
                   <BtnInactive onClick={handleInactive}>Inativar</BtnInactive>
                   <BtnActive onClick={handleActive}>Ativar</BtnActive>
-                  <BtnEdit onClick={() => setShowModal(true)}>Editar</BtnEdit>
+                  <BtnEdit onClick={() => setOpen(true)}>Editar</BtnEdit>
                 </PanelEventActions>
               </PanelEvent>
             </PanelBody>
           </Panel>
         </PanelList>
 
-        <BtnAdd onClick={() => setShowModal(true)}>
+        <BtnAdd onClick={() => setOpen(true)}>
           <FaPlus size={32} />
         </BtnAdd>
       </Container>
